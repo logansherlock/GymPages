@@ -1,6 +1,6 @@
 {
-  "homepage": "http://MarcosPaAc.github.io/GymFinder",
-  "name": "gymfinder",
+  "homepage": "http://MarcosPaAc.github.io/GymPages",
+  "name": "gympages",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -10,10 +10,11 @@
     "@testing-library/user-event": "^13.5.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-scripts": "^3.0.1",
+    "react-router": "^7.2.0",
+    "react-scripts": "^5.0.1",
     "web-vitals": "^2.1.4"
   },
-  "scripts": { 
+  "scripts": {
     "start": "set NODE_OPTIONS=--openssl-legacy-provider && react-scripts start",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
@@ -43,4 +44,3 @@
     "gh-pages": "^6.3.0"
   }
 }
-
