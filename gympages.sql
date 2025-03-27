@@ -1,15 +1,15 @@
 USE gympages;
 
-DROP TABLE IF EXISTS user_history;
+DROP TABLE IF EXISTS comments;
+DROP TABLE IF EXISTS friends;
 DROP TABLE IF EXISTS reviews;
 DROP TABLE IF EXISTS profiles;
-DROP TABLE IF EXISTS friends;
 DROP TABLE IF EXISTS posts;
 DROP TABLE IF EXISTS gym_equipment;
+DROP TABLE IF EXISTS exercises;
+DROP TABLE IF EXISTS equipment;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS gyms;
-DROP TABLE IF EXISTS equipment;
-DROP TABLE IF EXISTS exercises;
 
 CREATE TABLE gyms (
 	gym_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -18,7 +18,7 @@ CREATE TABLE gyms (
     street_address VARCHAR(255) NOT NULL, 
     city VARCHAR(255) NOT NULL, 
     zip int NOT NULL, 
-    state VARCHAR(2)
+    state VARCHAR(2) NOT NULL
 );
     
 CREATE TABLE users (
@@ -61,6 +61,8 @@ CREATE TABLE posts (
     user_id INT NOT NULL,
     body TEXT NOT NULL,
     photo_ref VARCHAR(255) NULL, 
+    likes INT NOT NULL DEFAULT 0,
+    post_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (gym_id) REFERENCES gyms(gym_id) ON DELETE CASCADE,
     FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
 );
@@ -74,18 +76,19 @@ CREATE TABLE profiles (
     FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
 );
 
-CREATE TABLE user_history (
-	user_id INT NOT NULL,
-    post_id INT NOT NULL, 
-    PRIMARY KEY (user_id, post_id),
-    FOREIGN KEY (user_id) REFERENCES users(user_id),
-    FOREIGN KEY (post_id) REFERENCES posts(post_id)
+CREATE TABLE comments (
+    comment_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    post_id INT NOT NULL,
+    user_id INT NOT NULL, 
+    body TEXT NOT NULL
 );
 
 CREATE TABLE exercises (
 	exercise_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     exercise_name VARCHAR(255) NOT NULL,
-    video_link VARCHAR(255) NULL
+    related_equip_id INT NULL,
+    video_link VARCHAR(255) NULL,
+    FOREIGN KEY(related_equip_id) REFERENCES equipment(equipment_id)
 );
 
 CREATE TABLE reviews (
@@ -95,6 +98,7 @@ CREATE TABLE reviews (
     rating INT CHECK (rating BETWEEN 1 AND 5) NOT NULL, 
     body TEXT NULL, 
     photo_ref VARCHAR(255) NULL,
+	review_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (gym_id) REFERENCES gyms(gym_id) ON DELETE CASCADE,
     FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
 );
