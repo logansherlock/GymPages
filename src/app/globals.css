@@ -33,10 +33,17 @@ html {
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #8f7a7a;
+    --background: #553737b7;
     --foreground: #ffffff;
   }
 }
+
+/* @media (prefers-color-scheme: dark) {
+  :root {
+    --background: #8f7a7a;
+    --foreground: #ffffff;
+  }
+} */
 
 body {
   background: var(--background);
@@ -54,4 +61,17 @@ div {
 
 nav {
   border-width: 1px;
+}
+
+.map-container {
+  width: 100%;
+  height: 100%;
+}
+
+.reviews-container {
+  max-height: 10px; 
+  overflow-y: auto; 
+  display: -webkit-box;
+  -webkit-line-clamp: 3; 
+  -webkit-box-orient: vertical;
 }
