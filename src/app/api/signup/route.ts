@@ -1,12 +1,13 @@
 import db from "@/lib/db";
 import { NextRequest, NextResponse } from "next/server";
+import bcrypt from "bcryptjs";
 import { ResultSetHeader } from "mysql2";
 
 export async function POST(req: NextRequest) {
   try {
-    const { email, firstname, lastname, username, pass_hash } = await req.json();
+    const { email, firstname, lastname, username, pass_hash: password } = await req.json();
 
-    if (!email || !firstname || !lastname || !username || !pass_hash) {
+    if (!email || !firstname || !lastname || !username || !password) {
       return NextResponse.json(
         { message: "all fields required" },
         { status: 400 }
@@ -27,7 +28,8 @@ export async function POST(req: NextRequest) {
 
     const query =
       "INSERT INTO users (email, firstname, lastname, username, pass_hash) VALUES (?, ?, ?, ?, ? )";
-    const values = [email, firstname, lastname, username, pass_hash];
+    const hashedPassword = bcrypt.hashSync(password, 10);
+    const values = [email, firstname, lastname, username, hashedPassword];
 
     const [result] = await db.query<ResultSetHeader>(query, values);
 
@@ -42,16 +44,3 @@ export async function POST(req: NextRequest) {
     );
   }
 }
-
-// async function checker(column: string, value: string): Promise<boolean> {
-//   const checkQuery = `SELECT COUNT(*) AS count FROM users WHERE ${column} = ?`;
-//   const checkResults = await db.query<any>(checkQuery, [value])
-//   return checkResults[0].count > 0;
-// }
-
-// if (await checker("email", email)) {
-//   return NextResponse.json({message: "email already taken"}, { status: 409 })
-// }
-// else if (await checker("username", username)) {
-//   return NextResponse.json({message: "username already taken"}, { status: 409 })
-// }

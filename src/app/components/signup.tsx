@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-export default function UserForm({setMessage}: {setMessage: (msg: string) => void;}) {
+export default function SignUp({setMessage}: {setMessage: (msg: string) => void;}) {
   const [formData, setFormData] = useState({
     email: "",
     firstname: "",
@@ -16,20 +16,20 @@ export default function UserForm({setMessage}: {setMessage: (msg: string) => voi
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
-    console.log("submitting form (userForm.tsx):", formData);
+    console.log("submitting form (signup.tsx):", formData);
 
     try {
-      const response = await fetch("/api/addUsers", {
+      const response = await fetch("/api/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
 
       const data = await response.json();
-      console.log("response received (userForm.tsx):", data);
+      console.log("response received (signup.tsx):", data);
 
       if (!response.ok) {
-        throw new Error(data.message || "something went wrong (userForm.tsx)");
+        throw new Error(data.message || "something went wrong (signup.tsx)");
       }
 
       setLocalMessage(data.message);
@@ -48,8 +48,8 @@ export default function UserForm({setMessage}: {setMessage: (msg: string) => voi
         setLocalMessage(error.message);
         setMessage(error.message);
       } else {
-        setLocalMessage("error occurred (userForm.tsx)");
-        setMessage("error occurred (userForm.tsx)");
+        setLocalMessage("error occurred (signup.tsx)");
+        setMessage("error occurred (signup.tsx)");
       }
     }
   };
