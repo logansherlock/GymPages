@@ -9,7 +9,7 @@ export async function GET(
   try {
     const { gym_id } = await params;  // Dynamic gym ID from the URL
     const [rows] = await pool.query<any>(
-      "SELECT gym_name, location, street_address, city, zip, state FROM gyms WHERE gym_id = ?",
+      "SELECT gym_id, gym_name, location, street_address, city, zip, state FROM gyms WHERE gym_id = ?",
       [gym_id]
     );
 
@@ -21,7 +21,7 @@ export async function GET(
 
     // Return the gym details as the API response
     return NextResponse.json(
-      { gym_name, location, street_address, city, zip, state },
+      { gym_id, gym_name, location, street_address, city, zip, state },
       { status: 200 }
     );
   } catch (error) {

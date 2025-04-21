@@ -8,6 +8,7 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [localMessage, setLocalMessage] = useState("");
 
   // Handle form submission
   async function handleLogin(event: FormEvent<HTMLFormElement>) {
@@ -32,16 +33,18 @@ export default function Login() {
         router.push("/"); // redirect
       } else {
         setErrorMessage(data.message || "Login failed");
+        setLocalMessage(data.message);
       }
     } catch (error) {
       console.error("Network or fetch error:", error);
       setErrorMessage("Something went wrong. Please try again.");
+      setLocalMessage("Something went wrong. Please try again.");
     }
   }
 
   // Redirect to signup page
   async function handleSignUp() {
-    router.push("/signup");
+    router.push("/auth/signup");
   }
 
   return (
@@ -50,11 +53,6 @@ export default function Login() {
       className="flex flex-col justify-center items-center min-h-screen border font-mono pb-20"
     >
       <div className="w-full max-w-s m-4 text-center text-5xl font-bold">account login</div>
-      {errorMessage && (
-        <div className="w-full max-w-xs text-red-600 text-center">
-          <p>{errorMessage}</p>
-        </div>
-      )}
       <div className="w-full max-w-xs flex items-center">
         <input
           type="email"
@@ -90,6 +88,16 @@ export default function Login() {
           sign-up
         </button>
       </div>
+      <div className="w-full max-w-xs">
+        {localMessage && (
+          <p
+            className="mt-4 px-4 py-2 w-full text-center text-white rounded-md font-bold 
+                      bg-green-500"
+          >
+            {localMessage}
+          </p>
+        )}
+        </div>
     </form>
   );
 }

@@ -7,7 +7,8 @@ import { usePathname } from "next/navigation";
 export const Navigation = () => {
   const pathname = usePathname();
 
-  const { isLoggedIn, username } = useAuth();
+  const { isLoggedIn, username, membership } = useAuth();
+  const baseLinkClass = "cursor-pointer hover:scale-[1.1] transition-transform text-center font-bold";
 
   const handleLogout = async () => {
     await fetch("/api/logout", { method: "POST" });
@@ -18,7 +19,7 @@ export const Navigation = () => {
     <nav className="flex flex-wrap gap-6 justify-between">
       <Link
         href="/gyms"
-        className={`text-center ${
+        className={`${baseLinkClass} text-center ${
           pathname === "/gyms" ? "font-bold text-stone-100" : "text-stone-800"
         }`}
       >
@@ -26,7 +27,7 @@ export const Navigation = () => {
       </Link>
       <Link
         href="/exercises"
-        className={`text-center ${
+        className={`${baseLinkClass} text-center ${
           pathname === "/exercises"
             ? "font-bold text-stone-100"
             : "text-stone-800"
@@ -36,7 +37,7 @@ export const Navigation = () => {
       </Link>
       <Link
         href="/about"
-        className={`text-center ${
+        className={`${baseLinkClass} text-center ${
           pathname === "/about" ? "font-bold text-stone-100" : "text-stone-800"
         }`}
       >
@@ -48,7 +49,7 @@ export const Navigation = () => {
             <>
               <Link
                 href="/admin-users"
-                className={`text-center ${
+                className={`${baseLinkClass} text-center ${
                   pathname === "/admin-users"
                     ? "font-bold text-stone-100"
                     : "text-stone-800"
@@ -58,7 +59,7 @@ export const Navigation = () => {
               </Link>
               <Link
                 href="/admin-gyms"
-                className={`text-center ${
+                className={`${baseLinkClass} text-center ${
                   pathname === "/admin-gyms"
                     ? "font-bold text-stone-100"
                     : "text-stone-800"
@@ -68,7 +69,7 @@ export const Navigation = () => {
               </Link>
               <Link
                 href="/admin-exercises"
-                className={`text-center ${
+                className={`${baseLinkClass} text-center ${
                   pathname === "/admin-exercises"
                     ? "font-bold text-stone-100"
                     : "text-stone-800"
@@ -78,9 +79,23 @@ export const Navigation = () => {
               </Link>
             </>
           )}
+          {username !== "admin" && (
+            <>
+              <Link
+                href={`/community-board/${membership}`}
+                className={`${baseLinkClass} text-center ${
+                  pathname.startsWith("/community-board")
+                    ? "font-bold text-stone-100"
+                    : "text-stone-800"
+                }`}
+              >
+                community board
+              </Link>
+            </>
+          )}
           <button
             onClick={handleLogout}
-            className="text-center text-[10px] text-red-500 font-bold"
+            className={`${baseLinkClass} text-center text-[10px] text-red-500 font-bold`}
           >
             sign out
           </button>
@@ -89,13 +104,23 @@ export const Navigation = () => {
         <>
           <Link
             href="/auth/login"
-            className={`text-center ${
+            className={`${baseLinkClass} text-center ${
               pathname === "/auth/login"
                 ? "font-bold text-stone-100"
                 : "text-stone-800"
             }`}
           >
-            login
+            log-in
+          </Link>
+          <Link
+            href="/auth/signup"
+            className={`${baseLinkClass} text-center ${
+              pathname === "/auth/signup"
+                ? "font-bold text-stone-100"
+                : "text-stone-800"
+            }`}
+          >
+            sign-up
           </Link>
         </>
       )}
