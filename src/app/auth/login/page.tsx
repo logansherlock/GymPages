@@ -1,16 +1,45 @@
 "use client";
 
-import { FormEvent } from "react";
+import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 
 export default function Login() {
   const router = useRouter();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
+  // Handle form submission
   async function handleLogin(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    router.push("/");
+
+    try {
+      const response = await fetch("/api/login", {
+        method: "POST",
+        body: JSON.stringify({ email, password }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      console.log("Login response status:", response.status);
+
+      const data = await response.json();
+      console.log("Login response data:", data);
+
+      if (response.ok) {
+        localStorage.setItem("username", data.user.username); 
+        router.push("/"); // redirect
+      } else {
+        setErrorMessage(data.message || "Login failed");
+      }
+    } catch (error) {
+      console.error("Network or fetch error:", error);
+      setErrorMessage("Something went wrong. Please try again.");
+    }
   }
 
+  // Redirect to signup page
   async function handleSignUp() {
     router.push("/signup");
   }
@@ -21,11 +50,18 @@ export default function Login() {
       className="flex flex-col justify-center items-center min-h-screen border font-mono pb-20"
     >
       <div className="w-full max-w-s m-4 text-center text-5xl font-bold">account login</div>
+      {errorMessage && (
+        <div className="w-full max-w-xs text-red-600 text-center">
+          <p>{errorMessage}</p>
+        </div>
+      )}
       <div className="w-full max-w-xs flex items-center">
         <input
           type="email"
           placeholder="email"
           name="user-email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           className="m-2 px-3 py-1 w-full border border-slate-900 bg-slate-100 text-slate-900 font-bold rounded-md text-center"
         />
       </div>
@@ -34,6 +70,8 @@ export default function Login() {
           type="password"
           placeholder="password"
           name="user-password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
           className="m-2 px-3 py-1 w-full border border-slate-900 bg-slate-100 text-slate-900 font-bold rounded-md text-center"
         />
       </div>

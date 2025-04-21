@@ -1,25 +1,11 @@
-USE gympages;
-
-DROP TABLE IF EXISTS comments;
-DROP TABLE IF EXISTS friends;
-DROP TABLE IF EXISTS reviews;
-DROP TABLE IF EXISTS profiles;
-DROP TABLE IF EXISTS posts;
-DROP TABLE IF EXISTS gym_equipment;
-DROP TABLE IF EXISTS exercises;
-DROP TABLE IF EXISTS equipment;
-DROP TABLE IF EXISTS users;
-DROP TABLE IF EXISTS gyms;
-
 CREATE TABLE gyms (
-	gym_id VARCHAR(255) NOT NULL PRIMARY KEY,
+	gym_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     gym_name VARCHAR(255) NOT NULL,
     location POINT NOT NULL,
     street_address VARCHAR(255) NOT NULL, 
     city VARCHAR(255) NOT NULL, 
     zip int NOT NULL, 
-    state VARCHAR(2) NOT NULL,
-    phone_number VARCHAR(14) NULL
+    state VARCHAR(2) NOT NULL
 );
     
 CREATE TABLE users (
@@ -29,7 +15,7 @@ CREATE TABLE users (
     lastname VARCHAR(255) NOT NULL,
     username VARCHAR(255) NOT NULL UNIQUE,
 	pass_hash VARCHAR(255) NOT NULL,
-    gym_member VARCHAR(255) NULL,
+    gym_member INT NULL,
     FOREIGN KEY (gym_member) REFERENCES gyms(gym_id) ON DELETE SET NULL
 );
     
@@ -40,7 +26,7 @@ CREATE TABLE equipment (
 );
 
 CREATE TABLE gym_equipment (
-	gym_id VARCHAR(255) NOT NULL, 
+	gym_id INT NOT NULL, 
     equipment_id INT NOT NULL,
     PRIMARY KEY (gym_id, equipment_id), 
     FOREIGN KEY (gym_id) REFERENCES gyms(gym_id) ON DELETE CASCADE, 
@@ -58,7 +44,7 @@ CREATE TABLE friends (
 
 CREATE TABLE posts (
 	post_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-	gym_id VARCHAR(255) NOT NULL, 
+	gym_id INT NOT NULL, 
     user_id INT NOT NULL,
     body TEXT NOT NULL,
     photo_ref VARCHAR(255) NULL, 
@@ -94,7 +80,7 @@ CREATE TABLE exercises (
 
 CREATE TABLE reviews (
 	review_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
-    gym_id VARCHAR(255) NOT NULL,
+    gym_id INT NOT NULL,
     user_id INT NOT NULL, 
     rating INT CHECK (rating BETWEEN 1 AND 5) NOT NULL, 
     body TEXT NULL, 
