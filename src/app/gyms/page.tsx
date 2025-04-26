@@ -3,7 +3,7 @@
 import { useAuth } from "@/hooks/useAuth";
 
 export default function Gym() {
-  const {isLoggedIn, username} = useAuth();
+  const {isLoggedIn, username, userID, membership} = useAuth();
 
   return (
     <div>

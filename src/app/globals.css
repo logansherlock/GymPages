@@ -33,7 +33,7 @@ html {
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #553737b7;
+    --background: #c7c0c0;
     --foreground: #ffffff;
   }
 }
@@ -55,13 +55,13 @@ body {
   font-family: "DejaVu Sans Mono", monospace;
 }
 
-div {
+/* div {
   border-width: 1px;
-}
+} */
 
-nav {
+/* nav {
   border-width: 1px;
-}
+} */
 
 .map-container {
   width: 100%;

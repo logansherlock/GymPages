@@ -27,7 +27,7 @@ const Map = ({
   const center = { lat: latitude, lng: longitude };
 
   return (
-    <div className="w-full h-full border-[3px] border-black">
+    <div className="w-full h-full border-[2px] border-black">
       <GoogleMap
         zoom={15}
         center={center}
