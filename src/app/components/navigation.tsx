@@ -7,16 +7,17 @@ import { usePathname } from "next/navigation";
 export const Navigation = () => {
   const pathname = usePathname();
 
-  const { isLoggedIn, username, membership } = useAuth();
-  const baseLinkClass = "cursor-pointer hover:scale-[1.1] transition-transform text-center font-bold";
+  const { isLoggedIn, username, userID, membership } = useAuth();
+  const baseLinkClass =
+    "cursor-pointer hover:scale-[1.1] transition-transform text-center font-bold";
 
   const handleLogout = async () => {
-    await fetch("/api/logout", { method: "POST" });
+    await fetch("/api/auth/logout", { method: "POST" });
     window.location.reload(); // this will re-run the useEffect in useAuth
   };
 
   return (
-    <nav className="flex flex-wrap gap-6 justify-between">
+    <nav className="flex flex-wrap gap-4 justify-between">
       <Link
         href="/gyms"
         className={`${baseLinkClass} text-center ${

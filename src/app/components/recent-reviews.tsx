@@ -4,7 +4,7 @@ const RecentReviews = ({ gym_id }: { gym_id: string }) => {
   const [reviews, setReviews] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
-  const maxChars = 160;
+  const maxChars = 150;
 
   const truncateText = (text: string, maxChars: number) => {
     if (text.length > maxChars) {
@@ -19,7 +19,7 @@ const RecentReviews = ({ gym_id }: { gym_id: string }) => {
       return;
     } // Prevent fetching if gym_id is undefined or empty
 
-    fetch(`/api/reviews/${gym_id}`)
+    fetch(`/api/reviews/reviews-by-gym/${gym_id}`)
       .then((res) => res.json())
       .then((data) => {
         if (Array.isArray(data)) {
@@ -34,7 +34,7 @@ const RecentReviews = ({ gym_id }: { gym_id: string }) => {
   }, [gym_id]); // Only re-run this effect when gym_id changes
 
   return (
-    <div>
+    <div className="w-full">
       <div className="text-center font-white text-2xl font-bold m-1">
         recent reviews
       </div>
@@ -47,17 +47,17 @@ const RecentReviews = ({ gym_id }: { gym_id: string }) => {
           <div className="flex items-center justify-between">no reviews</div>
         </div>
       ) : (
-        <div className="flex flex-col h-[450px] ml-4 p-1 justify-between mt-2">
+        <div className="flex flex-col h-[450px] w-[95%] ml-4 mr-4 p-1 justify-between mt-2">
           {reviews.slice(0, 3).map((review) => (
             <div
               key={review.review_id}
-              className="text-white font-mono bg-stone-600 rounded-xl p-1 border-black border-[3px]"
+              className="text-white font-mono bg-stone-600 rounded-xl p-1 border-black border-[3px] w-full"
             >
               <div className="flex justify-between w-full">
                 <div className="text-lg font-semibold">{review.username}</div>
                 <div className="text-xl">{"⭐️".repeat(review.rating)}</div>
               </div>
-              <div className="text-[15px] bg-white text-black font-semibold p-2 rounded-xl">
+              <div className="text-[15px] bg-white text-black font-semibold p-2 rounded-xl overflow-hidden break-words border-black border-[2px]">
                 {truncateText(review.body, maxChars)}
               </div>
             </div>

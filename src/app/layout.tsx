@@ -29,7 +29,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <header className="font-dejaVuMono text-right p-1 flex items-center justify-between border m-2">
-          <Link href="/" className="text-7xl font-semibold align-middle">
+          <Link href="/" className="text-7xl font-semibold align-middle" style={{ WebkitTextStroke: '2px black' }}>
             GymPages
           </Link>
           <Navigation />

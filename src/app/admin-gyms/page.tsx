@@ -1,61 +1,185 @@
 "use client";
 import { useEffect, useState } from "react";
+import { useAuth } from "@/hooks/useAuth";
+import Link from "next/link";
 
-export default function UsersPage() {
-  const [users, setUsers] = useState<any[]>([]); // Ensure it's an array
+export default function GymList() {
+  const [gyms, setGyms] = useState<any[]>([]); // Ensure it's an array
+  const [gyms_loading, setGymsLoading] = useState(true);
+  const { isLoggedIn, username, userID, membership } = useAuth();
+
+  const handleDeleteGym = async (gym_id: string) => {
+    const confirmed = window.confirm(
+      "Are you sure you want to delete this gym?"
+    );
+    if (!confirmed) return;
+
+    try {
+      const res = await fetch(`/api/admin/gyms/${gym_id}`, {
+        method: "DELETE",
+      });
+
+      if (res.ok) {
+        setGyms((prevGyms) => prevGyms.filter((gym) => gym.gym_id !== gym_id));
+      } else {
+        console.error("Failed to delete gym");
+      }
+    } catch (error) {
+      console.error("Error deleting gym:", error);
+    }
+  };
 
   useEffect(() => {
-    fetch("/api/editUsers")
+    fetch("/api/admin/gyms")
       .then((res) => res.json())
       .then((data) => {
-        console.log("Fetched users:", data); // Debugging log
+        console.log("Fetched gyms:", data); // Debugging log
         if (Array.isArray(data)) {
-          setUsers(data);
+          setGyms(data);
         } else {
           console.error("Expected an array but got:", data);
+          setGyms([]);
         }
       })
-      .catch((err) => console.error("Fetch error:", err));
+      .catch((err) => {
+        console.error("Fetch error:", err);
+      })
+      .finally(() => {
+        setGymsLoading(false);
+      });
   }, []);
 
   return (
-    <div className="m-5">
-      <h1>Users</h1>
-      {users.length > 0 ? (
-        <table className="min-w-full table-auto border-collapse border border-gray-300">
-          <thead className="bg-stone-600 text-stone-100">
-            <tr>
-              <th className="px-4 py-2 border border-gray-300">id</th>
-              <th className="px-4 py-2 border border-gray-300">email</th>
-              <th className="px-4 py-2 border border-gray-300">username</th>
-              <th className="px-4 py-2 border border-gray-300">first name</th>
-              <th className="px-4 py-2 border border-gray-300">last name</th>
-            </tr>
-          </thead>
-          <tbody>
-            {users.map((user, index) => (
-              <tr key={user.user_id} className={index % 2 === 0 ? "bg-stone-400" : "bg-stone-500"}>
-                <td className="px-4 py-1.5 border border-gray-300 text-center font-bold">
-                  {user.user_id}
-                </td>
-                <td className="px-4 py-1.5 border border-gray-300">
-                  {user.email}
-                </td>
-                <td className="px-4 py-1.5 border border-gray-300">
-                  {user.username}
-                </td>
-                <td className="px-4 py-1.5 border border-gray-300">
-                  {user.firstname}
-                </td>
-                <td className="px-4 py-1.5 border border-gray-300">
-                  {user.lastname}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+    <div className="m-12 mt-10">
+      {isLoggedIn && userID === 0 ? (
+        <div className=" bg-stone-500 border-black border-[2px]">
+          <div className="flex flex-wrap m-2 justify-center font-mono text-white m-1 ">
+            <div
+              className="flex flex-wrap items-center max-w-s m-1 text-4xl shrink font-bold"
+              style={{ WebkitTextStroke: "1px black" }}
+            >
+              GYMS
+            </div>
+            <nav className="flex ml-auto items-center m-1 flex-wrap gap-6 justify-between m-1">
+              <Link
+                href={`/admin-gyms/add-gym`}
+                className="cursor-pointer hover:scale-[1.05] transition-transform text-center bg-stone-400 border-black border-[1px] px-2 font-bold rounded"
+              >
+                add-gym
+              </Link>
+            </nav>
+          </div>
+          <div className="flex flex-wrap justify-center mx-5 mb-5">
+            {gyms.length > 0 ? (
+              <table className="w-full table-auto">
+                <thead className="bg-stone-600 text-stone-100 ">
+                  <tr>
+                    <th className="px-4 py-2 border border-gray-300">gym_id</th>
+                    <th className="px-4 py-2 border border-gray-300">
+                      gym_name
+                    </th>
+                    <th className="px-4 py-2 border border-gray-300">
+                      street_address
+                    </th>
+                    <th className="px-4 py-2 border border-gray-300">city</th>
+                    <th className="px-4 py-2 border border-gray-300">zip</th>
+                    <th className="px-4 py-2 border border-gray-300">state</th>
+                    <th className="px-4 py-2 border border-gray-300">
+                      functions
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {gyms.map((gym, index) => (
+                    <tr
+                      key={gym.gym_id}
+                      className={
+                        index % 2 === 0 ? "bg-stone-400" : "bg-neutral-500"
+                      }
+                    >
+                      <td className="px-4 py-1.5 border border-gray-300 font-bold">
+                        {gym.gym_id}
+                      </td>
+                      <td className="px-4 py-1.5 border border-gray-300">
+                        {gym.gym_name}
+                      </td>
+                      <td className="px-4 py-1.5 border border-gray-300">
+                        {gym.street_address}
+                      </td>
+                      <td className="px-4 py-1.5 border border-gray-300">
+                        {gym.city}
+                      </td>
+                      <td className="px-4 py-1.5 border border-gray-300">
+                        {gym.zip}
+                      </td>
+                      <td className="px-4 py-1.5 border border-gray-300">
+                        {gym.state}
+                      </td>
+                      <td className="px-4 py-1.5 border border-gray-300 text-center font-bold">
+                        <Link
+                          href={`/gyms/${gym.gym_id}`}
+                          className="bg-yellow-500 text-white h-6 px-1 py-[3px] text-sm rounded hover:bg-yellow-600 mr-3 border-black border-[1px]"
+                        >
+                          View
+                        </Link>
+                        <button
+                          onClick={() =>
+                            handleDeleteGym(gym.gym_id)
+                          }
+                          className="bg-red-600 text-white h-6 px-1 text-sm rounded hover:bg-red-700 border-black border-[1px]"
+                        >
+                          Delete
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            ) : (
+              <p>No gyms found.</p>
+            )}
+          </div>
+        </div>
       ) : (
-        <p>No users found.</p>
+        <div>
+          <div className="flex flex-wrap m-1 font-mono text-white m-1 ">
+            <div className="flex flex-wrap items-center max-w-s m-1 text-sm shrink font-bold text-black">
+              <Link
+                href={`/`}
+                className="text-white text-4xl font-bold ml-2 mr-4"
+                style={{ WebkitTextStroke: "1px black" }}
+              >
+                ←
+              </Link>{" "}
+              back to home
+            </div>
+            <div
+              className="flex flex-wrap items-center max-w-s m-1 ml-auto text-4xl shrink font-bold"
+              style={{ WebkitTextStroke: "1px black" }}
+            >
+              EXERCISES
+            </div>
+          </div>
+          {!isLoggedIn ? (
+            <div className="flex flex-col justify-center items-center min-h-screen border font-mono pb-20 m-1">
+              <div
+                className="w-full max-w-s m-4 text-center text-4xl font-bold"
+                style={{ WebkitTextStroke: "1px black" }}
+              >
+                Must be logged in and admin to view exercises.
+              </div>
+            </div>
+          ) : (
+            <div className="flex flex-col justify-center items-center min-h-screen border font-mono pb-20 m-1">
+              <div
+                className="w-full max-w-s m-4 text-center text-4xl font-bold"
+                style={{ WebkitTextStroke: "1px black" }}
+              >
+                Must be admin to view exercises.
+              </div>
+            </div>
+          )}
+        </div>
       )}
     </div>
   );

@@ -9,10 +9,10 @@ export default function GymPage() {
   const [gym, setGym] = useState<any | null>(null);
   const [loading, setLoading] = useState(true); // Track loading state
   const { gym_id } = useParams();
-
+  console.log(gym_id)
   useEffect(() => {
     console.log("page.tsx gym_id type:", typeof gym_id); // Log the type of gym_id
-    fetch(`/api/gyms/${gym_id}`)
+    fetch(`/api/gym-page/${gym_id}`)
       .then((res) => res.json())
       .then((data) => {
         console.log("Fetched gym:", data);
@@ -21,31 +21,31 @@ export default function GymPage() {
           console.log("LOCATION x: ", data.location.x);
           console.log("LOCATION y: ", data.location.y);
         }
-
-        setTimeout(() => {
-          setGym(data);
-          setLoading(false);
-        }, 1000);
+        setGym(data);
 
         console.log("Current gym object:", data);
       })
-      .catch((err) => console.error("Fetch error:", err));
+      .catch((err) => {
+        console.error("Fetch error:", err);
+        setGym(null);
+      })
+      .finally(() => setLoading(false));
   }, [gym_id]);
 
   return (
     <div className="m-2">
       {loading ? (
         <div className="flex flex-col justify-center items-center min-h-screen border font-mono pb-20">
-          <div className="w-full max-w-s m-4 text-center text-5xl font-bold">
+          <div className="w-full max-w-s m-4 text-center text-5xl font-bold" style={{ WebkitTextStroke: "1px black" }}>
             Loading Gym Data...
           </div>
         </div>
       ) : gym &&
         gym?.location?.x !== undefined &&
         gym?.location?.y !== undefined ? (
-        <div className="m-1">
-          <div className="flex flex-wrap m-1 font-mono text-white">
-            <div className="flex flex-wrap items-center uppercase max-w-s m-1 text-4xl shrink font-bold">
+        <div className="bg-stone-500 border-black border-[2px] m-10 p-1">
+          <div className="flex flex-wrap m-1 font-mono text-white" >
+            <div className="flex flex-wrap items-center uppercase max-w-s m-1 text-4xl shrink font-bold" style={{ WebkitTextStroke: "1px black" }}>
               {gym.gym_name}
             </div>
             <div className="flex flex-wrap flex-col text-left ml-5 m-1">
@@ -60,13 +60,13 @@ export default function GymPage() {
               <nav className="flex flex-wrap gap-6 justify-between m-1">
                 <Link
                   href={`/reviews/${gym.gym_id}`}
-                  className="text-center bg-stone-400 border-black border-[1px] pl-1 pr-1 font-bold rounded"
+                  className="cursor-pointer hover:scale-[1.05] transition-transform text-center bg-stone-400 border-black border-[1px] px-2 font-bold rounded"
                 >
-                  reviews
+                  more reviews
                 </Link>
                 <Link
                   href={`/community-board/${gym.gym_id}`}
-                  className="text-center bg-stone-400 border-black border-[1px] pl-1 pr-1 font-bold rounded"
+                  className="cursor-pointer hover:scale-[1.05] transition-transform text-center bg-stone-400 border-black border-[1px] px-2 font-bold rounded"
                 >
                   community-board
                 </Link>
@@ -89,7 +89,7 @@ export default function GymPage() {
         </div>
       ) : (
         <div className="flex flex-col justify-center items-center min-h-screen border font-mono pb-20">
-          <div className="w-full max-w-s m-4 text-center text-5xl font-bold">
+          <div className="w-full max-w-s m-4 text-center text-5xl font-bold" >
             Error, not loading.
           </div>
         </div>

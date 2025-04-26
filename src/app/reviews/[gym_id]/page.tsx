@@ -4,26 +4,26 @@ import { useParams } from "next/navigation";
 import Link from "next/link";
 import Reviews from "@/app/components/reviews";
 
-export default function GymCommunityBoard() {
+export default function ReviewsPage() {
   const [gym, setGym] = useState<any | null>(null);
   const [loading, setLoading] = useState(true); // Track loading state
   const { gym_id } = useParams();
 
   useEffect(() => {
     console.log("page.tsx gym_id:", gym_id); // Log the type of gym_id
-    fetch(`/api/gyms/${gym_id}`)
+    fetch(`/api/gym-page/${gym_id}`)
       .then((res) => res.json())
       .then((data) => {
         console.log("Fetched gym:", data);
-
-        setTimeout(() => {
-          setGym(data);
-          setLoading(false);
-        }, 1000);
-
-        console.log("Current gym object:", data);
+        setGym(data);
       })
-      .catch((err) => console.error("Fetch error:", err));
+      .catch((err) => {
+        console.error("Fetch error:", err);
+        setGym(false);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   }, [gym_id]);
 
   return (
@@ -36,21 +36,20 @@ export default function GymCommunityBoard() {
           </div>
         </div>
       ) : gym ? (
-        <div>
+        <div className="m-1">
           <div className="flex flex-wrap m-1 font-mono text-white">
-            <div className="flex flex-wrap items-center uppercase max-w-s m-1 text-4xl shrink font-bold">
-              <Link href={`/gyms/${gym.gym_id}`}>{gym.gym_name}</Link>
-            </div>
-            <div className="flex flex-wrap flex-col text-left ml-5 m-1">
-              <div className="uppercase font-bold text-sm m-1 mb-0">
-                {gym.street_address}
-              </div>
-              <div className="uppercase font-bold text-sm m-1 mt-0">
-                {gym.city}, {gym.state}
-              </div>
-            </div>
-            <div className="flex flex-wrap items-center max-w-s m-1 ml-auto text-4xl shrink font-bold">
-              REVIEWS
+          <div className="flex flex-wrap items-center max-w-s m-1 text-sm shrink font-bold text-black">
+            <Link
+              href={`/gyms/${gym_id}`}
+              className="text-white text-4xl font-bold ml-2 mr-4"
+              style={{ WebkitTextStroke: "1px black" }}
+            >
+              ←
+            </Link>{" "}
+            back to {gym.gym_name}
+          </div>
+            <div className="flex flex-wrap items-center max-w-s m-1 ml-auto uppercase text-4xl shrink font-bold" style={{ WebkitTextStroke: "1px black" }}>
+            {gym.gym_name} REVIEWS
             </div>
           </div>
 
