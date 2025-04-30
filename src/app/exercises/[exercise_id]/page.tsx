@@ -111,11 +111,9 @@ export default function ExercisePage() {
                     {exercise.body}
                   </div>
                 </div>
-                <div className="flex flex-col justify-center items-center w-[50%] font-mono m-1">
+                <div className="flex flex-col aspect-video justify-center items-center w-[50%] font-mono m-1">
                   <iframe
-                    className="border-black border-[2px]"
-                    width="560"
-                    height="315"
+                    className="border-black border-[2px] aspect-video w-[90%]"
                     src={`${exercise.video_link}`}
                     title="YouTube video player"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
