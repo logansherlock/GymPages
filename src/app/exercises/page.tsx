@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 
@@ -28,6 +29,12 @@ export default function Exercises() {
           <div className="w-full max-w-s m-4 text-center text-4xl font-bold">
             Loading Exercises...
           </div>
+          <Image
+            src="/loadingGif.gif" // Replace with the path to your loading GIF
+            alt="Loading..."
+            width={250}
+            height={250}
+          />
         </div>
       ) : (
         <div className="m-1">
