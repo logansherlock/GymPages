@@ -9,7 +9,7 @@ export const Navigation = () => {
 
   const { isLoggedIn, username, userID, membership } = useAuth();
   const baseLinkClass =
-    "cursor-pointer hover:scale-[1.1] transition-transform text-center font-bold";
+    "cursor-pointer hover:scale-[1.1] transition-transform text-center font-bold tracking-tighter";
 
   const handleLogout = async () => {
     await fetch("/api/auth/logout", { method: "POST" });
@@ -17,14 +17,14 @@ export const Navigation = () => {
   };
 
   return (
-    <nav className="flex flex-wrap gap-4 justify-between">
+    <nav className="flex flex-wrap gap-5 justify-between">
       <Link
         href="/gyms"
         className={`${baseLinkClass} text-center ${
           pathname === "/gyms" ? "font-bold text-stone-100" : "text-stone-800"
         }`}
       >
-        gyms
+        Gyms
       </Link>
       <Link
         href="/exercises"
@@ -34,7 +34,7 @@ export const Navigation = () => {
             : "text-stone-800"
         }`}
       >
-        exercises
+        Exercises
       </Link>
       <Link
         href="/about"
@@ -42,7 +42,7 @@ export const Navigation = () => {
           pathname === "/about" ? "font-bold text-stone-100" : "text-stone-800"
         }`}
       >
-        about
+        About
       </Link>
       {username ? (
         <>
@@ -56,7 +56,7 @@ export const Navigation = () => {
                     : "text-stone-800"
                 }`}
               >
-                edit-users
+                Edit Users
               </Link>
               <Link
                 href="/admin-gyms"
@@ -66,7 +66,7 @@ export const Navigation = () => {
                     : "text-stone-800"
                 }`}
               >
-                edit-gyms
+                Edit Gyms
               </Link>
               <Link
                 href="/admin-exercises"
@@ -76,7 +76,7 @@ export const Navigation = () => {
                     : "text-stone-800"
                 }`}
               >
-                edit-exercises
+                Edit Exercises
               </Link>
             </>
           )}
@@ -90,7 +90,7 @@ export const Navigation = () => {
                     : "text-stone-800"
                 }`}
               >
-                community board
+                Community Board
               </Link>
             </>
           )}
@@ -98,7 +98,7 @@ export const Navigation = () => {
             onClick={handleLogout}
             className={`${baseLinkClass} text-center text-[10px] text-red-500 font-bold`}
           >
-            sign out
+            SIGN OUT
           </button>
         </>
       ) : (
@@ -111,7 +111,7 @@ export const Navigation = () => {
                 : "text-stone-800"
             }`}
           >
-            log-in
+            Login
           </Link>
           <Link
             href="/auth/signup"
@@ -121,7 +121,7 @@ export const Navigation = () => {
                 : "text-stone-800"
             }`}
           >
-            sign-up
+            Signup
           </Link>
         </>
       )}
