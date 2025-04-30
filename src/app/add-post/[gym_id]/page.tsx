@@ -15,6 +15,8 @@ export default function Post() {
   const { isLoggedIn, username, userID, membership } = useAuth();
 
   useEffect(() => {
+    if (!gym_id) return;
+
     fetch(`/api/gym-page/${gym_id}`)
       .then((res) => res.json())
       .then((data) => {

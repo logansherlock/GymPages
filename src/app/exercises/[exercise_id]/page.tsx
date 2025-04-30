@@ -11,18 +11,22 @@ export default function ExercisePage() {
   const { exercise_id } = useParams();
 
   useEffect(() => {
-    console.log("page.tsx exercise_id type:", typeof exercise_id);
-    fetch(`/api/exercises/exercise-by-id/${exercise_id}`)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log("Fetched exercise:", data);
+    if (!exercise_id) return; // prevent undefined fetch
+
+    const fetchExercise = async () => {
+      try {
+        const res = await fetch(`/api/exercises/exercise-by-id/${exercise_id}`);
+        if (!res.ok) throw new Error(`Failed to fetch: ${res.status}`);
+        const data = await res.json();
         setExercise(data);
-        console.log("Current exercise object:", data);
-      })
-      .catch((err) => console.log("Fetch error:", err))
-      .finally(() => {
+      } catch (err) {
+        console.error("Fetch error:", err);
+      } finally {
         setLoading(false);
-      });
+      }
+    };
+
+    fetchExercise();
   }, [exercise_id]);
 
   useEffect(() => {
@@ -111,11 +115,9 @@ export default function ExercisePage() {
                     {exercise.body}
                   </div>
                 </div>
-                <div className="flex flex-col justify-center items-center w-[50%] font-mono m-1">
+                <div className="flex flex-col aspect-video justify-center items-center w-[50%] font-mono m-1">
                   <iframe
-                    className="border-black border-[2px]"
-                    width="560"
-                    height="315"
+                    className="border-black border-[2px] aspect-video w-[90%]"
                     src={`${exercise.video_link}`}
                     title="YouTube video player"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

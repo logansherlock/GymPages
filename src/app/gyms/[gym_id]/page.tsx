@@ -11,6 +11,8 @@ export default function GymPage() {
   const { gym_id } = useParams();
   console.log(gym_id)
   useEffect(() => {
+    if (!gym_id) return;
+    
     console.log("page.tsx gym_id type:", typeof gym_id); // Log the type of gym_id
     fetch(`/api/gym-page/${gym_id}`)
       .then((res) => res.json())

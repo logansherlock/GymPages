@@ -14,6 +14,7 @@ const UserHistory = ({ user_id }: { user_id: string }) => {
   const [com_loading, setComLoading] = useState(true);
 
   useEffect(() => {
+    if (!user_id) return;
     fetch(`/api/reviews/reviews-by-user/${user_id}`)
       .then((res) => res.json())
       .then((data) => {
@@ -30,6 +31,7 @@ const UserHistory = ({ user_id }: { user_id: string }) => {
   }, [user_id]);
 
   useEffect(() => {
+    if (!user_id) return;
     fetch(`/api/community-board/posts-by-user/${user_id}`)
       .then((res) => res.json())
       .then((data) => {
@@ -46,6 +48,7 @@ const UserHistory = ({ user_id }: { user_id: string }) => {
   }, [user_id]);
 
   useEffect(() => {
+    if (!user_id) return;
     fetch(`/api/community-board/comments-by-user/${user_id}`)
       .then((res) => res.json())
       .then((data) => {
