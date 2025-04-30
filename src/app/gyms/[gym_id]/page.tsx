@@ -4,15 +4,16 @@ import { useParams } from "next/navigation";
 import MapComponent from "@/app/components/maps";
 import RecentReviews from "@/app/components/recent-reviews";
 import Link from "next/link";
+import LoadingScreen from "@/app/components/loading-screen";
 
 export default function GymPage() {
   const [gym, setGym] = useState<any | null>(null);
   const [loading, setLoading] = useState(true); // Track loading state
   const { gym_id } = useParams();
-  console.log(gym_id)
+  console.log(gym_id);
   useEffect(() => {
     if (!gym_id) return;
-    
+
     console.log("page.tsx gym_id type:", typeof gym_id); // Log the type of gym_id
     fetch(`/api/gym-page/${gym_id}`)
       .then((res) => res.json())
@@ -37,17 +38,16 @@ export default function GymPage() {
   return (
     <div className="m-2">
       {loading ? (
-        <div className="flex flex-col justify-center items-center min-h-screen border font-mono pb-20">
-          <div className="w-full max-w-s m-4 text-center text-5xl font-bold" style={{ WebkitTextStroke: "1px black" }}>
-            Loading Gym Data...
-          </div>
-        </div>
+        <LoadingScreen text="Loading Gym" />
       ) : gym &&
         gym?.location?.x !== undefined &&
         gym?.location?.y !== undefined ? (
         <div className="bg-stone-500 border-black border-[2px] m-10 p-1">
-          <div className="flex flex-wrap m-1 font-mono text-white" >
-            <div className="flex flex-wrap items-center uppercase max-w-s m-1 text-4xl shrink font-bold" style={{ WebkitTextStroke: "1px black" }}>
+          <div className="flex flex-wrap m-1 font-mono text-white">
+            <div
+              className="flex flex-wrap items-center uppercase max-w-s m-1 text-4xl shrink font-bold"
+              style={{ WebkitTextStroke: "1px black" }}
+            >
               {gym.gym_name}
             </div>
             <div className="flex flex-wrap flex-col text-left ml-5 m-1">
@@ -91,7 +91,7 @@ export default function GymPage() {
         </div>
       ) : (
         <div className="flex flex-col justify-center items-center min-h-screen border font-mono pb-20">
-          <div className="w-full max-w-s m-4 text-center text-5xl font-bold" >
+          <div className="w-full max-w-s m-4 text-center text-5xl font-bold">
             Error, not loading.
           </div>
         </div>

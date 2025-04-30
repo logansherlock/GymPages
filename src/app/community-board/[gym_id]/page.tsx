@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import CommunityBoard from "@/app/components/community-board";
 import Link from "next/link";
+import LoadingScreen from "@/app/components/loading-screen";
 
 export default function GymCommunityBoard() {
   const [gym, setGym] = useState<any | null>(null);
@@ -40,26 +41,25 @@ export default function GymCommunityBoard() {
   return (
     <div className="m-2 font-mono">
       {loading ? (
-        <div className="flex flex-col justify-center items-center min-h-screen border font-mono pb-20">
-          <div className="w-full max-w-s m-4 text-center text-5xl font-bold" style={{ WebkitTextStroke: "1px black" }}>
-            Loading Community Board...
-          </div>
-        </div>
+        <LoadingScreen text="Loading Community Board" />
       ) : isLoggedIn && gym && (membership == gym.gym_id || userID === 0) ? (
         <div className="m-1">
           <div className="flex flex-wrap m-1 font-mono text-white">
-          <div className="flex flex-wrap items-center max-w-s m-1 text-sm shrink text-black font-bold">
-            <Link
-              href={`/gyms/${gym_id}`}
-              className="text-white text-4xl font-bold ml-2 mr-4"
+            <div className="flex flex-wrap items-center max-w-s m-1 text-sm shrink text-black font-bold">
+              <Link
+                href={`/gyms/${gym_id}`}
+                className="text-white text-4xl font-bold ml-2 mr-4"
+                style={{ WebkitTextStroke: "1px black" }}
+              >
+                ←
+              </Link>
+              back to {gym.gym_name}
+            </div>
+            <div
+              className="flex flex-wrap items-center max-w-s m-1 ml-auto uppercase text-4xl shrink font-bold"
               style={{ WebkitTextStroke: "1px black" }}
             >
-              ←
-            </Link>
-            back to {gym.gym_name}
-          </div>
-            <div className="flex flex-wrap items-center max-w-s m-1 ml-auto uppercase text-4xl shrink font-bold" style={{ WebkitTextStroke: "1px black" }}>
-            {gym.gym_name} COMMUNITY BOARD
+              {gym.gym_name} COMMUNITY BOARD
             </div>
           </div>
           <CommunityBoard gym_id={gym_id as string} />
@@ -77,19 +77,28 @@ export default function GymCommunityBoard() {
               </Link>{" "}
               back to {gym.gym_name}
             </div>
-            <div className="flex flex-wrap items-center max-w-s m-1 ml-auto text-4xl shrink font-bold" style={{ WebkitTextStroke: "1px black" }}>
+            <div
+              className="flex flex-wrap items-center max-w-s m-1 ml-auto text-4xl shrink font-bold"
+              style={{ WebkitTextStroke: "1px black" }}
+            >
               COMMUNITY BOARD
             </div>
           </div>
           {!isLoggedIn ? (
             <div className="flex flex-col justify-center items-center min-h-screen border font-mono pb-20 m-1">
-              <div className="w-full max-w-s m-4 text-center text-4xl font-bold" style={{ WebkitTextStroke: "1px black" }}>
+              <div
+                className="w-full max-w-s m-4 text-center text-4xl font-bold"
+                style={{ WebkitTextStroke: "1px black" }}
+              >
                 Must be logged in and a member of this gym to view posts.
               </div>
             </div>
           ) : (
             <div className="flex flex-col justify-center items-center min-h-screen border font-mono pb-20 m-1">
-              <div className="w-full max-w-s m-4 text-center text-4xl font-bold" style={{ WebkitTextStroke: "1px black" }}>
+              <div
+                className="w-full max-w-s m-4 text-center text-4xl font-bold"
+                style={{ WebkitTextStroke: "1px black" }}
+              >
                 Must be a member of this gym to view posts.
               </div>
             </div>

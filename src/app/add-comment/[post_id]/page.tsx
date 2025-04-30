@@ -5,6 +5,7 @@ import { useParams } from "next/navigation";
 import Link from "next/link";
 import { formatDate } from "@/lib/utils/formatDate";
 import AddComment from "../../components/add-comment";
+import LoadingScreen from "@/app/components/loading-screen";
 
 export default function Post() {
   const [post, setPost] = useState<any | null>(null);
@@ -47,11 +48,7 @@ export default function Post() {
   return (
     <div className="m-2">
       {post_loading || gym_loading ? (
-        <div className="flex flex-col justify-center items-center min-h-screen border font-mono pb-20">
-          <div className="w-full max-w-s m-4 text-center text-5xl font-bold">
-            Loading Post...
-          </div>
-        </div>
+        <LoadingScreen text="Loading Post" />
       ) : isLoggedIn && gym && (membership == gym.gym_id || userID === 0) ? (
         <div className="">
           {post && gym ? (
@@ -67,7 +64,10 @@ export default function Post() {
                   </Link>{" "}
                   back to post
                 </div>
-                <div className="flex flex-wrap items-center max-w-s m-1 ml-auto uppercase text-4xl shrink font-bold" style={{ WebkitTextStroke: "1px black" }}>
+                <div
+                  className="flex flex-wrap items-center max-w-s m-1 ml-auto uppercase text-4xl shrink font-bold"
+                  style={{ WebkitTextStroke: "1px black" }}
+                >
                   {gym.gym_name} BOARD POST
                 </div>
               </div>

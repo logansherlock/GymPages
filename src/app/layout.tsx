@@ -39,8 +39,8 @@ export default function RootLayout({
           <Image
           src="/gympages-icons/GymPages_Logo.tiff"
           alt="GymPages Logo"
-          width={400}
-          height={100}
+          width={500}
+          height={125}
           className="rounded-full cursor-pointer"
           />
           

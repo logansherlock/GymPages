@@ -4,6 +4,7 @@ import { use, useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { formatDate } from "@/lib/utils/formatDate";
 import Link from "next/link";
+import LoadingScreen from "@/app/components/loading-screen";
 
 export default function Post() {
   const [post, setPost] = useState<any | null>(null);
@@ -64,11 +65,7 @@ export default function Post() {
   return (
     <div className="m-2">
       {post_loading || gym_loading || com_loading ? (
-        <div className="flex flex-col justify-center items-center min-h-screen border font-mono pb-20">
-          <div className="w-full max-w-s m-4 text-center text-5xl font-bold">
-            Loading Post...
-          </div>
-        </div>
+        <LoadingScreen text="Loading Post" />
       ) : isLoggedIn && gym && (membership == gym.gym_id || userID === 0) ? (
         <div className="m-1">
           {post && gym ? (

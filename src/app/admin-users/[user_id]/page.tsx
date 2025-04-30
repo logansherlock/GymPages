@@ -4,6 +4,7 @@ import { useParams } from "next/navigation";
 import Link from "next/link";
 import { useAuth } from "@/hooks/useAuth";
 import UserHistory from "@/app/components/user-history";
+import LoadingScreen from "@/app/components/loading-screen";
 
 export default function userHistory() {
   const { isLoggedIn, username, userID, membership } = useAuth();
@@ -33,14 +34,7 @@ export default function userHistory() {
   return (
     <div className="m-2 font-mono">
       {user_loading ? (
-        <div className="flex flex-col justify-center items-center min-h-screen border font-mono pb-20">
-          <div
-            className="w-full max-w-s m-4 text-center text-5xl font-bold"
-            style={{ WebkitTextStroke: "1px black" }}
-          >
-            Loading User...
-          </div>
-        </div>
+        <LoadingScreen text="Loading User" />
       ) : isLoggedIn && user && userID === 0 ? (
         <div className="m-1">
           <div className="flex flex-wrap m-1 font-mono text-white">

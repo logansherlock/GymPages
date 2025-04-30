@@ -3,6 +3,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { useEffect, useState } from "react";
 import { formatDate } from "@/lib/utils/formatDate";
 import Link from "next/link";
+import LoadingScreen from "./loading-screen";
 
 const CommunityBoard = ({ gym_id }: { gym_id: string }) => {
   const [posts, setPosts] = useState<any[]>([]);
@@ -44,15 +45,7 @@ const CommunityBoard = ({ gym_id }: { gym_id: string }) => {
   return (
     <div className="m-1">
       {loading ? (
-        <div className="flex flex-col items-center justify-center min-h-screen">
-          <Image
-            src="/loading.gif" // Replace with the path to your loading GIF
-            alt="Loading..."
-            width={100}
-            height={100}
-          />
-          <div className="text-white mt-4">Loading Community Posts...</div>
-        </div>
+        <LoadingScreen text="Loading Community Board" />
       ) : isLoggedIn && (membership == gym_id || userID === 0) ? (
         <div className="m-1">
           <div className="flex flex-wrap items-center m-1">

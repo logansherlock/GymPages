@@ -2,6 +2,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { useEffect, useState } from "react";
 import { formatDate } from "@/lib/utils/formatDate";
 import Link from "next/link";
+import LoadingScreen from "./loading-screen";
 
 const Reviews = ({ gym_id }: { gym_id: string }) => {
   const [reviews, setReviews] = useState<any[]>([]);
@@ -33,7 +34,7 @@ const Reviews = ({ gym_id }: { gym_id: string }) => {
   return (
     <div className="m-1">
       {loading ? (
-        <div className="text-white">Loading Reviews...</div>
+        <LoadingScreen text="Loading Reviews" />
       ) : (
         <div className="m-1">
           <div className="flex flex-wrap items-center m-1 ">

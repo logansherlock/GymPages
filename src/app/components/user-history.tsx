@@ -2,6 +2,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { useEffect, useState } from "react";
 import { formatDate } from "@/lib/utils/formatDate";
 import Link from "next/link";
+import LoadingScreen from "./loading-screen";
 
 const UserHistory = ({ user_id }: { user_id: string }) => {
   const { isLoggedIn, username, userID, membership } = useAuth();
@@ -67,7 +68,7 @@ const UserHistory = ({ user_id }: { user_id: string }) => {
   return (
     <div className="m-1 font-mono">
       {rev_loading || post_loading || com_loading ? (
-        <div className="text-white">Loading Community Posts...</div>
+        <LoadingScreen text="Loading Posts" />
       ) : isLoggedIn && userID === 0 ? (
         <div className="m-1">
           <div className="flex flex-row justify-center gap-4 m-1">

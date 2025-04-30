@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
+import LoadingScreen from "@/app/components/loading-screen";
 
 export default function ExercisePage() {
   const [exercise, setExercise] = useState<any | null>(null);
@@ -46,11 +47,7 @@ export default function ExercisePage() {
   return (
     <div className="m-2 font-mono">
       {loading ? (
-        <div className="flex flex-col justify-center items-center min-h-screen border font-mono pb-20">
-          <div className="w-full max-w-s m-4 text-center text-5xl font-bold">
-            Loading Exercise Data...
-          </div>
-        </div>
+        <LoadingScreen text="Loading Exercise" />
       ) : exercise ? (
         <div className="m-10 ">
           <div className="bg-stone-500 border-black border-[2px] p-1">

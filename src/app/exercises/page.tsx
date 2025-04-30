@@ -48,24 +48,19 @@ export default function Exercises() {
   return (
     <div className="m-10 font-mono">
       {loading ? (
-<<<<<<< HEAD
-        <div className="flex justify-center items-center min-h-screen text-4xl font-bold">
-          Loading Exercises...
-        </div>
+        <LoadingScreen text="Loading Exercises"/>
       ) : exercises.length === 0 ? (
         <div className="flex justify-center items-center min-h-screen text-5xl font-bold">
           No exercises found.
         </div>
-=======
-        <LoadingScreen text="Loading exercises..."/>
->>>>>>> 3ffd107944fc3132702706440813e096231e6344
+
       ) : (
         <div className="flex flex-col items-center bg-stone-500 p-5 border-2 border-black gap-5 w-full max-w-3xl mx-auto">
           <div
             className="text-5xl font-bold"
             style={{
               WebkitTextStroke: "1px black",
-              textShadow: "1px 1px 0 black",
+              textShadow: "0 1px 1px black",
             }}
           >
             EXERCISES
