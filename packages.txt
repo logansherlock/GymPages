@@ -6,3 +6,4 @@ npm install jsonwebtoken
 npm install @types/jsonwebtoken --save-dev
 npm install bcryptjs
 npm install react-icons
+npm install cookie
