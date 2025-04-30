@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+//import Image from "next/image";
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
 
 const MapComponent = ({

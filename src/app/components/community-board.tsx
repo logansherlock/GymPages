@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { useAuth } from "@/hooks/useAuth";
 import { useEffect, useState } from "react";
 import { formatDate } from "@/lib/utils/formatDate";
@@ -43,10 +44,18 @@ const CommunityBoard = ({ gym_id }: { gym_id: string }) => {
   return (
     <div className="m-1">
       {loading ? (
-        <div className="text-white">Loading Community Posts...</div>
+        <div className="flex flex-col items-center justify-center min-h-screen">
+          <Image
+            src="/loading.gif" // Replace with the path to your loading GIF
+            alt="Loading..."
+            width={100}
+            height={100}
+          />
+          <div className="text-white mt-4">Loading Community Posts...</div>
+        </div>
       ) : isLoggedIn && (membership == gym_id || userID === 0) ? (
         <div className="m-1">
-          <div className="flex flex-wrap items-center m-1 ">
+          <div className="flex flex-wrap items-center m-1">
             <nav className="flex flex-wrap gap-6 justify-between m-1 ml-auto">
               <Link
                 href={`/add-post/${gym_id}`}
@@ -58,7 +67,10 @@ const CommunityBoard = ({ gym_id }: { gym_id: string }) => {
           </div>
           {posts.length === 0 ? (
             <div className="flex flex-col justify-center items-center min-h-screen border font-mono pb-20">
-              <div className="w-full max-w-s m-4 text-center text-5xl font-bold" style={{ WebkitTextStroke: "1px black" }}>
+              <div
+                className="w-full max-w-s m-4 text-center text-5xl font-bold"
+                style={{ WebkitTextStroke: "1px black" }}
+              >
                 No posts found...
               </div>
             </div>
@@ -77,10 +89,10 @@ const CommunityBoard = ({ gym_id }: { gym_id: string }) => {
                         {post.body}
                       </div>
                       <div className="flex flex-wrap">
-                          <div className="ml-auto text-xs mx-2 font-bold mx-2">
-                            {formatDate(post.post_date)}
-                          </div>
+                        <div className="ml-auto text-xs mx-2 font-bold mx-2">
+                          {formatDate(post.post_date)}
                         </div>
+                      </div>
                     </div>
                   </Link>
                 ))}
@@ -90,13 +102,19 @@ const CommunityBoard = ({ gym_id }: { gym_id: string }) => {
         </div>
       ) : !isLoggedIn ? (
         <div className="flex flex-col justify-center items-center min-h-screen border font-mono pb-20 m-1">
-          <div className="w-full max-w-s m-4 text-center text-4xl font-bold" style={{ WebkitTextStroke: "1px black" }}>
+          <div
+            className="w-full max-w-s m-4 text-center text-4xl font-bold"
+            style={{ WebkitTextStroke: "1px black" }}
+          >
             Must be logged in and a member of this gym to view posts.
           </div>
         </div>
       ) : (
         <div className="flex flex-col justify-center items-center min-h-screen border font-mono pb-20 m-1">
-          <div className="w-full max-w-s m-4 text-center text-4xl font-bold" style={{ WebkitTextStroke: "1px black" }}>
+          <div
+            className="w-full max-w-s m-4 text-center text-4xl font-bold"
+            style={{ WebkitTextStroke: "1px black" }}
+          >
             Must be a member of this gym to view posts.
           </div>
         </div>
