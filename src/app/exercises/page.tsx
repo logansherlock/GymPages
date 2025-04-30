@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import LoadingScreen from "../components/loading-screen";
 
 export default function Exercises() {
   const [exercises, setExercises] = useState<any[]>([]);
@@ -25,17 +26,7 @@ export default function Exercises() {
   return (
     <div className="m-10 font-mono">
       {loading ? (
-        <div className="flex flex-col justify-center items-center min-h-screen border font-mono pb-20 m-1">
-          <div className="w-full max-w-s m-4 text-center text-4xl font-bold">
-            Loading Exercises...
-          </div>
-          <Image
-            src="/loadingGif.gif" // Replace with the path to your loading GIF
-            alt="Loading..."
-            width={250}
-            height={250}
-          />
-        </div>
+        <LoadingScreen text="Loading exercises..."/>
       ) : (
         <div className="m-1">
           {exercises.length === 0 ? (
