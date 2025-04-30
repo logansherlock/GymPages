@@ -1,16 +1,16 @@
-import Image from "next/image";
+import MyButton from "./components/button";
+import Images from "./components/images";
+
+const listOfImages = ["/file.svg", "/globe.svg", "/vercel.svg"];
 
 export default function Home() {
   return (
-    <div className="flex flex-col justify-center items-center min-h-screen border font-mono pb-20 m-2">
-      <iframe
-        width="560"
-        height="315"
-        src="https://www.youtube.com/embed/BRVDS6HVR9Q"
-        title="YouTube video player"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowFullScreen
-      ></iframe>
-    </div>
+    <main className="flex min-h-screen flex-col items-center ">
+      <h1 className="text-stone-800 text-4xl font-bold justify-between p-10">Welcome to the GymPages</h1>
+      <Images gymPics={listOfImages}/>
+      <MyButton href="/gyms">Gym Search</MyButton>
+      <MyButton href="/exercises">Exercise tutorials</MyButton>
+      <MyButton href="/auth/signup">Sign up</MyButton>
+    </main>
   );
 }

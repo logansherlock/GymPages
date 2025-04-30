@@ -1,6 +1,8 @@
 "use client";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import LoadingScreen from "../components/loading-screen";
 
 type Exercise = {
   exercise_id: string;
@@ -46,6 +48,7 @@ export default function Exercises() {
   return (
     <div className="m-10 font-mono">
       {loading ? (
+<<<<<<< HEAD
         <div className="flex justify-center items-center min-h-screen text-4xl font-bold">
           Loading Exercises...
         </div>
@@ -53,6 +56,9 @@ export default function Exercises() {
         <div className="flex justify-center items-center min-h-screen text-5xl font-bold">
           No exercises found.
         </div>
+=======
+        <LoadingScreen text="Loading exercises..."/>
+>>>>>>> 3ffd107944fc3132702706440813e096231e6344
       ) : (
         <div className="flex flex-col items-center bg-stone-500 p-5 border-2 border-black gap-5 w-full max-w-3xl mx-auto">
           <div
