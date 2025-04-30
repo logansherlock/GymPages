@@ -17,6 +17,7 @@ export default function Post() {
   const { isLoggedIn, username, userID, membership } = useAuth();
 
   useEffect(() => {
+    if (!post_id) return;
     console.log("page.tsx post_id type:", typeof post_id); // Log the type of gym_id
     fetch(`/api/community-board/post/${post_id}`, { method: "GET" })
       .then((res) => res.json())
@@ -44,6 +45,7 @@ export default function Post() {
   }, [post]);
 
   useEffect(() => {
+    if (!post_id) return;
     fetch(`/api/community-board/comments-by-post/${post_id}`)
       .then((res) => res.json())
       .then((data) => {

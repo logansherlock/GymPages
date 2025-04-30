@@ -14,6 +14,8 @@ export default function userHistory() {
   const { user_id } = useParams();
 
   useEffect(() => {
+    if (!user_id) return;
+
     fetch(`/api/users/${user_id}`, { method: "GET" })
       .then((res) => res.json())
       .then((data) => {

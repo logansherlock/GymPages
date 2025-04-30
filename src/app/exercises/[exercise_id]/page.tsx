@@ -11,6 +11,7 @@ export default function ExercisePage() {
   const { exercise_id } = useParams();
 
   useEffect(() => {
+    if (!exercise_id) return;
     console.log("page.tsx exercise_id type:", typeof exercise_id);
     fetch(`/api/exercises/exercise-by-id/${exercise_id}`)
       .then((res) => res.json())

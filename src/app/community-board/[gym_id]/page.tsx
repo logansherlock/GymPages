@@ -13,6 +13,8 @@ export default function GymCommunityBoard() {
   const { isLoggedIn, username, userID, membership } = useAuth();
 
   useEffect(() => {
+    if (!gym_id) return;
+
     console.log("page.tsx gym_id:", gym_id); // Log the type of gym_id
     fetch(`/api/gym-page/${gym_id}`)
       .then((res) => res.json())
@@ -30,6 +32,8 @@ export default function GymCommunityBoard() {
   }, [gym_id]);
 
   useEffect(() => {
+    if (!userID) return;
+
     console.log("userID:", userID, typeof userID);
   }, [userID]);
 
