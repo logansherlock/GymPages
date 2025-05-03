@@ -37,14 +37,25 @@ export async function POST(req: NextRequest) {
     // Create the JWT token
     const token = jwt.sign({ user_id: user.user_id, username: user.username, membership: user.gym_member }, JWT_SECRET, { expiresIn: "1d" });
 
-    const cookieStore = await cookies();
-    cookieStore.set("token", token, {
+    // const cookieStore = await cookies();
+    // cookieStore.set("token", token, {
+    //     httpOnly: true,
+    //     secure: false,
+    //     sameSite: "lax",
+    //     path: "/",
+    //     domain: ".gympages.info",  
+    //     maxAge: 60 * 60 * 24,  // 1 day
+    //   });
+
+      const cookieStore = await cookies();
+      const isProduction = process.env.NODE_ENV === "production";
+      cookieStore.set("token", token, {
         httpOnly: true,
-        secure: false,
-        sameSite: "lax",
+        secure: isProduction,
+        sameSite: isProduction ? "none" : "lax",
         path: "/",
-        domain: ".gympages.info",  
-        maxAge: 60 * 60 * 24,  // 1 day
+        domain: isProduction ? ".gympages.info" : undefined,
+        maxAge: 60 * 60 * 24,
       });
 
     return NextResponse.json({

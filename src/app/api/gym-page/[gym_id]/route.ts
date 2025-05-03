@@ -17,7 +17,6 @@ export async function GET(
     if (rows.length === 0) {
       return NextResponse.json({ error: "Gym not found" }, { status: 404 });
     }
-
     const { gym_name, location, street_address, city, zip, state } = rows[0];
 
     // Return the gym details as the API response

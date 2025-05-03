@@ -38,14 +38,14 @@ export default function GymPage() {
   return (
     <div className="m-2">
       {loading ? (
-        <LoadingScreen text="Loading Gym" />
+        <LoadingScreen text="Loading Gym..." />
       ) : gym &&
         gym?.location?.x !== undefined &&
         gym?.location?.y !== undefined ? (
         <div className="bg-stone-500 border-black border-[2px] m-10 p-1">
           <div className="flex flex-wrap m-1 font-mono text-white">
             <div
-              className="flex flex-wrap items-center uppercase max-w-s m-1 text-4xl shrink font-bold"
+              className="flex flex-wrap items-center uppercase max-w-s m-1 text-5xl shrink font-bold"
               style={{ WebkitTextStroke: "1px black" }}
             >
               {gym.gym_name}

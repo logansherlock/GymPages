@@ -59,8 +59,7 @@ export default function Exercises() {
           <div
             className="text-5xl font-bold"
             style={{
-              WebkitTextStroke: "1px black",
-              textShadow: "0 1px 1px black",
+              WebkitTextStroke: "1px black"
             }}
           >
             EXERCISES

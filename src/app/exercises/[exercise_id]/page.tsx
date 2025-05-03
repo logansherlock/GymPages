@@ -53,7 +53,7 @@ export default function ExercisePage() {
           <div className="bg-stone-500 border-black border-[2px] p-1">
             <div className="flex m-1 font-mono text-white">
               <div
-                className="flex items-center uppercase max-w-s m-1 text-4xl shrink font-bold"
+                className="flex items-center uppercase max-w-s m-1 text-5xl shrink font-bold"
                 style={{ WebkitTextStroke: "1px black" }}
               >
                 {exercise.exercise_name}:
@@ -108,7 +108,7 @@ export default function ExercisePage() {
             {exercise.video_link ? (
               <div className="m-1 flex flex-row">
                 <div className="flex items-center w-[50%] m-1">
-                  <div className="m-5 ml-10 font-semibold text-lg p-2 text-justify">
+                  <div className="m-5 ml-10 font-semibold text-lg py-2 px-4 text-justify bg-stone-400/75 border-black border-[1px]">
                     {exercise.body}
                   </div>
                 </div>
