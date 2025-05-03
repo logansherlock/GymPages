@@ -5,9 +5,9 @@ export async function POST() {
 
   response.headers.set(
     "Set-Cookie",
-    `token=; Path=/; HttpOnly; Max-Age=0; ${
-      process.env.NODE_ENV === "production" ? "Secure; SameSite=None;" : ""
-    }`
+    `token=; Path=/; HttpOnly; Max-Age=0; Expires=Thu, 01 Jan 1970 00:00:00 GMT; ${
+      process.env.COOKIE_DOMAIN ? `Domain=${process.env.COOKIE_DOMAIN}; ` : ""
+    }${process.env.NODE_ENV === "production" ? "Secure; SameSite=None;" : ""}`
   );
 
   return response;
