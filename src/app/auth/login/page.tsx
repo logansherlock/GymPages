@@ -53,7 +53,7 @@ export default function Login() {
           className="flex flex-col justify-center items-center font-mono"
         >
           <div className="w-full max-w-sm text-center text-5xl font-bold" style={{ WebkitTextStroke: "1px black" }}>
-            account login
+            ACCOUNT LOGIN
           </div>
 
           <div className="w-full max-w-xs flex items-center">
@@ -79,16 +79,16 @@ export default function Login() {
           <div className="w-full max-w-xs text-center">
             <button
               type="submit"
-              className="m-1 px-3 py-1 w-[75px] border border-slate-900 bg-blue-400 text-slate-100 font-bold rounded-md text-center"
+              className="m-1 px-3 py-1 w-[95px] border border-slate-900 bg-blue-400 text-slate-100 font-bold rounded-md text-center"
             >
-              login
+              Log In
             </button>
             <button
               type="button"
               onClick={handleSignUp}
               className="m-1 px-3 py-1 w-[95px] border border-slate-900 bg-red-400 text-slate-100 font-bold rounded-md text-center"
             >
-              sign-up
+              Sign Up
             </button>
           </div>
           <div className="flex flex-wrap max-w-xs m-5 mt-0">

@@ -77,7 +77,7 @@ export default function SignUp() {
           className="flex flex-col justify-center items-center font-mono m-1"
         >
           <div className="w-full max-w-s text-center text-5xl font-bold" style={{ WebkitTextStroke: "1px black" }}>
-            account creation
+            ACCOUNT CREATION
           </div>
           <div className="w-full max-w-xs flex items-center">
             <input
@@ -132,7 +132,7 @@ export default function SignUp() {
               type="submit"
               className="m-1 px-3 py-1 w-[95px] border border-slate-900 bg-red-400 text-slate-100 font-bold rounded-md text-center"
             >
-              sign-up
+              Sign Up
             </button>
           </div>
           <div className="w-full max-w-xs">

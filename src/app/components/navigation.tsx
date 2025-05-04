@@ -80,7 +80,7 @@ export const Navigation = () => {
               </Link>
             </>
           )}
-          {username !== "admin" && (
+          {username !== "admin" && membership && (
             <>
               <Link
                 href={`/community-board/${membership}`}
@@ -93,6 +93,18 @@ export const Navigation = () => {
                 Community Board
               </Link>
             </>
+          )}
+          {username !== "admin" && (
+            <Link
+              href={`/profile/${userID}`}
+              className={`${baseLinkClass} text-center ${
+                pathname.startsWith("/profile")
+                  ? "font-bold text-stone-100"
+                  : "text-stone-800"
+              }`}
+            >
+              Profile
+            </Link>
           )}
           <button
             onClick={handleLogout}

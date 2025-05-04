@@ -153,7 +153,7 @@ export default function Post() {
           ) : (
             <div className="flex flex-col justify-center items-center min-h-screen border font-mono pb-20">
               <div
-                className="w-full max-w-s m-4 text-center text-5xl font-bold"
+                className=" max-w-s m-4 text-center text-4xl font-bold bg-red-800 border-black border-[2px] p-4"
                 style={{ WebkitTextStroke: "1px black" }}
               >
                 Error, not loading.

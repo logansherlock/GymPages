@@ -5,10 +5,9 @@ export async function GET(
   request: Request,
   { params }: { params: { gym_id: string } }
 ) {
-  console.log("Inside API");
   try {
     const { gym_id } = await params; // No need to await, params are already an object
-    
+
     const [rows] = await pool.query<any>(
       "SELECT gym_id, gym_name, location, street_address, city, zip, state FROM gyms WHERE gym_id = ?",
       [gym_id]
