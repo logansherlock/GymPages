@@ -32,24 +32,27 @@ export default function userHistory() {
   }, [user_id]);
 
   return (
-    <div className="m-2 font-mono">
+    <div className="bg-stone-500 border-black border-[2px] p-3">
       {user_loading ? (
         <LoadingScreen text="Loading User" />
       ) : isLoggedIn && user && userID === 0 ? (
         <div className="m-1">
           <div className="flex flex-wrap m-1 font-mono text-white">
-            <div className="flex flex-wrap items-center max-w-s m-1 text-sm shrink text-black font-bold">
+            <div className="flex flex-wrap items-center bg-stone-400/75 border-black border-[2px] px-2 max-w-s m-[1px] text-sm shrink font-bold text-black">
               <Link
                 href={`/admin-users`}
-                className="text-white text-4xl font-bold ml-2 mr-4"
+                className="flex flex-row items-center text-white text-5xl font-bold ml-2 mr-4"
                 style={{ WebkitTextStroke: "1px black" }}
               >
-                ←
-              </Link>
-              back to users
+                ←{" "}
+                <span className="text-xl pt-1 ml-3">
+                  {" "}
+                  back to <span className="uppercase">USERS</span>
+                </span>
+              </Link>{" "}
             </div>
             <div
-              className="flex flex-wrap items-center max-w-s m-1 ml-auto uppercase text-4xl shrink font-bold"
+              className="flex flex-wrap items-center max-w-s m-1 ml-auto uppercase text-5xl shrink font-bold"
               style={{ WebkitTextStroke: "1px black" }}
             >
               {user.username} USER HISTORY
@@ -60,15 +63,18 @@ export default function userHistory() {
       ) : (
         <div>
           <div className="flex flex-wrap m-1 font-mono text-white m-1 ">
-            <div className="flex flex-wrap items-center max-w-s m-1 text-sm shrink font-bold text-black">
+            <div className="flex flex-wrap items-center bg-stone-400/75 border-black border-[2px] px-2 max-w-s m-[1px] text-sm shrink font-bold text-black">
               <Link
                 href={`/`}
-                className="text-white text-4xl font-bold ml-2 mr-4"
+                className="flex flex-row items-center text-white text-5xl font-bold ml-2 mr-4"
                 style={{ WebkitTextStroke: "1px black" }}
               >
-                ←
+                ←{" "}
+                <span className="text-xl pt-1 ml-3">
+                  {" "}
+                  back to <span className="uppercase">HOME</span>
+                </span>
               </Link>{" "}
-              back to homepage
             </div>
             <div
               className="flex flex-wrap items-center max-w-s m-1 ml-auto text-4xl shrink font-bold"
@@ -80,7 +86,7 @@ export default function userHistory() {
           {!isLoggedIn ? (
             <div className="flex flex-col justify-center items-center min-h-screen border font-mono pb-20 m-1">
               <div
-                className="w-full max-w-s m-4 text-center text-4xl font-bold"
+                className=" max-w-s m-4 text-center text-4xl font-bold bg-red-800 border-black border-[2px] p-4"
                 style={{ WebkitTextStroke: "1px black" }}
               >
                 Must be logged in and admin to view user history.
@@ -89,7 +95,7 @@ export default function userHistory() {
           ) : (
             <div className="flex flex-col justify-center items-center min-h-screen border font-mono pb-20 m-1">
               <div
-                className="w-full max-w-s m-4 text-center text-4xl font-bold"
+                className=" max-w-s m-4 text-center text-4xl font-bold bg-red-800 border-black border-[2px] p-4"
                 style={{ WebkitTextStroke: "1px black" }}
               >
                 Must be admin to view user history.

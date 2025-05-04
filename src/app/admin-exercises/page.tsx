@@ -54,26 +54,26 @@ export default function ExercisePage() {
   }, []);
 
   return (
-    <div className="m-12 mt-10">
+    <div className="">
       {isLoggedIn && userID === 0 ? (
-        <div className=" bg-stone-500 border-black border-[2px]">
-          <div className="flex flex-wrap m-2 justify-center font-mono text-white m-1 ">
+        <div className=" bg-stone-500 border-black border-[2px] p-3">
+          <div className="flex flex-wrap justify-center font-mono text-white m-[1px] ">
             <div
-              className="flex flex-wrap items-center max-w-s m-1 text-4xl shrink font-bold"
+              className="flex flex-wrap items-center max-w-s m-[1px] text-5xl shrink font-bold"
               style={{ WebkitTextStroke: "1px black" }}
             >
               EXERCISES
             </div>
-            <nav className="flex ml-auto items-center m-1 flex-wrap gap-6 justify-between m-1">
+            <nav className="flex ml-auto items-center m-[1px] flex-wrap gap-6 justify-between m-[1px]">
               <Link
                 href={`/admin-exercises/add-exercise`}
                 className="cursor-pointer hover:scale-[1.05] transition-transform text-center bg-stone-400 border-black border-[1px] px-2 font-bold rounded"
               >
-                add-exercise
+                Add Exercise
               </Link>
             </nav>
           </div>
-          <div className="flex flex-wrap justify-center mx-5 mb-5">
+          <div className="flex flex-wrap justify-center m-1">
             {exercises.length > 0 ? (
               <table className="w-full table-auto">
                 <thead className="bg-stone-600 text-stone-100 ">
@@ -144,37 +144,40 @@ export default function ExercisePage() {
         </div>
       ) : (
         <div>
-          <div className="flex flex-wrap m-1 font-mono text-white m-1 ">
-            <div className="flex flex-wrap items-center max-w-s m-1 text-sm shrink font-bold text-black">
+          <div className="flex flex-wrap m-[1px] font-mono text-white m-[1px] ">
+            <div className="flex flex-wrap items-center bg-stone-400/75 border-black border-[2px] px-2 max-w-s m-[1px] text-sm shrink font-bold text-black">
               <Link
                 href={`/`}
-                className="text-white text-4xl font-bold ml-2 mr-4"
+                className="flex flex-row items-center text-white text-5xl font-bold ml-2 mr-4"
                 style={{ WebkitTextStroke: "1px black" }}
               >
-                ←
+                ←{" "}
+                <span className="text-xl pt-1 ml-3">
+                  {" "}
+                  back to <span className="uppercase">HOME</span>
+                </span>
               </Link>{" "}
-              back to home
             </div>
             <div
-              className="flex flex-wrap items-center max-w-s m-1 ml-auto text-4xl shrink font-bold"
+              className="flex flex-wrap items-center max-w-s m-[1px] ml-auto text-4xl shrink font-bold"
               style={{ WebkitTextStroke: "1px black" }}
             >
               EXERCISES
             </div>
           </div>
           {!isLoggedIn ? (
-            <div className="flex flex-col justify-center items-center min-h-screen border font-mono pb-20 m-1">
+            <div className="flex flex-col justify-center items-center min-h-screen border font-mono pb-20 m-[1px]">
               <div
-                className="w-full max-w-s m-4 text-center text-4xl font-bold"
+                className=" max-w-s m-4 text-center text-4xl font-bold bg-red-800 border-black border-[2px] p-4"
                 style={{ WebkitTextStroke: "1px black" }}
               >
                 Must be logged in and admin to view exercises.
               </div>
             </div>
           ) : (
-            <div className="flex flex-col justify-center items-center min-h-screen border font-mono pb-20 m-1">
+            <div className="flex flex-col justify-center items-center min-h-screen border font-mono pb-20 m-[1px]">
               <div
-                className="w-full max-w-s m-4 text-center text-4xl font-bold"
+                className=" max-w-s m-4 text-center text-4xl font-bold bg-red-800 border-black border-[2px] p-4"
                 style={{ WebkitTextStroke: "1px black" }}
               >
                 Must be admin to view exercises.

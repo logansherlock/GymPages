@@ -39,24 +39,23 @@ export default function GymCommunityBoard() {
   }, [userID]);
 
   return (
-    <div className="m-2 font-mono">
+    <div className="bg-stone-500 border-black border-[2px] p-3">
       {loading ? (
         <LoadingScreen text="Loading Community Board" />
       ) : isLoggedIn && gym && (membership == gym.gym_id || userID === 0) ? (
-        <div className="m-1">
-          <div className="flex flex-wrap m-1 font-mono text-white">
-            <div className="flex flex-wrap items-center max-w-s m-1 text-sm shrink text-black font-bold">
+        <div className="m-[1px]">
+          <div className="flex flex-wrap m-[1px] font-mono text-white">
+          <div className="flex flex-wrap items-center bg-stone-400/75 border-black border-[2px] px-2 max-w-s m-[1px] text-sm shrink font-bold text-black">
               <Link
                 href={`/gyms/${gym_id}`}
-                className="text-white text-4xl font-bold ml-2 mr-4"
+                className="flex flex-row items-center text-white text-5xl font-bold ml-2 mr-4"
                 style={{ WebkitTextStroke: "1px black" }}
               >
-                ←
-              </Link>
-              back to {gym.gym_name}
+                ← <span className="text-xl pt-1 ml-3"> back to <span className="uppercase">{gym.gym_name}</span></span>
+              </Link>{" "}
             </div>
             <div
-              className="flex flex-wrap items-center max-w-s m-1 ml-auto uppercase text-4xl shrink font-bold"
+              className="flex flex-wrap items-center max-w-s m-[1px] ml-auto uppercase text-5xl shrink font-bold"
               style={{ WebkitTextStroke: "1px black" }}
             >
               {gym.gym_name} COMMUNITY BOARD
@@ -66,26 +65,25 @@ export default function GymCommunityBoard() {
         </div>
       ) : (
         <div>
-          <div className="flex flex-wrap m-1 font-mono text-white m-1 ">
-            <div className="flex flex-wrap items-center max-w-s m-1 text-sm shrink font-bold text-black">
+          <div className="flex flex-wrap m-[1px] font-mono text-white m-[1px] ">
+          <div className="flex flex-wrap items-center bg-stone-400/75 border-black border-[2px] px-2 max-w-s m-[1px] text-sm shrink font-bold text-black">
               <Link
-                href={`/gyms/${gym.gym_id}`}
-                className="text-white text-4xl font-bold ml-2 mr-4"
+                href={`/gyms/${gym_id}`}
+                className="flex flex-row items-center text-white text-5xl font-bold ml-2 mr-4"
                 style={{ WebkitTextStroke: "1px black" }}
               >
-                ←
+                ← <span className="text-xl pt-1 ml-3"> back to <span className="uppercase">{gym.gym_name}</span></span>
               </Link>{" "}
-              back to {gym.gym_name}
             </div>
             <div
-              className="flex flex-wrap items-center max-w-s m-1 ml-auto text-4xl shrink font-bold"
+              className="flex flex-wrap items-center max-w-s m-[1px] ml-auto text-5xl shrink font-bold"
               style={{ WebkitTextStroke: "1px black" }}
             >
               COMMUNITY BOARD
             </div>
           </div>
           {!isLoggedIn ? (
-            <div className="flex flex-col justify-center items-center min-h-screen border font-mono pb-20 m-1">
+            <div className="flex flex-col justify-center items-center min-h-screen border font-mono pb-20 m-[1px]">
               <div
                 className="max-w-s m-4 text-center text-4xl font-bold bg-red-800 border-black border-[2px] p-4"
                 style={{ WebkitTextStroke: "1px black" }}
@@ -94,7 +92,7 @@ export default function GymCommunityBoard() {
               </div>
             </div>
           ) : (
-            <div className="flex flex-col justify-center items-center min-h-screen border font-mono pb-20 m-1">
+            <div className="flex flex-col justify-center items-center min-h-screen border font-mono pb-20 m-[1px]">
               <div
                 className="max-w-s m-4 text-center text-4xl font-bold bg-red-800 border-black border-[2px] p-4"
                 style={{ WebkitTextStroke: "1px black" }}

@@ -46,7 +46,7 @@ export default function Exercises() {
   };
 
   return (
-    <div className="m-10 font-mono">
+    <div className="">
       {loading ? (
         <LoadingScreen text="Loading Exercises"/>
       ) : exercises.length === 0 ? (

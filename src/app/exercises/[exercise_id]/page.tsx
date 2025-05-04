@@ -45,11 +45,11 @@ export default function ExercisePage() {
   }, [exercise]);
 
   return (
-    <div className="m-2 font-mono">
+    <div className="">
       {loading ? (
         <LoadingScreen text="Loading Exercise" />
       ) : exercise ? (
-        <div className="m-10 ">
+        <div className="">
           <div className="bg-stone-500 border-black border-[2px] p-1">
             <div className="flex m-1 font-mono text-white">
               <div

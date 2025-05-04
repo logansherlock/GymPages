@@ -31,19 +31,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased font-dejaVuMono`}
       >
-        <header className="font-dejaVuMono text-right p-1 flex items-center justify-between border m-2">
+        <header className="text-right p-1 flex items-center justify-between border-b-[1px] border-black fixed top-0 w-full bg-stone-400 z-50">
           <Link href="/">
-
-          <Image
-          src="/gympages-icons/GymPages_Logo.tiff"
-          alt="GymPages Logo"
-          width={500}
-          height={125}
-          className="rounded-full cursor-pointer"
-          />
-          
+            <Image
+              src="/gympages-icons/GymPages_Logo.tiff"
+              alt="GymPages Logo"
+              width={500}
+              height={125}
+              className="rounded-full cursor-pointer"
+            />
           </Link>
 
           {/* <Link
@@ -53,11 +51,11 @@ export default function RootLayout({
           >
             GymPages
           </Link> */}
-          
+
           <Navigation />
         </header>
-        <footer></footer>
-        {children}
+        <main className="p-10 pt-32 font-mono">{children}</main>
+        {/* <footer className="text-xl text-black flex flex-row justify-between bg-stone-400 mt-32 p-10">sdkjgf<Navigation/></footer> */}
       </body>
     </html>
   );

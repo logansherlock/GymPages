@@ -26,23 +26,23 @@ const GymEquipment = ({ gym_id }: { gym_id: string }) => {
   return (
     <div>
       {equipment.length !== 0 ? (
-        <div>
-          <div className="w-[30%] h-[200px] m-2 max-w-screen-lg bg-stone-400/75 border-black border-[2px]">
+        <div className="">
+          <div className="w-[30%] h-[200px] max-w-screen-lg bg-stone-400/75 border-black border-[2px]">
             <div className="flex flex-wrap flex-col justify-center items-center h-full">
               <div
-                className="text-center font-white text-3xl font-bold m-1"
+                className="text-center font-white text-3xl font-bold"
                 style={{ WebkitTextStroke: "1px black" }}
               >
                 Amenities & Equipment
               </div>
               {loading ? (
-                <div className="flex items-center justify-center h-[200px] text-white m-1">
-                  <div className="text-4xl font-bold m-1">
+                <div className="flex items-center justify-center h-[200px] text-white">
+                  <div className="text-4xl font-bold ">
                     Loading equipment...
                   </div>
                 </div>
               ) : equipment.length === 0 ? (
-                <div className="flex items-center justify-center h-[200px] m-2">
+                <div className="flex items-center justify-center h-[200px]">
                   <div className="flex items-center justify-between">
                     No equipment found.
                   </div>

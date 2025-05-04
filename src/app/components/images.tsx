@@ -9,7 +9,7 @@ export default function Images({ gymPics }: { gymPics: string[] }) {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % gymPics.length);
-    }, 3000); // Change image every 3 seconds
+    }, 10000);
 
     return () => clearInterval(interval); // Cleanup interval on component unmount
   }, [gymPics.length]);
@@ -33,7 +33,7 @@ export default function Images({ gymPics }: { gymPics: string[] }) {
             key={index}
             onClick={() => handleDotClick(index)}
             title={`Select image ${index + 1}`}
-            className={`w-3 h-3 rounded-full ${
+            className={`w-5 h-5 rounded-full ${
               index === currentImageIndex ? "bg-blue-500" : "bg-gray-300"
             }`}
           />

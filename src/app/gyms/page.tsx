@@ -86,14 +86,14 @@ export default function Gym() {
   if (!isLoaded) return <div>Loading...</div>;
 
   return (
-    <div className="m-2">
+    <div className="">
       {loading ? (
         <LoadingScreen text="Loading Gyms" />
       ) : (
-        <div className="bg-stone-500 border-black border-[2px] m-10 p-1">
-          <div className="flex flex-row items-center font-bold m-1">
+        <div className="bg-stone-500 border-black border-[2px] p-1">
+          <div className="flex flex-row items-center font-bold m-2">
             <div
-              className="flex items-center uppercase max-w-s m-1 text-5xl shrink font-bold"
+              className="flex items-center uppercase max-w-s m-[1px] text-5xl shrink font-bold"
               style={{ WebkitTextStroke: "1px black" }}
             >
               GYM SEARCH
@@ -103,14 +103,14 @@ export default function Gym() {
               placeholder="Search gym names..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-[25%] ml-auto p-2 border border-black rounded text-black m-1"
+              className="w-[25%] ml-auto p-2 border border-black rounded text-black m-[1px]"
             />
             <input
               type="text"
               placeholder="Search gym equipment..."
               value={equipmentSearchTerm}
               onChange={(e) => setEquipmentSearchTerm(e.target.value)}
-              className="w-[25%] ml-5 p-2 border border-black rounded text-black m-1"
+              className="w-[25%] ml-5 p-2 border border-black rounded text-black m-[1px]"
             />
           </div>
           <div className="h-[550px] border-[2px] border-black m-2">
@@ -118,6 +118,13 @@ export default function Gym() {
               zoom={12}
               center={{ lat: 40.743222191786764, lng: -73.53516023004484 }}
               mapContainerClassName="map-container"
+              options={{
+                mapTypeControl: false, 
+                clickableIcons: false,
+                // disableDefaultUI: false,
+                streetViewControl: false,
+                fullscreenControl: false
+            }}
             >
               {gyms
                 .filter((gym) => {

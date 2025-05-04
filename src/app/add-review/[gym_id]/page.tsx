@@ -30,21 +30,24 @@ export default function Post() {
   }, [gym_id]);
 
   return (
-    <div className="m-2">
-      <div className="m-1">
-        <div className="flex flex-wrap m-1 font-mono text-white m-1 ">
-          <div className="flex flex-wrap items-center max-w-s m-1 text-sm shrink font-bold text-black">
+    <div className="bg-stone-500 border-black border-[2px] p-3">
+      <div className="m-[1px]">
+        <div className="flex flex-wrap m-[1px] font-mono text-white m-[1px] ">
+          <div className="flex flex-wrap items-center bg-stone-400/75 border-black border-[2px] px-2 max-w-s m-[1px] text-sm shrink font-bold text-black">
             <Link
               href={`/reviews/${gym_id}`}
-              className="text-white text-4xl font-bold ml-2 mr-4"
+              className="flex flex-row items-center text-white text-5xl font-bold ml-2 mr-4"
               style={{ WebkitTextStroke: "1px black" }}
             >
-              ←
+              ←{" "}
+              <span className="text-xl pt-1 ml-3">
+                {" "}
+                back to <span className="uppercase">REVIEWS</span>
+              </span>
             </Link>{" "}
-            back to reviews
           </div>
           <div
-            className="flex flex-wrap items-center max-w-s m-1 ml-auto uppercase text-4xl shrink font-bold"
+            className="flex flex-wrap items-center max-w-s m-[1px] ml-auto uppercase text-5xl shrink font-bold"
             style={{ WebkitTextStroke: "1px black" }}
           >
             LEAVE A REVIEW
@@ -53,13 +56,13 @@ export default function Post() {
         {gym_loading ? (
           <LoadingScreen text="Loading Post" />
         ) : isLoggedIn ? (
-          <div className="m-1">
+          <div className="mt-5 max-w-5xl mx-auto p-1">
             {!gym_loading && gym ? (
               <div
-                className="max-w-s mt-5 text-center text-3xl font-bold"
+                className="max-w-s mt-5 text-center text-4xl font-bold"
                 style={{ WebkitTextStroke: "1px black" }}
               >
-                Review for {gym.gym_name} in {gym.city}, {gym.state}
+                {gym.gym_name} in {gym.city}, {gym.state}
               </div>
             ) : (
               <></>
@@ -67,7 +70,7 @@ export default function Post() {
             <AddReview gym_id={gym_id as string}></AddReview>
           </div>
         ) : (
-          <div className="flex flex-col justify-center items-center min-h-screen border font-mono pb-20 m-1">
+          <div className="flex flex-col justify-center items-center min-h-screen border font-mono pb-20 m-[1px]">
             <div
               className="w-full max-w-s m-4 text-center text-4xl font-bold"
               style={{ WebkitTextStroke: "1px black" }}
