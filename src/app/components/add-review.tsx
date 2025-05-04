@@ -9,17 +9,6 @@ const AddReview = ({ gym_id }: { gym_id: string }) => {
 
   const router = useRouter();
 
-  console.log(
-    "isLoggedIn:",
-    isLoggedIn,
-    ", username:",
-    username,
-    ", user_id:",
-    userID,
-    ", membership:",
-    membership
-  ); // Debugging log
-
   const [reviewData, setReviewData] = useState({
     gym_id: "",
     user_id: "",
@@ -30,8 +19,8 @@ const AddReview = ({ gym_id }: { gym_id: string }) => {
   const [localMessage, setLocalMessage] = useState("");
 
   useEffect(() => {
-    console.log("user_id:", userID, "membership:", membership); // Debugging log
-    if ((userID && membership) || userID === 0) {
+    console.log("user_id:", userID); // Debugging log
+    if (isLoggedIn && userID) {
       setReviewData((prevData) => ({
         ...prevData,
         gym_id,
