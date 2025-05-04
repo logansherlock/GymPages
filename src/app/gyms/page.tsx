@@ -90,7 +90,7 @@ export default function Gym() {
       {loading ? (
         <LoadingScreen text="Loading Gyms" />
       ) : (
-        <div className="bg-stone-500 border-black border-[2px] p-1">
+        <div className="bg-stone-500 border-black border-[1px] p-1">
           <div className="flex flex-row items-center font-bold m-2">
             <div
               className="flex items-center uppercase max-w-s m-[1px] text-5xl shrink font-bold"
@@ -113,7 +113,7 @@ export default function Gym() {
               className="w-[25%] ml-5 p-2 border border-black rounded text-black m-[1px]"
             />
           </div>
-          <div className="h-[550px] border-[2px] border-black m-2">
+          <div className="h-[550px] border-[1px] border-black m-2">
             <GoogleMap
               zoom={12}
               center={{ lat: 40.743222191786764, lng: -73.53516023004484 }}
@@ -184,7 +184,7 @@ export default function Gym() {
               )}
             </GoogleMap>
           </div>
-          <div className="flex flex-col m-2 mt-4 border-black border-[2px] bg-stone-400/75 py-2 px-4">
+          <div className="flex flex-col m-2 mt-4 border-black border-[1px] bg-stone-400/75 py-2 px-4">
             <div
               className="text-4xl font-bold p-2"
               style={{

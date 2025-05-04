@@ -72,7 +72,7 @@ export default function AddExercise() {
       {isLoggedIn && userID === 0 ? (
         <div>
           <div className="flex flex-wrap m-[1px] font-mono text-white m-[1px] ">
-            <div className="flex flex-wrap items-center bg-stone-400/75 border-black border-[2px] px-2 max-w-s m-[1px] text-sm shrink font-bold text-black">
+            <div className="flex flex-wrap items-center bg-stone-400/75 border-black border-[1px] px-2 max-w-s m-[1px] text-sm shrink font-bold text-black">
               <Link
                 href={`/admin-exercises`}
                 className="flex flex-row items-center text-white text-5xl font-bold ml-2 mr-4"
@@ -87,7 +87,7 @@ export default function AddExercise() {
             </div>
           </div>
           <div className="min-h-screen flex justify-center items-center -mt-20">
-            <div className="w-full max-w-xl pt-6 pb-3 px-3 bg-stone-500  border-[2px] border-black">
+            <div className="w-full max-w-xl pt-6 pb-3 px-3 bg-stone-500  border-[1px] border-black">
               <form
                 onSubmit={handleSubmit}
                 className="flex flex-col justify-center items-center font-mono m-[1px]"
@@ -212,7 +212,7 @@ export default function AddExercise() {
       ) : (
         <div>
           <div className="flex flex-wrap m-[1px] font-mono text-white m-[1px] ">
-            <div className="flex flex-wrap items-center bg-stone-400/75 border-black border-[2px] px-2 max-w-s m-[1px] text-sm shrink font-bold text-black">
+            <div className="flex flex-wrap items-center bg-stone-400/75 border-black border-[1px] px-2 max-w-s m-[1px] text-sm shrink font-bold text-black">
               <Link
                 href={`/`}
                 className="flex flex-row items-center text-white text-5xl font-bold ml-2 mr-4"
@@ -235,7 +235,7 @@ export default function AddExercise() {
           {!isLoggedIn ? (
             <div className="flex flex-col justify-center items-center min-h-screen border font-mono pb-20 m-[1px]">
               <div
-                className=" max-w-s m-4 text-center text-4xl font-bold bg-red-800 border-black border-[2px] p-4"
+                className=" max-w-s m-4 text-center text-4xl font-bold bg-red-800 border-black border-[1px] p-4"
                 style={{ WebkitTextStroke: "1px black" }}
               >
                 Must be logged in and admin to add exercises.
@@ -244,7 +244,7 @@ export default function AddExercise() {
           ) : (
             <div className="flex flex-col justify-center items-center min-h-screen border font-mono pb-20 m-[1px]">
               <div
-                className=" max-w-s m-4 text-center text-4xl font-bold bg-red-800 border-black border-[2px] p-4"
+                className=" max-w-s m-4 text-center text-4xl font-bold bg-red-800 border-black border-[1px] p-4"
                 style={{ WebkitTextStroke: "1px black" }}
               >
                 Must be admin to add exercises.

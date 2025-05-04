@@ -3,7 +3,7 @@ import { FaLinkedin } from "react-icons/fa";
 
 export default async function About() {
   return (
-    <div className="bg-stone-500 border-[2px] border-black p-3 pb-0">
+    <div className="bg-stone-500 border-[1px] border-black p-3 pb-0">
       <div className="m-[1px]">
         <div
           className="text-5xl font-bold"
@@ -11,7 +11,7 @@ export default async function About() {
         >
           ABOUT GYMPAGES
         </div>
-        <div className="bg-stone-400/75 border-black border-[2px] text-xl font-bold mb-0 text-justify mt-2 py-2 px-4">
+        <div className="bg-stone-400/75 border-black border-[1px] text-xl font-bold mb-0 text-justify mt-2 py-2 px-4">
           GymPages is a web application designed and developed by Logan Sherlock
           and Marcos Padilla for the State University of New York at Old
           Westbury's Senior Capstone Project for the Computer and Information

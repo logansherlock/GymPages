@@ -59,7 +59,7 @@ const Reviews = ({ gym_id }: { gym_id: string }) => {
                 {reviews.map((review) => (
                   <div
                     key={review.review_id}
-                    className="text-white font-mono bg-stone-600 rounded-xl p-1 pb-0 border-black border-[3px] mb-4"
+                    className="text-white font-mono bg-stone-600 rounded-xl p-1 pb-0 border-black border-[1px] mb-4"
                   >
                     <div className="flex justify-between w-full">
                       <div className="text-2xl font-semibold mx-2">
@@ -69,7 +69,7 @@ const Reviews = ({ gym_id }: { gym_id: string }) => {
                         {"⭐️".repeat(review.rating)}
                       </div>
                     </div>
-                    <div className="text-[18px] bg-white text-black font-semibold p-2 rounded-xl m-[1px] border-black border-[2px]">
+                    <div className="text-[18px] bg-white text-black font-semibold p-2 rounded-xl m-[1px] border-black border-[1px]">
                       {review.body}
                     </div>
                     <div className="flex flex-wrap">

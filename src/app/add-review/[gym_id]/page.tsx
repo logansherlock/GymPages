@@ -30,10 +30,10 @@ export default function Post() {
   }, [gym_id]);
 
   return (
-    <div className="bg-stone-500 border-black border-[2px] p-3">
+    <div className="bg-stone-500 border-black border-[1px] p-3">
       <div className="m-[1px]">
         <div className="flex flex-wrap m-[1px] font-mono text-white m-[1px] ">
-          <div className="flex flex-wrap items-center bg-stone-400/75 border-black border-[2px] px-2 max-w-s m-[1px] text-sm shrink font-bold text-black">
+          <div className="flex flex-wrap items-center bg-stone-400/75 border-black border-[1px] px-2 max-w-s m-[1px] text-sm shrink font-bold text-black">
             <Link
               href={`/reviews/${gym_id}`}
               className="flex flex-row items-center text-white text-5xl font-bold ml-2 mr-4"

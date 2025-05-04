@@ -80,13 +80,13 @@ const RecentReviews = ({ gym_id }: { gym_id: string }) => {
           {reviews.slice(0, 3).map((review) => (
             <div
               key={review.review_id}
-              className="text-white font-mono bg-stone-600 rounded-xl p-1 border-black border-[3px] w-full"
+              className="text-white font-mono bg-stone-600 rounded-xl p-1 border-black border-[1px] w-full"
             >
               <div className="flex justify-between w-full mb-1">
                 <div className="text-lg font-semibold">{review.username}</div>
                 <div className="text-xl">{"⭐️".repeat(review.rating)}</div>
               </div>
-              <div className="text-[15px] bg-white text-black font-semibold p-2 rounded-xl break-words border-black border-[2px] max-h-[120px] overflow-hidden">
+              <div className="text-[15px] bg-white text-black font-semibold p-2 rounded-xl break-words border-black border-[1px] max-h-[120px] overflow-hidden">
                 {truncateText(review.body, maxChars)}
               </div>
             </div>

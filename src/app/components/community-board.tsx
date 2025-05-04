@@ -61,7 +61,7 @@ const CommunityBoard = ({ gym_id }: { gym_id: string }) => {
           {posts.length === 0 ? (
             <div className="flex flex-col justify-center items-center min-h-screen font-mono pb-20">
               <div
-                className=" max-w-s m-4 text-center text-4xl font-bold bg-red-800 border-black border-[2px] p-4"
+                className=" max-w-s m-4 text-center text-4xl font-bold bg-red-800 border-black border-[1px] p-4"
                 style={{ WebkitTextStroke: "1px black" }}
               >
                 No posts found...
@@ -72,13 +72,13 @@ const CommunityBoard = ({ gym_id }: { gym_id: string }) => {
               <div className="w-[60%] flex flex-wrap flex-col m-2 gap-y-7">
                 {posts.map((post) => (
                   <Link href={`/posts/${post.post_id}`} key={post.post_id}>
-                    <div className="cursor-pointer hover:scale-[1.005] transition-transform text-white font-mono bg-stone-600 rounded-xl p-1 border-black border-[3px] mb-4">
+                    <div className="cursor-pointer hover:scale-[1.005] transition-transform text-white font-mono bg-stone-600 rounded-xl p-1 border-black border-[1px] mb-4">
                       <div className="flex justify-between w-full">
                         <div className="text-2xl font-semibold mx-2">
                           {post.username}
                         </div>
                       </div>
-                      <div className="text-[18px] bg-white text-black font-semibold p-2 rounded-xl m-[1px] border-black border-[2px]">
+                      <div className="text-[18px] bg-white text-black font-semibold p-2 rounded-xl m-[1px] border-black border-[1px]">
                         {post.body}
                       </div>
                       <div className="flex flex-wrap">

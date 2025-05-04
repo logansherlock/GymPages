@@ -50,7 +50,7 @@ export default function ExercisePage() {
         <LoadingScreen text="Loading Exercise" />
       ) : exercise ? (
         <div className="">
-          <div className="bg-stone-500 border-black border-[2px] p-1">
+          <div className="bg-stone-500 border-black border-[1px] p-1">
             <div className="flex m-1 font-mono text-white">
               <div
                 className="flex items-center uppercase max-w-s m-1 text-5xl shrink font-bold"
@@ -114,7 +114,7 @@ export default function ExercisePage() {
                 </div>
                 <div className="flex flex-col aspect-video justify-center items-center w-[50%] font-mono m-1">
                   <iframe
-                    className="border-black border-[2px] aspect-video w-[90%]"
+                    className="border-black border-[1px] aspect-video w-[90%]"
                     src={`${exercise.video_link}`}
                     title="YouTube video player"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -144,7 +144,7 @@ export default function ExercisePage() {
       ) : (
         <div className="flex flex-col justify-center items-center min-h-screen border font-mono pb-20">
           <div
-            className=" max-w-s m-4 text-center text-4xl font-bold bg-red-800 border-black border-[2px] p-4"
+            className=" max-w-s m-4 text-center text-4xl font-bold bg-red-800 border-black border-[1px] p-4"
             style={{ WebkitTextStroke: "1px black" }}
           >
             Error, Not Loading.

@@ -63,7 +63,7 @@ export default function Post() {
   }, [post_id]);
 
   return (
-    <div className="bg-stone-500 border-black border-[2px] p-3 pb-8">
+    <div className="bg-stone-500 border-black border-[1px] p-3 pb-8">
       {post_loading || gym_loading || com_loading ? (
         <LoadingScreen text="Loading Post" />
       ) : isLoggedIn && gym && (membership == gym.gym_id || userID === 0) ? (
@@ -71,7 +71,7 @@ export default function Post() {
           {post && gym ? (
             <div className="m-[1px]">
               <div className="flex flex-wrap font-mono text-white m-[1px] ">
-            <div className="flex flex-wrap items-center bg-stone-400/75 border-black border-[2px] px-2 max-w-s m-[1px] text-sm shrink font-bold text-black">
+            <div className="flex flex-wrap items-center bg-stone-400/75 border-black border-[1px] px-2 max-w-s m-[1px] text-sm shrink font-bold text-black">
               <Link
                 href={`/community-board/${gym.gym_id}`}
                 className="flex flex-row items-center text-white text-5xl font-bold ml-2 mr-4"
@@ -98,13 +98,13 @@ export default function Post() {
                 </nav>
               </div>
               <div className="flex flex-wrap items-center justify-center m-[1px]">
-                <div className="w-[60%] text-white font-mono bg-stone-600 rounded-xl p-1 border-black border-[3px] mb-5">
+                <div className="w-[60%] text-white font-mono bg-stone-600 rounded-xl p-1 border-black border-[1px] mb-5">
                   <div className="flex justify-between w-full">
                     <div className="text-3xl font-semibold mx-2">
                       {post.username}
                     </div>
                   </div>
-                  <div className="text-xl bg-white text-black font-semibold p-2 rounded-xl m-[1px] border-black border-[2px]">
+                  <div className="text-xl bg-white text-black font-semibold p-2 rounded-xl m-[1px] border-black border-[1px]">
                     {post.body}
                   </div>
                   <div className="flex flex-wrap">
@@ -126,14 +126,14 @@ export default function Post() {
                     {comments.map((comment, index) => (
                       <div
                         key={comment.comment_id}
-                        className="text-white font-mono bg-stone-600 rounded-xl p-1 pb-0 border-black border-[3px] m-[1px] "
+                        className="text-white font-mono bg-stone-600 rounded-xl p-1 pb-0 border-black border-[1px] m-[1px] "
                       >
                         <div className="flex justify-between w-full">
                           <div className=" font-semibold mx-1">
                             {comment.username}
                           </div>
                         </div>
-                        <div className="text-[15px] bg-white text-black font-semibold p-2 rounded-xl border-black border-[2px]">
+                        <div className="text-[15px] bg-white text-black font-semibold p-2 rounded-xl border-black border-[1px]">
                           {comment.body}
                         </div>
                         <div className="flex flex-wrap">
@@ -152,7 +152,7 @@ export default function Post() {
           ) : (
             <div className="flex flex-col justify-center items-center min-h-screen border font-mono pb-20">
               <div
-                className=" max-w-s m-4 text-center text-4xl font-bold bg-red-800 border-black border-[2px] p-4"
+                className=" max-w-s m-4 text-center text-4xl font-bold bg-red-800 border-black border-[1px] p-4"
                 style={{ WebkitTextStroke: "1px black" }}
               >
                 Error, not loading.

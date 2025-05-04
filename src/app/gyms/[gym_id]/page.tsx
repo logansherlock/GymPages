@@ -45,7 +45,7 @@ export default function GymPage() {
       ) : gym &&
         gym?.location?.x !== undefined &&
         gym?.location?.y !== undefined ? (
-        <div className="bg-stone-500 border-black border-[2px] p-3">
+        <div className="bg-stone-500 border-black border-[1px] p-3">
           <div className="flex flex-wrap m-[1px] font-mono text-white">
             <div
               className="flex flex-wrap items-center uppercase max-w-s m-[1px] text-5xl shrink font-bold"
@@ -85,7 +85,7 @@ export default function GymPage() {
                 longitude={gym.location.y}
               />
             </div>
-            <div className="w-[40%] h-[500px] ml-3 m-[1px] max-w-screen-lg bg-stone-400/75 border-black border-[2px]">
+            <div className="w-[40%] h-[500px] ml-3 m-[1px] max-w-screen-lg bg-stone-400/75 border-black border-[1px]">
               <div className="flex flex-wrap flex-col justify-center items-center h-full">
                 <RecentReviews gym_id={gym_id as string} />
               </div>
@@ -98,7 +98,7 @@ export default function GymPage() {
       ) : (
         <div className="flex flex-col justify-center items-center min-h-screen border font-mono pb-20">
           <div
-            className=" max-w-s m-4 text-center text-4xl font-bold bg-red-800 border-black border-[2px] p-4"
+            className=" max-w-s m-4 text-center text-4xl font-bold bg-red-800 border-black border-[1px] p-4"
             style={{ WebkitTextStroke: "1px black" }}
           >
             Error, not loading.

@@ -82,11 +82,11 @@ const UserHistory = ({ user_id }: { user_id: string }) => {
               {Array.isArray(reviews) &&
                 reviews.map((review) => (
                   <div key={review.review_id}>
-                    <div className="text-white font-mono bg-stone-600 rounded-xl p-1 border-black border-[3px] mb-4">
+                    <div className="text-white font-mono bg-stone-600 rounded-xl p-1 border-black border-[1px] mb-4">
                       <div className="flex justify-between w-full">
                         <div className="text-lg font-semibold mx-2">REVIEW</div>
                       </div>
-                      <div className="text-[12px] bg-white text-black font-semibold p-2 rounded-xl m-1 border-black border-[2px]">
+                      <div className="text-[12px] bg-white text-black font-semibold p-2 rounded-xl m-1 border-black border-[1px]">
                         {review.body}
                       </div>
                       <div className="flex flex-wrap">
@@ -109,11 +109,11 @@ const UserHistory = ({ user_id }: { user_id: string }) => {
               {Array.isArray(posts) &&
                 posts.map((post) => (
                   <div key={post.post_id}>
-                    <div className="text-white font-mono bg-stone-600 rounded-xl p-1 border-black border-[3px] mb-4">
+                    <div className="text-white font-mono bg-stone-600 rounded-xl p-1 border-black border-[1px] mb-4">
                       <div className="flex justify-between w-full">
                         <div className="text-lg font-semibold mx-2">POST</div>
                       </div>
-                      <div className="text-[12px] bg-white text-black font-semibold p-2 rounded-xl m-1 border-black border-[2px]">
+                      <div className="text-[12px] bg-white text-black font-semibold p-2 rounded-xl m-1 border-black border-[1px]">
                         {post.body}
                       </div>
                       <div className="flex flex-wrap">
@@ -139,13 +139,13 @@ const UserHistory = ({ user_id }: { user_id: string }) => {
                     href={`/posts/${comment.post_id}`}
                     key={comment.comment_id}
                   >
-                    <div className="cursor-pointer hover:scale-[1.005] transition-transform text-white font-mono bg-stone-600 rounded-xl p-1 border-black border-[3px] mb-4">
+                    <div className="cursor-pointer hover:scale-[1.005] transition-transform text-white font-mono bg-stone-600 rounded-xl p-1 border-black border-[1px] mb-4">
                       <div className="flex justify-between w-full">
                         <div className="text-lg font-semibold mx-2">
                           COMMENT
                         </div>
                       </div>
-                      <div className="text-[12px] bg-white text-black font-semibold p-2 rounded-xl m-1 border-black border-[2px]">
+                      <div className="text-[12px] bg-white text-black font-semibold p-2 rounded-xl m-1 border-black border-[1px]">
                         {comment.body}
                       </div>
                       <div className="flex flex-wrap">
