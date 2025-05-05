@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import Reviews from "@/app/components/reviews";
+import LoadingScreen from "@/app/components/loading-screen";
 
 export default function ReviewsPage() {
   const [gym, setGym] = useState<any | null>(null);
@@ -11,7 +12,7 @@ export default function ReviewsPage() {
 
   useEffect(() => {
     if (!gym_id) return;
-    
+
     console.log("page.tsx gym_id:", gym_id); // Log the type of gym_id
     fetch(`/api/gym-page/${gym_id}`)
       .then((res) => res.json())
@@ -29,29 +30,27 @@ export default function ReviewsPage() {
   }, [gym_id]);
 
   return (
-    <div className="m-2">
+    <div className="bg-stone-500 border-black border-[1px] p-3">
       {" "}
       {loading ? (
-        <div className="flex flex-col justify-center items-center min-h-screen border font-mono pb-20">
-          <div className="w-full max-w-s m-4 text-center text-5xl font-bold">
-            Loading Reviews...
-          </div>
-        </div>
+        <LoadingScreen text="Loading Reviews" />
       ) : gym ? (
-        <div className="m-1">
-          <div className="flex flex-wrap m-1 font-mono text-white">
-          <div className="flex flex-wrap items-center max-w-s m-1 text-sm shrink font-bold text-black">
-            <Link
-              href={`/gyms/${gym_id}`}
-              className="text-white text-4xl font-bold ml-2 mr-4"
+        <div className="m-[1px]">
+          <div className="flex flex-wrap m-[1px] font-mono text-white">
+            <div className="flex flex-wrap items-center bg-stone-400/75 border-black border-[1px] px-2 max-w-s m-[1px] text-sm shrink font-bold text-black">
+              <Link
+                href={`/gyms/${gym_id}`}
+                className="flex flex-row items-center text-white text-5xl font-bold ml-2 mr-4"
+                style={{ WebkitTextStroke: "1px black" }}
+              >
+                ← <span className="text-xl pt-1 ml-3"> back to <span className="uppercase">{gym.gym_name}</span></span>
+              </Link>{" "}
+            </div>
+            <div
+              className="flex flex-wrap items-center max-w-s m-[1px] ml-auto uppercase text-5xl shrink font-bold"
               style={{ WebkitTextStroke: "1px black" }}
             >
-              ←
-            </Link>{" "}
-            back to {gym.gym_name}
-          </div>
-            <div className="flex flex-wrap items-center max-w-s m-1 ml-auto uppercase text-4xl shrink font-bold" style={{ WebkitTextStroke: "1px black" }}>
-            {gym.gym_name} REVIEWS
+              {gym.gym_name} REVIEWS
             </div>
           </div>
 

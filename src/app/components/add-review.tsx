@@ -9,17 +9,6 @@ const AddReview = ({ gym_id }: { gym_id: string }) => {
 
   const router = useRouter();
 
-  console.log(
-    "isLoggedIn:",
-    isLoggedIn,
-    ", username:",
-    username,
-    ", user_id:",
-    userID,
-    ", membership:",
-    membership
-  ); // Debugging log
-
   const [reviewData, setReviewData] = useState({
     gym_id: "",
     user_id: "",
@@ -30,8 +19,8 @@ const AddReview = ({ gym_id }: { gym_id: string }) => {
   const [localMessage, setLocalMessage] = useState("");
 
   useEffect(() => {
-    console.log("user_id:", userID, "membership:", membership); // Debugging log
-    if ((userID && membership) || userID === 0) {
+    console.log("user_id:", userID); // Debugging log
+    if (isLoggedIn && userID) {
       setReviewData((prevData) => ({
         ...prevData,
         gym_id,
@@ -82,12 +71,12 @@ const AddReview = ({ gym_id }: { gym_id: string }) => {
   };
 
   return (
-    <div className="flex flex-col m-1 p-10">
+    <div className="flex flex-col m-[1px] pt-10">
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col items-center font-mono pb-20"
+        className="flex flex-col items-center font-mono"
       >
-        <div className="w-[60%] text-white font-mono bg-stone-600 rounded-xl p-1 border-black border-[3px] m-1 ">
+        <div className="w-[75%] text-white font-mono bg-stone-600 rounded-xl p-1 border-black border-[1px] m-[1px] ">
           <div className="flex justify-between w-full items-center">
             <div className="text-2xl font-semibold mx-2">{username}</div>
             <div className="flex flex-row items-center gap-2 w-[25%]">
@@ -106,14 +95,14 @@ const AddReview = ({ gym_id }: { gym_id: string }) => {
               </div>
             </div>
           </div>
-          <div className="rounded-xl m-1">
+          <div className="rounded-xl m-[1px]">
             <textarea
               placeholder="enter review here..."
               name="body"
               value={reviewData.body}
               onChange={handleChange}
               rows={1}
-              className="text-[18px] bg-white text-black font-semibold p-2 rounded-xl w-full resize-none overflow-hidden border-black border-[2px]"
+              className="text-[18px] bg-white text-black font-semibold p-2 rounded-xl w-full resize-none overflow-hidden border-black border-[1px]"
               onInput={(e) => {
                 const target = e.target as HTMLTextAreaElement;
                 target.style.height = "auto";
@@ -125,17 +114,16 @@ const AddReview = ({ gym_id }: { gym_id: string }) => {
         <div className="w-full max-w-xs text-center">
           <button
             type="submit"
-            className="m-1 px-3 py-1 border border-slate-900 bg-orange-400 text-slate-100 font-bold rounded-md text-center"
+            className="m-4 px-3 py-1 border border-slate-900 bg-orange-400 text-slate-100 font-bold rounded-md text-center"
           >
-            post review
+            Post Review
           </button>
         </div>
       </form>
-      <div className="w-full max-w-xs">
+      <div className="w-full flex justify-center">
         {localMessage && (
           <p
-            className="mt-4 px-4 py-2 w-full text-center text-white rounded-md font-bold 
-                      bg-green-500"
+            className="mt-4 px-4 py-2 text-center text-white rounded-md font-bold bg-orange-400"
           >
             {localMessage}
           </p>

@@ -43,11 +43,14 @@ const AddComment = ({ post_id }: { post_id: string }) => {
     console.log("submitting post (add-comment.tsx):", commentData);
 
     try {
-      const response = await fetch(`/api/community-board/comments-by-post/${post_id}`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(commentData),
-      });
+      const response = await fetch(
+        `/api/community-board/comments-by-post/${post_id}`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(commentData),
+        }
+      );
 
       const data = await response.json();
       console.log("response received add-comment.tsx", data);
@@ -81,16 +84,16 @@ const AddComment = ({ post_id }: { post_id: string }) => {
   return (
     <div className="flex flex-col justify-center">
       <div
-        className="max-w-s m-4 text-center text-3xl font-bold"
+        className="max-w-s m-[1px] mb-4 text-center text-3xl font-bold"
         style={{ WebkitTextStroke: "1px black" }}
       >
-        add comment
+        Add Comment
       </div>
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col items-center font-mono pb-20"
+        className="flex flex-col items-center font-mono"
       >
-        <div className="w-[50%] text-white font-mono bg-stone-600 rounded-xl p-1 border-black border-[3px] m-1 ">
+        <div className="w-[50%] text-white font-mono bg-stone-600 rounded-xl p-1 border-black border-[1px] m-[1px] ">
           <div className="flex justify-between w-full">
             <div className=" font-semibold mx-1">{username}</div>
           </div>
@@ -101,7 +104,7 @@ const AddComment = ({ post_id }: { post_id: string }) => {
               value={commentData.body}
               onChange={handleChange}
               rows={1}
-              className="text-[15px] bg-white text-black font-semibold p-2 rounded-xl w-full resize-none overflow-hidden border-black border-[2px]"
+              className="text-[15px] bg-white text-black font-semibold p-2 rounded-xl w-full resize-none overflow-hidden border-black border-[1px]"
               onInput={(e) => {
                 const target = e.target as HTMLTextAreaElement;
                 target.style.height = "auto";
@@ -113,17 +116,16 @@ const AddComment = ({ post_id }: { post_id: string }) => {
         <div className="w-full max-w-xs text-center">
           <button
             type="submit"
-            className="m-1 px-3 py-1 border border-slate-900 bg-orange-400 text-slate-100 font-bold rounded-md text-center"
+            className="m-4 px-3 py-1 border border-slate-900 bg-orange-400 text-slate-100 font-bold rounded-md text-center"
           >
-            post comment
+            Post Comment
           </button>
         </div>
       </form>
-      <div className="w-full max-w-xs">
+      <div className="w-full flex justify-center">
         {localMessage && (
           <p
-            className="mt-4 px-4 py-2 w-full text-center text-white rounded-md font-bold 
-                      bg-green-500"
+            className="mt-4 px-4 py-2 text-center text-white rounded-md font-bold bg-orange-400"
           >
             {localMessage}
           </p>
