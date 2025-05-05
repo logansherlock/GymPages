@@ -58,7 +58,7 @@ export default function RootLayout({
           <div
             className="absolute inset-0 bg-cover bg-center"
             style={{
-              backgroundImage: "url('/LongIsland.png')",
+              backgroundImage: "url('/LongIsland.jpeg')",
               backgroundAttachment: "fixed",
               opacity: 0.2,
               zIndex: 0,
