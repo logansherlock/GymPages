@@ -28,7 +28,13 @@ export default function Home() {
   return (
     <div className="mt-5">
       <div className="flex flex-col items-center">
-        <div className="w-[80%] h-[500px] overflow-hidden relative border-black border-[1px]">
+        <div
+          className="mb-2 text-4xl font-bold"
+          style={{ WebkitTextStroke: "1px black" }}
+        >
+          #1 Site for Gym Information in Nassau County
+        </div>
+        <div className="w-[80%] h-[550px] overflow-hidden relative border-black border-[1px]">
           <Image
             src={gymPics[currentImageIndex]}
             alt="Gym Image"

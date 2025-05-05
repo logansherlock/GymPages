@@ -66,10 +66,10 @@ export default function RootLayout({
             }}
           />
           <main className="p-10 pt-32 font-mono relative z-10">{children}</main>
+        </div>
           <footer className="relative bg-stone-400/75 border-t border-black">
             <Footer />
           </footer>
-        </div>
       </body>
     </html>
   );
