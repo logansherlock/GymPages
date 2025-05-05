@@ -26,10 +26,10 @@ export default function Home() {
   };
 
   return (
-    <div className="mt-5">
+    <div className="">
       <div className="flex flex-col items-center">
         <div
-          className="mb-2 text-4xl font-bold"
+          className="mb-2 text-4xl text-white font-bold"
           style={{ WebkitTextStroke: "1px black" }}
         >
           #1 Site for Gym Information in Nassau County
