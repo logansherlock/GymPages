@@ -94,7 +94,7 @@ export default function Home() {
             </button>
 
             {showAdminLinks && (
-              <div className="flex flex-col mt-3 bg-stone-400 gap-y-3 text-sm p-2 ">
+              <div className="flex flex-col mt-3 bg-stone-400 gap-y-3 text-sm p-2 border-black border-[1px]">
                 <Link
                   href="/admin-gyms"
                   className={`${baseLinkClass} bg-stone-500 px-1 `}

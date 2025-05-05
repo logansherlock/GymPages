@@ -54,7 +54,18 @@ export default function RootLayout({
 
           <Navigation />
         </header>
-        <main className="p-10 pt-32 font-mono">{children}</main>
+        <div className="relative min-h-screen">
+          <div
+            className="absolute inset-0 bg-cover bg-center"
+            style={{
+              backgroundImage: "url('/LongIsland.png')",
+              backgroundAttachment: "fixed",
+              opacity: 0.2,
+              zIndex: 0,
+            }}
+          />
+          <main className="p-10 pt-32 font-mono relative z-10">{children}</main>
+        </div>
         {/* <footer className="text-xl text-black flex flex-row justify-between bg-stone-400 mt-32 p-10">sdkjgf<Navigation/></footer> */}
       </body>
     </html>
