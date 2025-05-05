@@ -62,9 +62,9 @@ const Reviews = ({ gym_id }: { gym_id: string }) => {
                     className="text-white font-mono bg-stone-600 rounded-xl p-1 pb-0 border-black border-[1px] mb-4"
                   >
                     <div className="flex justify-between w-full">
-                      <div className="text-2xl font-semibold mx-2">
+                      <Link href={`/profile/${review.user_id}`} className="cursor-pointer hover:scale-[1.05] transition-transform text-2xl font-semibold mx-2">
                         {review.username}
-                      </div>
+                      </Link>
                       <div className="text-xl mx-2">
                         {"⭐️".repeat(review.rating)}
                       </div>

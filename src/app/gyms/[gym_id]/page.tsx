@@ -6,12 +6,16 @@ import GymEquipment from "@/app/components/gym-equipment";
 import RecentReviews from "@/app/components/recent-reviews";
 import Link from "next/link";
 import LoadingScreen from "@/app/components/loading-screen";
+import { useAuth } from "@/hooks/useAuth";
 
 export default function GymPage() {
   const [gym, setGym] = useState<any | null>(null);
   const [equipment, setEquipment] = useState<any | null>(null);
+  const { isLoggedIn, username, userID, membership } = useAuth();
   const [gymLoading, setGymLoading] = useState(true); // Track loading state
+  const [confirmJoin, setConfirmJoin] = useState(false);
   const { gym_id } = useParams();
+
   console.log(gym_id);
 
   useEffect(() => {
@@ -37,6 +41,27 @@ export default function GymPage() {
       })
       .finally(() => setGymLoading(false));
   }, [gym_id]);
+
+  const handleJoinGym = async () => {
+    try {
+      const res = await fetch(`/api/profile/${userID}/join-gym`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          user_id: userID,
+          gym_id: gym_id,
+        }),
+      });
+
+      if (res.ok) {
+        window.location.reload();
+      } else {
+        console.error("Failed to join gym");
+      }
+    } catch (error) {
+      console.error("Error joining gym:", error);
+    }
+  };
 
   return (
     <div className="">
@@ -75,6 +100,50 @@ export default function GymPage() {
                 >
                   Community Board
                 </Link>
+                {membership === gym_id ? (
+                  <>
+                    <div className="text-center bg-green-400 border-black border-[1px] px-2 font-bold rounded">
+                      ACTIVE MEMBER
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    {isLoggedIn && userID !== 0 ? (
+                      <>
+                        {confirmJoin ? (
+                          <nav className="flex flex-row items-center">
+                            <div className="text-sm font-bold mr-4">
+                              Confirm join?
+                            </div>
+                            <div className="flex gap-2">
+                              <button
+                                onClick={handleJoinGym}
+                                className="cursor-pointer hover:scale-[1.05] transition-transform text-center bg-green-400 border-black border-[1px] px-2 font-bold rounded"
+                              >
+                                Confirm
+                              </button>
+                              <button
+                                onClick={() => setConfirmJoin(false)}
+                                className="cursor-pointer hover:scale-[1.05] transition-transform text-center bg-red-400 border-black border-[1px] px-2 font-bold rounded"
+                              >
+                                Cancel
+                              </button>
+                            </div>
+                          </nav>
+                        ) : (
+                          <button
+                            className="cursor-pointer hover:scale-[1.05] transition-transform text-center bg-blue-400 border-black border-[1px] px-2 font-bold rounded"
+                            onClick={() => setConfirmJoin(true)}
+                          >
+                            Join Gym
+                          </button>
+                        )}
+                      </>
+                    ) : (
+                      <></>
+                    )}
+                  </>
+                )}
               </nav>
             </div>
           </div>

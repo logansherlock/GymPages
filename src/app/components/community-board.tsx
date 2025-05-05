@@ -74,9 +74,9 @@ const CommunityBoard = ({ gym_id }: { gym_id: string }) => {
                   <Link href={`/posts/${post.post_id}`} key={post.post_id}>
                     <div className="cursor-pointer hover:scale-[1.005] transition-transform text-white font-mono bg-stone-600 rounded-xl p-1 border-black border-[1px] mb-4">
                       <div className="flex justify-between w-full">
-                        <div className="text-2xl font-semibold mx-2">
+                        <Link href={`/profile/${post.user_id}`} className="cursor-pointer hover:scale-[1.05] transition-transform text-2xl font-semibold mx-2">
                           {post.username}
-                        </div>
+                        </Link>
                       </div>
                       <div className="text-[18px] bg-white text-black font-semibold p-2 rounded-xl m-[1px] border-black border-[1px]">
                         {post.body}

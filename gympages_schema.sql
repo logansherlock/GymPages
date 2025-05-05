@@ -118,3 +118,5 @@ END;
 //
 
 DELIMITER ;
+
+ALTER TABLE users ADD member_id varchar(255) NULL;

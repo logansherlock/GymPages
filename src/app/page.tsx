@@ -9,7 +9,7 @@ export default function Home() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const { isLoggedIn, username, userID, membership } = useAuth();
   const [showAdminLinks, setShowAdminLinks] = useState(false);
-  const gymPics = ["/GYM_1.png", "/GYM_2.jpg"];
+  const gymPics = ["/GYM_1.jpg", "/GYM_2.jpg", "/GYM_3.jpeg", "/GYM_4.jpg"];
   const baseLinkClass =
     "cursor-pointer hover:scale-[1.05] transition-transform text-center text-white border-black border-[1px]";
 
@@ -26,7 +26,7 @@ export default function Home() {
   };
 
   return (
-    <div>
+    <div className="mt-5">
       <div className="flex flex-col items-center">
         <div className="w-[80%] h-[500px] overflow-hidden relative border-black border-[1px]">
           <Image

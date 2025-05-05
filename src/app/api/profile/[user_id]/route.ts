@@ -38,7 +38,7 @@ export async function PUT(req: NextRequest, { params }: { params: { user_id: str
     }
 
     await pool.query(
-      `UPDATE profile 
+      `UPDATE profiles
        SET visibility = ?, max_bench = ?, max_squat = ?, max_dead = ?
        WHERE user_id = ?`,
       [visibility, max_bench || null, max_squat || null, max_dead || null, userId]

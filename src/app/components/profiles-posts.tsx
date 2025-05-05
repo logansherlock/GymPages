@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { formatDate } from "@/lib/utils/formatDate";
 import Link from "next/link";
 import LoadingScreen from "./loading-screen";
+import Reviews from "./reviews";
 
 const ProfilePosts = ({ user_id }: { user_id: string }) => {
   const { isLoggedIn, username, userID, membership } = useAuth();
@@ -47,6 +48,7 @@ const ProfilePosts = ({ user_id }: { user_id: string }) => {
                   <div className="text-white font-mono bg-stone-600 rounded-xl p-1 border-black border-[1px] mb-4">
                     <div className="flex justify-between w-full">
                       <div className="text-xl font-semibold mx-2">POST</div>
+                      <div className="text-xl font-semibold mx-2">{post.gym_name}</div>
                     </div>
                     <div className="text-base bg-white text-black font-semibold p-2 rounded-xl m-[1px] border-black border-[1px] max-h-40 overflow-y-auto">
                       {post.body}

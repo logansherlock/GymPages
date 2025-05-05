@@ -160,10 +160,10 @@ export default function Profile() {
               )}
               {membership === profile.gym_member || userID === 0 ? (
                 <div className="flex flex-row justify-center items-start bg-stone-400 border-black border-[1px] w-[80%] mt-8 text-3xl font-bold uppercase gap-x-5 py-2 px-5">
-                  <div className="">
+                  <div className="w-1/2">
                     <ProfileReviews user_id={user_id as string} />
                   </div>
-                  <div className="">
+                  <div className="w-1/2">
                     <ProfilePosts user_id={user_id as string} />
                   </div>
                 </div>

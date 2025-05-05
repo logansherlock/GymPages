@@ -71,15 +71,19 @@ export default function Post() {
           {post && gym ? (
             <div className="m-[1px]">
               <div className="flex flex-wrap font-mono text-white m-[1px] ">
-            <div className="flex flex-wrap items-center bg-stone-400/75 border-black border-[1px] px-2 max-w-s m-[1px] text-sm shrink font-bold text-black">
-              <Link
-                href={`/community-board/${gym.gym_id}`}
-                className="flex flex-row items-center text-white text-5xl font-bold ml-2 mr-4"
-                style={{ WebkitTextStroke: "1px black" }}
-              >
-                ← <span className="text-xl pt-1 ml-3"> back to <span className="uppercase">COMMUNITY BOARD</span></span>
-              </Link>{" "}
-            </div>
+                <div className="flex flex-wrap items-center bg-stone-400/75 border-black border-[1px] px-2 max-w-s m-[1px] text-sm shrink font-bold text-black">
+                  <Link
+                    href={`/community-board/${gym.gym_id}`}
+                    className="flex flex-row items-center text-white text-5xl font-bold ml-2 mr-4"
+                    style={{ WebkitTextStroke: "1px black" }}
+                  >
+                    ←{" "}
+                    <span className="text-xl pt-1 ml-3">
+                      {" "}
+                      back to <span className="uppercase">COMMUNITY BOARD</span>
+                    </span>
+                  </Link>{" "}
+                </div>
                 <div
                   className="flex flex-wrap items-center max-w-s m-[1px] ml-auto uppercase text-4xl shrink font-bold"
                   style={{ WebkitTextStroke: "1px black" }}
@@ -100,9 +104,12 @@ export default function Post() {
               <div className="flex flex-wrap items-center justify-center m-[1px]">
                 <div className="w-[60%] text-white font-mono bg-stone-600 rounded-xl p-1 border-black border-[1px] mb-5">
                   <div className="flex justify-between w-full">
-                    <div className="text-3xl font-semibold mx-2">
+                    <Link
+                      href={`/profile/${post.user_id}`}
+                      className="cursor-pointer hover:scale-[1.05] transition-transform text-3xl font-semibold mx-2"
+                    >
                       {post.username}
-                    </div>
+                    </Link>
                   </div>
                   <div className="text-xl bg-white text-black font-semibold p-2 rounded-xl m-[1px] border-black border-[1px]">
                     {post.body}
@@ -129,9 +136,12 @@ export default function Post() {
                         className="text-white font-mono bg-stone-600 rounded-xl p-1 pb-0 border-black border-[1px] m-[1px] "
                       >
                         <div className="flex justify-between w-full">
-                          <div className=" font-semibold mx-1">
+                          <Link
+                            href={`/profile/${comment.user_id}`}
+                            className="cursor-pointer hover:scale-[1.05] transition-transform font-semibold mx-1"
+                          >
                             {comment.username}
-                          </div>
+                          </Link>
                         </div>
                         <div className="text-[15px] bg-white text-black font-semibold p-2 rounded-xl border-black border-[1px]">
                           {comment.body}

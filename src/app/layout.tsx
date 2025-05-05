@@ -4,6 +4,7 @@ import "@/app/globals.css"; // Import Tailwind globally
 import { Navigation } from "./components/navigation";
 import Link from "next/link";
 import Image from "next/image";
+import { Footer } from "./components/footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -65,8 +66,8 @@ export default function RootLayout({
             }}
           />
           <main className="p-10 pt-32 font-mono relative z-10">{children}</main>
+        <footer className="relative bg-stone-400/75 border-t border-black"><Footer/></footer>
         </div>
-        {/* <footer className="text-xl text-black flex flex-row justify-between bg-stone-400 mt-32 p-10">sdkjgf<Navigation/></footer> */}
       </body>
     </html>
   );
