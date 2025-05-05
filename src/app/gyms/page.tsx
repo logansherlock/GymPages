@@ -93,7 +93,7 @@ export default function Gym() {
         <div className="bg-stone-500 border-black border-[1px] p-1">
           <div className="flex flex-row items-center font-bold m-2">
             <div
-              className="flex items-center uppercase max-w-s m-[1px] text-5xl shrink font-bold"
+              className="flex items-center uppercase text-white max-w-s m-[1px] text-5xl shrink font-bold"
               style={{ WebkitTextStroke: "1px black" }}
             >
               GYM SEARCH
@@ -184,7 +184,7 @@ export default function Gym() {
               )}
             </GoogleMap>
           </div>
-          <div className="flex flex-col m-2 mt-4 border-black border-[1px] bg-stone-400/75 py-2 px-4">
+          <div className="flex flex-col m-2 mt-4 text-white border-black border-[1px] bg-stone-400/75 py-2 px-4">
             <div
               className="text-4xl font-bold p-2"
               style={{

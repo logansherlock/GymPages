@@ -27,10 +27,10 @@ const GymEquipment = ({ gym_id }: { gym_id: string }) => {
     <div>
       {equipment.length !== 0 ? (
         <div className="">
-          <div className="w-[30%] h-[200px] max-w-screen-lg bg-stone-400/75 border-black border-[1px]">
+          <div className="w-[35%] h-[200px] max-w-screen-lg bg-stone-400/75 border-black border-[1px]">
             <div className="flex flex-wrap flex-col justify-center items-center h-full">
               <div
-                className="text-center font-white text-3xl font-bold"
+                className="text-center text-white text-3xl font-bold"
                 style={{ WebkitTextStroke: "1px black" }}
               >
                 Amenities & Equipment

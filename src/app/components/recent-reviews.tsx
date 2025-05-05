@@ -59,8 +59,8 @@ const RecentReviews = ({ gym_id }: { gym_id: string }) => {
           Recent Reviews
         </div>
         {averageRating !== null && (
-          <div className="absolute right-2 top-1/2 transform -translate-y-1/3 text-white mr-2 font-semibold text-lg">
-            ({averageRating.toFixed(1)} ⭐️)
+          <div className="absolute right-2 top-1/2 transform -translate-y-1/3 text-white mr-2 font-bold text-lg">
+            <span>{averageRating.toFixed(1)}</span>⭐️
           </div>
         )}
       </div>

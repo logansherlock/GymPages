@@ -108,7 +108,7 @@ export default function ExercisePage() {
             {exercise.video_link ? (
               <div className="m-1 flex flex-row">
                 <div className="flex items-center w-[50%] m-1">
-                  <div className="m-5 ml-10 font-semibold text-lg py-2 px-4 text-justify bg-stone-400/75 border-black border-[1px]">
+                  <div className="m-5 ml-10 font-semibold text-white text-lg py-2 px-4 text-justify bg-stone-400/75 border-black border-[1px]">
                     {exercise.body}
                   </div>
                 </div>

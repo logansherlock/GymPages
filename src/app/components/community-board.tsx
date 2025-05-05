@@ -52,7 +52,7 @@ const CommunityBoard = ({ gym_id }: { gym_id: string }) => {
             <nav className="flex flex-wrap gap-6 justify-between m-[1px] ml-auto">
               <Link
                 href={`/add-post/${gym_id}`}
-                className="cursor-pointer hover:scale-[1.05] transition-transform text-center bg-stone-400 border-black border-[1px] pl-1 pr-1 font-bold rounded"
+                className="cursor-pointer hover:scale-[1.05] transition-transform text-white text-center bg-stone-400 border-black border-[1px] pl-1 pr-1 font-bold rounded"
               >
                 add-post
               </Link>
@@ -61,7 +61,7 @@ const CommunityBoard = ({ gym_id }: { gym_id: string }) => {
           {posts.length === 0 ? (
             <div className="flex flex-col justify-center items-center min-h-screen font-mono pb-20">
               <div
-                className=" max-w-s m-4 text-center text-4xl font-bold bg-red-800 border-black border-[1px] p-4"
+                className=" max-w-s m-4 text-center text-4xl text-white font-bold bg-red-800 border-black border-[1px] p-4"
                 style={{ WebkitTextStroke: "1px black" }}
               >
                 No posts found...
@@ -96,7 +96,7 @@ const CommunityBoard = ({ gym_id }: { gym_id: string }) => {
       ) : !isLoggedIn ? (
         <div className="flex flex-col justify-center items-center min-h-screen border font-mono pb-20 m-[1px]">
           <div
-            className="w-full max-w-s m-4 text-center text-4xl font-bold"
+            className="w-full max-w-s m-4 text-center text-white text-4xl font-bold"
             style={{ WebkitTextStroke: "1px black" }}
           >
             Must be logged in and a member of this gym to view posts.
@@ -105,7 +105,7 @@ const CommunityBoard = ({ gym_id }: { gym_id: string }) => {
       ) : (
         <div className="flex flex-col justify-center items-center min-h-screen border font-mono pb-20 m-[1px]">
           <div
-            className="w-full max-w-s m-4 text-center text-4xl font-bold"
+            className="w-full max-w-s m-4 text-center text-white text-4xl font-bold"
             style={{ WebkitTextStroke: "1px black" }}
           >
             Must be a member of this gym to view posts.

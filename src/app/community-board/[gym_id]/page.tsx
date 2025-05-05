@@ -85,7 +85,7 @@ export default function GymCommunityBoard() {
           {!isLoggedIn ? (
             <div className="flex flex-col justify-center items-center min-h-screen font-mono pb-20 m-[1px]">
               <div
-                className="max-w-s m-4 text-center text-4xl font-bold bg-red-800 border-black border-[1px] p-4"
+                className="max-w-s m-4 text-center text-4xl text-white font-bold bg-red-800 border-black border-[1px] p-4"
                 style={{ WebkitTextStroke: "1px black" }}
               >
                 Must be logged in and a member of this gym to view posts.
@@ -94,7 +94,7 @@ export default function GymCommunityBoard() {
           ) : (
             <div className="flex flex-col justify-center items-center min-h-screen font-mono pb-20 m-[1px]">
               <div
-                className="max-w-s m-4 text-center text-4xl font-bold bg-red-800 border-black border-[1px] p-4"
+                className="max-w-s m-4 text-center text-4xl text-white font-bold bg-red-800 border-black border-[1px] p-4"
                 style={{ WebkitTextStroke: "1px black" }}
               >
                 Must be a member of this gym to view posts.

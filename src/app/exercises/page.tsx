@@ -46,7 +46,7 @@ export default function Exercises() {
   };
 
   return (
-    <div className="">
+    <div className="text-white">
       {loading ? (
         <LoadingScreen text="Loading Exercises"/>
       ) : exercises.length === 0 ? (
@@ -55,7 +55,7 @@ export default function Exercises() {
         </div>
 
       ) : (
-        <div className="flex flex-col items-center bg-stone-500 p-5 border-2 border-black gap-5 w-full max-w-3xl mx-auto">
+        <div className="flex flex-col items-center bg-stone-500 p-5 border-[1px] border-black gap-5 w-full max-w-3xl mx-auto">
           <div
             className="text-5xl font-bold"
             style={{

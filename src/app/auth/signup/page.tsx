@@ -76,7 +76,7 @@ export default function SignUp() {
           onSubmit={handleSubmit}
           className="flex flex-col justify-center items-center font-mono m-1"
         >
-          <div className="w-full max-w-s text-center text-5xl font-bold" style={{ WebkitTextStroke: "1px black" }}>
+          <div className="w-full max-w-s text-center text-5xl text-white font-bold" style={{ WebkitTextStroke: "1px black" }}>
             ACCOUNT CREATION
           </div>
           <div className="w-full max-w-xs flex items-center">
