@@ -79,7 +79,7 @@ export default function Profile() {
       {loading ? (
         <LoadingScreen text="Loading Profile" />
       ) : profile && isLoggedIn ? (
-        <div className="bg-stone-500 border-black border-[1px] p-4">
+        <div className="bg-stone-500 border-black text-white border-[1px] p-4">
           <div className="flex flex-row items-center mb-3 m-[1px]">
             <div
               className="flex flex-wrap items-center uppercase max-w-s text-5xl shrink font-bold m-[1px]"

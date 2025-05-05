@@ -3,7 +3,7 @@ import { FaLinkedin } from "react-icons/fa";
 
 export default async function About() {
   return (
-    <div className="bg-stone-500 border-[1px] border-black p-3 pb-0">
+    <div className="bg-stone-500 border-[1px] text-white border-black p-3 pb-0">
       <div className="m-[1px]">
         <div
           className="text-5xl font-bold"

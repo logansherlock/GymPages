@@ -36,7 +36,7 @@ const ProfileReviews = ({ user_id }: { user_id: string }) => {
               <div className="w-full max-w-5xl mx-auto flex flex-col gap-y-4">
                 {" "}
                 <div
-                  className="flex justify-center m-[1px] font-bold text-3xl"
+                  className="flex justify-center m-[1px] text-white font-bold text-3xl"
                   style={{ WebkitTextStroke: "1px black" }}
                 >
                   REVIEWS
