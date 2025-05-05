@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
+import LoadingScreen from "@/app/components/loading-screen";
 
 export default function ExercisePage() {
   const [exercise, setExercise] = useState<any | null>(null);
@@ -44,19 +45,15 @@ export default function ExercisePage() {
   }, [exercise]);
 
   return (
-    <div className="m-2 font-mono">
+    <div className="">
       {loading ? (
-        <div className="flex flex-col justify-center items-center min-h-screen border font-mono pb-20">
-          <div className="w-full max-w-s m-4 text-center text-5xl font-bold">
-            Loading Exercise Data...
-          </div>
-        </div>
+        <LoadingScreen text="Loading Exercise" />
       ) : exercise ? (
-        <div className="m-10 ">
-          <div className="bg-stone-500 border-black border-[2px] p-1">
+        <div className="">
+          <div className="bg-stone-500 border-black border-[1px] p-1">
             <div className="flex m-1 font-mono text-white">
               <div
-                className="flex items-center uppercase max-w-s m-1 text-4xl shrink font-bold"
+                className="flex items-center uppercase max-w-s m-1 text-5xl shrink font-bold"
                 style={{ WebkitTextStroke: "1px black" }}
               >
                 {exercise.exercise_name}:
@@ -111,13 +108,13 @@ export default function ExercisePage() {
             {exercise.video_link ? (
               <div className="m-1 flex flex-row">
                 <div className="flex items-center w-[50%] m-1">
-                  <div className="m-5 ml-10 font-semibold text-lg p-2 text-justify">
+                  <div className="m-5 ml-10 font-semibold text-lg py-2 px-4 text-justify bg-stone-400/75 border-black border-[1px]">
                     {exercise.body}
                   </div>
                 </div>
                 <div className="flex flex-col aspect-video justify-center items-center w-[50%] font-mono m-1">
                   <iframe
-                    className="border-black border-[2px] aspect-video w-[90%]"
+                    className="border-black border-[1px] aspect-video w-[90%]"
                     src={`${exercise.video_link}`}
                     title="YouTube video player"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -146,7 +143,10 @@ export default function ExercisePage() {
         </div>
       ) : (
         <div className="flex flex-col justify-center items-center min-h-screen border font-mono pb-20">
-          <div className="w-full max-w-s m-4 text-center text-5xl font-bold">
+          <div
+            className=" max-w-s m-4 text-center text-4xl font-bold bg-red-800 border-black border-[1px] p-4"
+            style={{ WebkitTextStroke: "1px black" }}
+          >
             Error, Not Loading.
           </div>
         </div>

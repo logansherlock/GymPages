@@ -2,6 +2,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { useEffect, useState } from "react";
 import { formatDate } from "@/lib/utils/formatDate";
 import Link from "next/link";
+import LoadingScreen from "./loading-screen";
 
 const UserHistory = ({ user_id }: { user_id: string }) => {
   const { isLoggedIn, username, userID, membership } = useAuth();
@@ -65,15 +66,15 @@ const UserHistory = ({ user_id }: { user_id: string }) => {
   }, [user_id]);
 
   return (
-    <div className="m-1 font-mono">
+    <div className="m-[1px] font-mono">
       {rev_loading || post_loading || com_loading ? (
-        <div className="text-white">Loading Community Posts...</div>
+        <LoadingScreen text="Loading Posts" />
       ) : isLoggedIn && userID === 0 ? (
-        <div className="m-1">
-          <div className="flex flex-row justify-center gap-4 m-1">
+        <div className="m-[1px]">
+          <div className="flex flex-row justify-center gap-4 m-[1px]">
             <div className="w-[30%] flex flex-col m-2 gap-y-7">
               <div
-                className="flex justify-center m-1 font-bold text-3xl"
+                className="flex justify-center m-[1px] font-bold text-3xl"
                 style={{ WebkitTextStroke: "1px black" }}
               >
                 gym reviews
@@ -81,11 +82,11 @@ const UserHistory = ({ user_id }: { user_id: string }) => {
               {Array.isArray(reviews) &&
                 reviews.map((review) => (
                   <div key={review.review_id}>
-                    <div className="text-white font-mono bg-stone-600 rounded-xl p-1 border-black border-[3px] mb-4">
+                    <div className="text-white font-mono bg-stone-600 rounded-xl p-1 border-black border-[1px] mb-4">
                       <div className="flex justify-between w-full">
                         <div className="text-lg font-semibold mx-2">REVIEW</div>
                       </div>
-                      <div className="text-[12px] bg-white text-black font-semibold p-2 rounded-xl m-1 border-black border-[2px]">
+                      <div className="text-[12px] bg-white text-black font-semibold p-2 rounded-xl m-[1px] border-black border-[1px]">
                         {review.body}
                       </div>
                       <div className="flex flex-wrap">
@@ -100,7 +101,7 @@ const UserHistory = ({ user_id }: { user_id: string }) => {
 
             <div className="w-[30%] flex flex-col m-2 gap-y-7">
               <div
-                className="flex justify-center m-1 font-bold text-3xl"
+                className="flex justify-center m-[1px] font-bold text-3xl"
                 style={{ WebkitTextStroke: "1px black" }}
               >
                 community board posts
@@ -108,11 +109,11 @@ const UserHistory = ({ user_id }: { user_id: string }) => {
               {Array.isArray(posts) &&
                 posts.map((post) => (
                   <div key={post.post_id}>
-                    <div className="text-white font-mono bg-stone-600 rounded-xl p-1 border-black border-[3px] mb-4">
+                    <div className="text-white font-mono bg-stone-600 rounded-xl p-1 border-black border-[1px] mb-4">
                       <div className="flex justify-between w-full">
                         <div className="text-lg font-semibold mx-2">POST</div>
                       </div>
-                      <div className="text-[12px] bg-white text-black font-semibold p-2 rounded-xl m-1 border-black border-[2px]">
+                      <div className="text-[12px] bg-white text-black font-semibold p-2 rounded-xl m-[1px] border-black border-[1px]">
                         {post.body}
                       </div>
                       <div className="flex flex-wrap">
@@ -127,7 +128,7 @@ const UserHistory = ({ user_id }: { user_id: string }) => {
 
             <div className="w-[30%] flex flex-col m-2 gap-y-7">
               <div
-                className="flex justify-center m-1 font-bold text-3xl"
+                className="flex justify-center m-[1px] font-bold text-3xl"
                 style={{ WebkitTextStroke: "1px black" }}
               >
                 post comments
@@ -138,13 +139,13 @@ const UserHistory = ({ user_id }: { user_id: string }) => {
                     href={`/posts/${comment.post_id}`}
                     key={comment.comment_id}
                   >
-                    <div className="cursor-pointer hover:scale-[1.005] transition-transform text-white font-mono bg-stone-600 rounded-xl p-1 border-black border-[3px] mb-4">
+                    <div className="cursor-pointer hover:scale-[1.005] transition-transform text-white font-mono bg-stone-600 rounded-xl p-1 border-black border-[1px] mb-4">
                       <div className="flex justify-between w-full">
                         <div className="text-lg font-semibold mx-2">
                           COMMENT
                         </div>
                       </div>
-                      <div className="text-[12px] bg-white text-black font-semibold p-2 rounded-xl m-1 border-black border-[2px]">
+                      <div className="text-[12px] bg-white text-black font-semibold p-2 rounded-xl m-[1px] border-black border-[1px]">
                         {comment.body}
                       </div>
                       <div className="flex flex-wrap">
@@ -159,7 +160,7 @@ const UserHistory = ({ user_id }: { user_id: string }) => {
           </div>
         </div>
       ) : !isLoggedIn ? (
-        <div className="flex flex-col justify-center items-center min-h-screen border font-mono pb-20 m-1">
+        <div className="flex flex-col justify-center items-center min-h-screen border font-mono pb-20 m-[1px]">
           <div
             className="w-full max-w-s m-4 text-center text-4xl font-bold"
             style={{ WebkitTextStroke: "1px black" }}
@@ -168,7 +169,7 @@ const UserHistory = ({ user_id }: { user_id: string }) => {
           </div>
         </div>
       ) : (
-        <div className="flex flex-col justify-center items-center min-h-screen border font-mono pb-20 m-1">
+        <div className="flex flex-col justify-center items-center min-h-screen border font-mono pb-20 m-[1px]">
           <div
             className="w-full max-w-s m-4 text-center text-4xl font-bold"
             style={{ WebkitTextStroke: "1px black" }}

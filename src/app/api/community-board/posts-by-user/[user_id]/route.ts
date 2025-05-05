@@ -8,8 +8,10 @@ export async function GET(
   try {
     const { user_id } = await params;
     const [rows] = await pool.query<any>(
-      "SELECT posts.gym_id, users.username, posts.body, posts.photo_ref, " +
-        "posts.likes, posts.post_date FROM posts JOIN users on posts.user_id = users.user_id " +
+      "SELECT gyms.gym_name, posts.gym_id, users.username, posts.body, posts.photo_ref, " +
+        "posts.likes, posts.post_date FROM posts " +
+        "JOIN users on posts.user_id = users.user_id " +
+        "JOIN gyms on posts.gym_id = gyms.gym_id " +
         "WHERE posts.user_id = ? ORDER BY posts.post_date DESC",
       [user_id]
     );

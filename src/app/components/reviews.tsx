@@ -2,6 +2,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { useEffect, useState } from "react";
 import { formatDate } from "@/lib/utils/formatDate";
 import Link from "next/link";
+import LoadingScreen from "./loading-screen";
 
 const Reviews = ({ gym_id }: { gym_id: string }) => {
   const [reviews, setReviews] = useState<any[]>([]);
@@ -31,22 +32,22 @@ const Reviews = ({ gym_id }: { gym_id: string }) => {
   }, [gym_id]);
 
   return (
-    <div className="m-1">
+    <div className="m-[1px]">
       {loading ? (
-        <div className="text-white">Loading Reviews...</div>
+        <LoadingScreen text="Loading Reviews" />
       ) : (
-        <div className="m-1">
-          <div className="flex flex-wrap items-center m-1 ">
-            <nav className="flex flex-wrap gap-6 justify-between m-1 ml-auto">
+        <div className="m-[1px]">
+          <div className="flex flex-wrap items-center m-[1px] ">
+            <nav className="flex flex-wrap gap-6 justify-between m-[1px] ml-auto">
               <Link
                 href={`/add-review/${gym_id}`}
                 className="cursor-pointer hover:scale-[1.05] transition-transform text-center bg-stone-400 border-black border-[1px] pl-1 pr-1 font-bold rounded"
               >
-                leave a review
+                Leave Review
               </Link>
             </nav>
           </div>
-          <div className="flex flex-wrap justify-center m-1">
+          <div className="flex flex-wrap justify-center mt-5">
             {reviews.length === 0 ? (
               <div className="flex flex-col justify-center items-center min-h-screen border font-mono pb-20">
                 <div className="w-full max-w-s m-4 text-center text-5xl font-bold">
@@ -58,17 +59,17 @@ const Reviews = ({ gym_id }: { gym_id: string }) => {
                 {reviews.map((review) => (
                   <div
                     key={review.review_id}
-                    className="text-white font-mono bg-stone-600 rounded-xl p-1 pb-0 border-black border-[3px] mb-4"
+                    className="text-white font-mono bg-stone-600 rounded-xl p-1 pb-0 border-black border-[1px] mb-4"
                   >
                     <div className="flex justify-between w-full">
-                      <div className="text-2xl font-semibold mx-2">
+                      <Link href={`/profile/${review.user_id}`} className="cursor-pointer hover:scale-[1.05] transition-transform text-2xl font-semibold mx-2">
                         {review.username}
-                      </div>
+                      </Link>
                       <div className="text-xl mx-2">
                         {"⭐️".repeat(review.rating)}
                       </div>
                     </div>
-                    <div className="text-[18px] bg-white text-black font-semibold p-2 rounded-xl m-1 border-black border-[2px]">
+                    <div className="text-[18px] bg-white text-black font-semibold p-2 rounded-xl m-[1px] border-black border-[1px]">
                       {review.body}
                     </div>
                     <div className="flex flex-wrap">
