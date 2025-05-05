@@ -39,13 +39,15 @@ export const Footer = () => {
         © 2025 GymPages. All rights reserved.
       </div>
       <div className="flex flex-col">
-        <Image
-          src="/gympages-icons/GymPages_Icon.png"
-          alt="Gym Image"
-          height={10}
-          width={140}
-          className="mr-8 invert"
-        />
+        <Link href="/about">
+          <Image
+            src="/gympages-icons/GymPages_Icon.png"
+            alt="Gym Image"
+            height={10}
+            width={140}
+            className="mr-8 invert"
+          />
+        </Link>
         <div></div>
       </div>
     </div>
