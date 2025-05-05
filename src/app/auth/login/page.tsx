@@ -52,7 +52,7 @@ export default function Login() {
           onSubmit={handleLogin}
           className="flex flex-col justify-center items-center font-mono"
         >
-          <div className="w-full max-w-sm text-center text-5xl font-bold" style={{ WebkitTextStroke: "1px black" }}>
+          <div className="w-full max-w-sm text-center text-5xl text-white font-bold" style={{ WebkitTextStroke: "1px black" }}>
             ACCOUNT LOGIN
           </div>
 
