@@ -8,6 +8,6 @@ npm install bcryptjs
 npm install cookie
 npm install react-icons
 npm install pm2
-npm install axios 
+
 pm2 stop gympages-app
 PORT=3000 pm2 start npm --name gympages-app -- start
