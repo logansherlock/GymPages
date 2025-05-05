@@ -20,7 +20,7 @@ export const Footer = () => {
   };
 
   return (
-    <div className="flex flex-row justify-between items-center">
+    <div className="flex flex-row justify-between items-center py-2">
       <div className="flex flex-col items-start text-base text-black pl-16">
         <Link href="/auth/signup" className={`${baseLinkClass} text-center`}>
           Create an Account
