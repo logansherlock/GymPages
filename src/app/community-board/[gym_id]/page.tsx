@@ -3,6 +3,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import CommunityBoard from "@/app/components/community-board";
+import LoadingScreen from "@/app/components/loading-screen";
 import Link from "next/link";
 
 export default function GymCommunityBoard() {
@@ -40,11 +41,7 @@ export default function GymCommunityBoard() {
   return (
     <div className="m-2 font-mono">
       {loading ? (
-        <div className="flex flex-col justify-center items-center min-h-screen border font-mono pb-20">
-          <div className="w-full max-w-s m-4 text-center text-5xl font-bold" style={{ WebkitTextStroke: "1px black" }}>
-            Loading Community Board...
-          </div>
-        </div>
+            <LoadingScreen text = "Loading Community Board..."/>
       ) : isLoggedIn && gym && (membership == gym.gym_id || userID === 0) ? (
         <div className="m-1">
           <div className="flex flex-wrap m-1 font-mono text-white">

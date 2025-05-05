@@ -6,6 +6,8 @@ import { useParams } from "next/navigation";
 import Link from "next/link";
 import { formatDate } from "@/lib/utils/formatDate";
 import AddPost from "@/app/components/add-post";
+import LoadingScreen from "@/app/components/loading-screen";
+
 
 export default function Post() {
   const [gym, setGym] = useState<any | null>(null);
@@ -51,11 +53,7 @@ export default function Post() {
           </div>
         </div>
         {gym_loading ? (
-          <div className="flex flex-col justify-center items-center min-h-screen border font-mono pb-20">
-            <div className="w-full max-w-s m-4 text-center text-5xl font-bold">
-              Loading Post...
-            </div>
-          </div>
+           <LoadingScreen text = "Loading Post..."/>
         ) : isLoggedIn ? (
           <div className="m-1">
             {!gym_loading && gym ? (
