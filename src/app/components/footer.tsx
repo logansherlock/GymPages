@@ -21,7 +21,7 @@ export const Footer = () => {
 
   return (
     <div className="flex flex-row justify-between items-center py-2">
-      <div className="flex flex-col items-start text-base text-black pl-16">
+      <div className="flex flex-col items-start text-xs text-black pl-16">
         <Link href="/auth/signup" className={`${baseLinkClass} text-center`}>
           Create an Account
         </Link>
@@ -44,7 +44,7 @@ export const Footer = () => {
             src="/gympages-icons/GymPages_Icon.png"
             alt="Gym Image"
             height={10}
-            width={140}
+            width={120}
             className="mr-8 invert"
           />
         </Link>
