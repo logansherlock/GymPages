@@ -110,18 +110,22 @@ export default function UsersPage() {
                         {user.lastname}
                       </td>
                       <td className="px-4 py-1.5 border border-gray-300 text-center font-bold">
-                        <Link
-                          href={`/admin-users/${user.user_id}`}
-                          className="bg-yellow-500 text-white h-6 px-1 py-[3px] text-sm rounded hover:bg-yellow-600 mr-3 border-black border-[1px]"
-                        >
-                          View
-                        </Link>
-                        <button
-                          onClick={() => handleDeleteUser(user.user_id)}
-                          className="bg-red-600 text-white h-6 px-1 text-sm rounded hover:bg-red-700 border-black border-[1px]"
-                        >
-                          Delete
-                        </button>
+                        {user.user_id !== 0 && user.user_id !== -1 && (
+                          <div>
+                            <Link
+                              href={`/admin-users/${user.user_id}`}
+                              className="bg-yellow-500 text-white h-6 px-1 py-[3px] text-sm rounded hover:bg-yellow-600 mr-3 border-black border-[1px]"
+                            >
+                              View
+                            </Link>
+                            <button
+                              onClick={() => handleDeleteUser(user.user_id)}
+                              className="bg-red-600 text-white h-6 px-1 text-sm rounded hover:bg-red-700 border-black border-[1px]"
+                            >
+                              Delete
+                            </button>
+                          </div>
+                        )}
                       </td>
                     </tr>
                   ))}
