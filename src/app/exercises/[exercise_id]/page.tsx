@@ -1,54 +1,10 @@
-"use client";
-import { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
 import Link from "next/link";
 import LoadingScreen from "@/app/components/loading-screen";
 
-export default function ExercisePage() {
-  const [exercise, setExercise] = useState<any | null>(null);
-  const [equipment, setEquipment] = useState<any | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [equip_loading, setEquipLoading] = useState(true);
-  const { exercise_id } = useParams();
-
-  useEffect(() => {
-    if (!exercise_id) return; // prevent undefined fetch
-
-    const fetchExercise = async () => {
-      try {
-        const res = await fetch(`/api/exercises/exercise-by-id/${exercise_id}`);
-        if (!res.ok) throw new Error(`Failed to fetch: ${res.status}`);
-        const data = await res.json();
-        setExercise(data);
-      } catch (err) {
-        console.error("Fetch error:", err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchExercise();
-  }, [exercise_id]);
-
-  useEffect(() => {
-    if (!exercise?.related_equip_id) return;
-
-    fetch(`/api/equipment/${exercise.related_equip_id}`)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log("Fetched gym:", data);
-        setEquipment(data);
-        setEquipLoading(false);
-        console.log("Current equipment object:", data);
-      })
-      .catch((err) => console.error("Fetch error:", err));
-  }, [exercise]);
-
+export default function ExercisePage({ exercise, equipment }: { exercise: any; equipment: any }) {
   return (
     <div className="">
-      {loading ? (
-        <LoadingScreen text="Loading Exercise" />
-      ) : exercise ? (
+      {exercise ? (
         <div className="">
           <div className="bg-stone-500 border-black border-[1px] p-1">
             <div className="flex m-1 font-mono text-white">
@@ -172,4 +128,36 @@ export default function ExercisePage() {
   <div className="text-lg font-bold m-1">{exercise.level}</div>
 </div>
 </div> */
+}
+
+export async function getStaticPaths() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/exercises/exercise-list`);
+  const data = await res.json();
+
+  const paths = data.map((ex: any) => ({
+    params: { exercise_id: ex.exercise_id },
+  }));
+
+  return {
+    paths,
+    fallback: false,
+  };
+}
+
+export async function getStaticProps({ params }: any) {
+  const exerciseRes = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/exercises/exercise-by-id/${params.exercise_id}`);
+  const exercise = await exerciseRes.json();
+
+  let equipment = null;
+  if (exercise.related_equip_id) {
+    const equipRes = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/equipment/${exercise.related_equip_id}`);
+    equipment = await equipRes.json();
+  }
+
+  return {
+    props: {
+      exercise,
+      equipment,
+    },
+  };
 }

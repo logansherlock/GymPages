@@ -1,6 +1,4 @@
-"use client";
 import Image from "next/image";
-import { useEffect, useState } from "react";
 import Link from "next/link";
 import LoadingScreen from "../components/loading-screen";
 
@@ -9,25 +7,11 @@ type Exercise = {
   exercise_name: string;
 };
 
-export default function Exercises() {
-  const [exercises, setExercises] = useState<Exercise[]>([]);
-  const [loading, setLoading] = useState(true);
+type Props = {
+  exercises: Exercise[];
+};
 
-  // Fetch exercises
-  useEffect(() => {
-    fetch(`/api/exercises/exercise-list`)
-      .then((res) => res.json())
-      .then((data) => {
-        if (Array.isArray(data)) {
-          setExercises(data);
-        } else {
-          console.error("Expected array, got:", data);
-        }
-      })
-      .catch((err) => console.error("Fetch error:", err))
-      .finally(() => setLoading(false));
-  }, []);
-
+export default function Exercises({ exercises }: Props) {
   // Group ranges
   const ranges = [
     { label: "A–D", start: "A", end: "C" },
@@ -47,13 +31,10 @@ export default function Exercises() {
 
   return (
     <div className="text-white">
-      {loading ? (
-        <LoadingScreen text="Loading Exercises"/>
-      ) : exercises.length === 0 ? (
+      {exercises.length === 0 ? (
         <div className="flex justify-center items-center min-h-screen text-5xl font-bold">
           No exercises found.
         </div>
-
       ) : (
         <div className="flex flex-col items-center bg-stone-500 p-5 border-[1px] border-black gap-5 w-full max-w-3xl mx-auto">
           <div
@@ -94,4 +75,15 @@ export default function Exercises() {
       )}
     </div>
   );
+}
+
+export async function getStaticProps() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/exercises/exercise-list`);
+  const data = await res.json();
+
+  return {
+    props: {
+      exercises: Array.isArray(data) ? data : [],
+    },
+  };
 }
