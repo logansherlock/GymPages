@@ -1,17 +1,16 @@
-import Image from "next/image";
 import Link from "next/link";
-import LoadingScreen from "../components/loading-screen";
 
 type Exercise = {
   exercise_id: string;
   exercise_name: string;
 };
 
-type Props = {
-  exercises: Exercise[];
-};
+export default async function ExercisesPage() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/exercises/exercise-list`, {
+    cache: "force-cache",
+  });
+  const exercises: Exercise[] = await res.json();
 
-export default function Exercises({ exercises }: Props) {
   // Group ranges
   const ranges = [
     { label: "A–D", start: "A", end: "C" },
@@ -21,7 +20,6 @@ export default function Exercises({ exercises }: Props) {
     { label: "Q–Z", start: "Q", end: "Z" },
   ];
 
-  // Helper to group by range
   const groupByRange = (rangeStart: string, rangeEnd: string) => {
     return exercises.filter((exercise) => {
       const firstLetter = exercise.exercise_name[0].toUpperCase();
@@ -40,7 +38,7 @@ export default function Exercises({ exercises }: Props) {
           <div
             className="text-5xl font-bold"
             style={{
-              WebkitTextStroke: "1px black"
+              WebkitTextStroke: "1px black",
             }}
           >
             EXERCISES
@@ -53,7 +51,7 @@ export default function Exercises({ exercises }: Props) {
                 key={range.label}
                 className="w-full max-w-2xl bg-stone-400/75 border border-black p-3"
               >
-                <summary className="text-3xl font-semibold  my-1 cursor-pointer hover:scale-[1.1] transition-transform transform origin-left">
+                <summary className="text-3xl font-semibold my-1 cursor-pointer hover:scale-[1.1] transition-transform transform origin-left">
                   {range.label}
                 </summary>
                 <ul className="mt-3">
@@ -75,15 +73,4 @@ export default function Exercises({ exercises }: Props) {
       )}
     </div>
   );
-}
-
-export async function getStaticProps() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/exercises/exercise-list`);
-  const data = await res.json();
-
-  return {
-    props: {
-      exercises: Array.isArray(data) ? data : [],
-    },
-  };
 }
