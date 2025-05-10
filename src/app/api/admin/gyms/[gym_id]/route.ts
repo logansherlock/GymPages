@@ -8,7 +8,7 @@ export async function DELETE(  request: Request,
       const { gym_id } = await params;
   
       if (!gym_id) {
-        return NextResponse.json({ error: "Missing exercise ID" }, { status: 400 });
+        return NextResponse.json({ error: "Missing Gym ID" }, { status: 400 });
       }
   
       const [queryResult] = await pool.query("DELETE FROM gyms WHERE gym_id = ?", [gym_id]) as unknown as [ResultSetHeader];

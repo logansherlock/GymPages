@@ -37,7 +37,7 @@ const RecentReviews = ({ gym_id }: { gym_id: string }) => {
   useEffect(() => {
     if (!gym_id) return;
 
-    fetch(`/api/rating/${gym_id}`)
+    fetch(`/api/reviews/rating/${gym_id}`)
       .then((res) => res.json())
       .then((data) => {
         if (data.average_rating !== undefined) {

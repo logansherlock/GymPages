@@ -30,7 +30,7 @@ export default function Gym() {
   useEffect(() => {
     const fetchEquipment = async () => {
       try {
-        const res = await fetch("/api/gym_equipment");
+        const res = await fetch("/api/gym-equipment");
         const data = await res.json();
         const map = new Map<string, string[]>();
         data.forEach((entry: any) => {
@@ -73,7 +73,7 @@ export default function Gym() {
   useEffect(() => {
     if (!selectedGym) return;
 
-    fetch(`/api/rating/${selectedGym.gym_id}`)
+    fetch(`/api/reviews/rating/${selectedGym.gym_id}`)
       .then((res) => res.json())
       .then((data) => {
         if (data.average_rating !== undefined) {

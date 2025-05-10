@@ -44,7 +44,7 @@ const AddComment = ({ post_id }: { post_id: string }) => {
 
     try {
       const response = await fetch(
-        `/api/community-board/comments-by-post/${post_id}`,
+        `/api/community-board/post/${post_id}/comments`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

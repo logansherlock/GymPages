@@ -8,7 +8,7 @@ const GymEquipment = ({ gym_id }: { gym_id: string }) => {
     if (!gym_id) return;
 
     console.log("page.tsx gym_id type:", typeof gym_id); // Log the type of gym_id
-    fetch(`/api/gym_equipment/equipment_by_gym/${gym_id}`)
+    fetch(`/api/gym-equipment/equipment-by-gym/${gym_id}`)
       .then((res) => res.json())
       .then((data) => {
         console.log("Fetched gym equipment:", data);

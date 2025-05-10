@@ -17,7 +17,7 @@ export default function GymCommunityBoard() {
     if (!gym_id) return;
 
     console.log("page.tsx gym_id:", gym_id); // Log the type of gym_id
-    fetch(`/api/gym-page/${gym_id}`)
+    fetch(`/api/gyms/${gym_id}`)
       .then((res) => res.json())
       .then((data) => {
         console.log("Fetched gym:", data);

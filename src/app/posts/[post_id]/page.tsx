@@ -34,7 +34,7 @@ export default function Post() {
   useEffect(() => {
     if (!post?.gym_id) return;
 
-    fetch(`/api/gym-page/${post.gym_id}`)
+    fetch(`/api/gyms/${post.gym_id}`)
       .then((res) => res.json())
       .then((data) => {
         console.log("Fetched gym:", data);
@@ -47,7 +47,7 @@ export default function Post() {
 
   useEffect(() => {
     if (!post_id) return;
-    fetch(`/api/community-board/comments-by-post/${post_id}`)
+    fetch(`/api/community-board/post/${post_id}/comments/`)
       .then((res) => res.json())
       .then((data) => {
         if (Array.isArray(data)) {

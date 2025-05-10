@@ -34,7 +34,7 @@ export default function Post() {
   useEffect(() => {
     if (!post?.gym_id) return;
 
-    fetch(`/api/gym-page/${post.gym_id}`)
+    fetch(`/api/gyms/${post.gym_id}`)
       .then((res) => res.json())
       .then((data) => {
         console.log("Fetched gym:", data);

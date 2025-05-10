@@ -17,7 +17,7 @@ export default function userHistory() {
   useEffect(() => {
     if (!user_id) return;
 
-    fetch(`/api/users/${user_id}`, { method: "GET" })
+    fetch(`/api/admin/users/${user_id}`, { method: "GET" })
       .then((res) => res.json())
       .then((data) => {
         console.log("Fetched post:", data);

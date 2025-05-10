@@ -33,7 +33,7 @@ const UserHistory = ({ user_id }: { user_id: string }) => {
 
   useEffect(() => {
     if (!user_id) return;
-    fetch(`/api/community-board/posts-by-user/${user_id}`)
+    fetch(`/api/user-history/posts/${user_id}`)
       .then((res) => res.json())
       .then((data) => {
         console.log("Fetched posts:", data);
@@ -50,7 +50,7 @@ const UserHistory = ({ user_id }: { user_id: string }) => {
 
   useEffect(() => {
     if (!user_id) return;
-    fetch(`/api/community-board/comments-by-user/${user_id}`)
+    fetch(`/api/user-history/comments/${user_id}`)
       .then((res) => res.json())
       .then((data) => {
         console.log("Fetched comments:", data);

@@ -22,7 +22,7 @@ export default function GymPage() {
     if (!gym_id) return;
 
     console.log("page.tsx gym_id type:", typeof gym_id); // Log the type of gym_id
-    fetch(`/api/gym-page/${gym_id}`)
+    fetch(`/api/gyms/${gym_id}`)
       .then((res) => res.json())
       .then((data) => {
         console.log("Fetched gym:", data);
