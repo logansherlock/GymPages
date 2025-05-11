@@ -86,9 +86,11 @@ const RecentReviews = ({ gym_id }: { gym_id: string }) => {
                 <div className="text-lg font-semibold">{review.username}</div>
                 <div className="text-xl">{"⭐️".repeat(review.rating)}</div>
               </div>
-              <div className="text-[15px] bg-white text-black font-semibold p-2 rounded-xl break-words border-black border-[1px] max-h-[120px] overflow-hidden">
-                {truncateText(review.body, maxChars)}
-              </div>
+              {review.body && (
+                <div className="text-[15px] bg-white text-black font-semibold p-2 rounded-xl break-words border-black border-[1px] max-h-[120px] overflow-hidden">
+                  {truncateText(review.body, maxChars)}
+                </div>
+              )}
             </div>
           ))}
         </div>

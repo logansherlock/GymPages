@@ -31,4 +31,18 @@ export async function GET(
   }
 }
 
+export async function DELETE(request: Request, { params }: { params: { post_id: string } }) {
+  try {
+    const { post_id } = params;
 
+    if (!post_id) {
+      return NextResponse.json({ error: "Missing post ID" }, { status: 400 });
+    }
+
+    await pool.query("DELETE FROM posts WHERE post_id = ?", [post_id]);
+    return NextResponse.json({ message: "Post deleted" }, { status: 200 });
+  } catch (error) {
+    console.error("Delete error:", error);
+    return NextResponse.json({ error: "Failed to delete post" }, { status: 500 });
+  }
+}

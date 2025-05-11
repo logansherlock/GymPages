@@ -62,6 +62,25 @@ export default function Post() {
       .catch((err) => console.log("Fetch error:", err));
   }, [post_id]);
 
+  const handleDeleteComments = async (comment_id: string) => {
+    try {
+      const res = await fetch(
+        `/api/community-board/post/${post_id}/comments/${comment_id}`,
+        {
+          method: "DELETE",
+        }
+      );
+
+      if (res.ok) {
+        setComments((prev) => prev.filter((c) => c.comment_id !== comment_id));
+      } else {
+        console.error("Delete failed");
+      }
+    } catch (err) {
+      console.error("Delete error:", err);
+    }
+  };
+
   return (
     <div className="bg-stone-500 border-black border-[1px] p-3 pb-8">
       {post_loading || gym_loading || com_loading ? (
@@ -97,7 +116,7 @@ export default function Post() {
                     href={`/add-comment/${post_id}`}
                     className="cursor-pointer hover:scale-[1.05] transition-transform text-center bg-stone-400 border-black border-[1px] pl-1 pr-1 font-bold rounded"
                   >
-                    add-comment
+                    Add Comment
                   </Link>
                 </nav>
               </div>
@@ -146,7 +165,19 @@ export default function Post() {
                         <div className="text-[15px] bg-white text-black font-semibold p-2 rounded-xl border-black border-[1px]">
                           {comment.body}
                         </div>
-                        <div className="flex flex-wrap">
+                        <div className="flex flex-wrap p-1">
+                          {(userID === 0 || comment.user_id === userID) && (
+                            <div>
+                              <button
+                                onClick={() =>
+                                  handleDeleteComments(comment.comment_id)
+                                }
+                                className="cursor-pointer hover:scale-[1.05] text-white transition-transform text-center bg-red-500 border-black border-[1px] pl-1 pr-1 font-bold rounded"
+                              >
+                                delete
+                              </button>
+                            </div>
+                          )}
                           <div className="text-xs ml-auto font-bold mx-1">
                             {formatDate(comment.comment_date)}
                           </div>

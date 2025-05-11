@@ -66,9 +66,9 @@ export default function Gym() {
     fetchGyms();
   }, [equipmentByGym]);
 
-  useEffect(() => {
-    console.log("Gyms loaded:", gyms);
-  }, [gyms]);
+  // useEffect(() => {
+  //   console.log("Gyms loaded:", gyms);
+  // }, [gyms]);
 
   useEffect(() => {
     if (!selectedGym) return;
@@ -119,7 +119,7 @@ export default function Gym() {
             <div className="w-[60%] border-[1px] border-black">
               <GoogleMap
                 zoom={11}
-                center={{ lat: 40.743222191786764, lng: -73.53516023004484 }}
+                center={{ lat: 40.766686113582686, lng: -73.55341010998005 }}
                 mapContainerClassName="map-container"
                 options={{
                   mapTypeControl: false,
@@ -201,8 +201,8 @@ export default function Gym() {
               </div>
               <div>
                 <ul className="px-5 pb-2">
-                  {gyms
-                    .filter((gym) => {
+                  {(() => {
+                    const filteredGyms = gyms.filter((gym) => {
                       const nameMatch = gym.gym_name
                         .toLowerCase()
                         .includes(searchTerm.toLowerCase());
@@ -215,8 +215,20 @@ export default function Gym() {
                               .includes(equipmentSearchTerm.toLowerCase())
                           ));
                       return nameMatch && equipMatch;
-                    })
-                    .map((gym) => (
+                    });
+
+                    if (filteredGyms.length === 0) {
+                      return (
+                        <div
+                          className=" max-w-s m-4 text-center text-4xl font-bold bg-red-800 border-black border-[1px] p-4"
+                          style={{ WebkitTextStroke: "1px black" }}
+                        >
+                          No gyms found.
+                        </div>
+                      );
+                    }
+
+                    return filteredGyms.map((gym) => (
                       <li key={gym.gym_id}>
                         <Link
                           href={`/gyms/${gym.gym_id}`}
@@ -228,7 +240,8 @@ export default function Gym() {
                           </span>
                         </Link>
                       </li>
-                    ))}
+                    ));
+                  })()}
                 </ul>
               </div>
             </div>

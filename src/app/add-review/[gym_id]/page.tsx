@@ -72,7 +72,7 @@ export default function Post() {
         ) : (
           <div className="flex flex-col justify-center items-center min-h-screen border font-mono pb-20 m-[1px]">
             <div
-              className="w-full max-w-s m-4 text-center text-4xl font-bold"
+              className=" max-w-s m-4 text-center text-4xl font-bold bg-red-800 border-black border-[1px] p-4"
               style={{ WebkitTextStroke: "1px black" }}
             >
               Must be a logged in to leave a review.

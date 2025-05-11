@@ -9,7 +9,7 @@ const nextConfig: NextConfig = {
     // Prevent TypeScript errors from failing the production build
     ignoreBuildErrors: true,
   },
-  
+  devIndicators: false
 };
 
 export default nextConfig;

@@ -123,12 +123,18 @@ export default function Home() {
             )}
           </div>
         ) : (
-          <div className="flex flex-col items-center mt-5 font-bold text-xl">
+          <div className="flex flex-row items-center mt-5 font-bold text-xl gap-x-5">
             <Link
               href="/auth/login"
               className={`${baseLinkClass} bg-stone-500 px-3 py-1 `}
             >
               Login Now!
+            </Link>{" "}
+            <Link
+              href="/auth/login"
+              className={`${baseLinkClass} bg-stone-500 px-3 py-1 `}
+            >
+              Signup Today!
             </Link>
           </div>
         )}
