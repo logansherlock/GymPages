@@ -19,8 +19,7 @@ const AddReview = ({ gym_id }: { gym_id: string }) => {
   const [localMessage, setLocalMessage] = useState("");
 
   useEffect(() => {
-    console.log("user_id:", userID); // Debugging log
-    if (isLoggedIn && userID) {
+    if ((isLoggedIn && userID) || userID === 0) {
       setReviewData((prevData) => ({
         ...prevData,
         gym_id,

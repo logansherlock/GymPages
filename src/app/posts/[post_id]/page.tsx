@@ -113,7 +113,7 @@ export default function Post() {
               <div className="flex flex-wrap items-center m-[1px] ">
                 <nav className="flex flex-wrap gap-6 justify-between m-[1px] ml-auto">
                   <Link
-                    href={`/add-comment/${post_id}`}
+                    href={`/add/add-comment/${post_id}`}
                     className="cursor-pointer hover:scale-[1.05] transition-transform text-center bg-stone-400 border-black border-[1px] pl-1 pr-1 font-bold rounded"
                   >
                     Add Comment

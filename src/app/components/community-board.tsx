@@ -67,7 +67,7 @@ const CommunityBoard = ({ gym_id }: { gym_id: string }) => {
           <div className="flex flex-wrap items-center m-[1px]">
             <nav className="flex flex-wrap gap-6 justify-between m-[1px] ml-auto">
               <Link
-                href={`/add-post/${gym_id}`}
+                href={`/add/add-post/${gym_id}`}
                 className="cursor-pointer hover:scale-[1.05] transition-transform text-white text-center bg-stone-400 border-black border-[1px] pl-1 pr-1 font-bold rounded"
               >
                 Add Post

@@ -35,16 +35,16 @@ export async function POST(
     const commentBody = await request.json();
     const { user_id, body, rating } = commentBody;
 
-    console.log(user_id);
     if (
       !gym_id ||
-      !user_id ||
+      user_id === undefined ||
+      user_id === null ||
       typeof rating !== "number" ||
       rating < 1 ||
       rating > 5
     ) {
       return NextResponse.json(
-        { error: "Missing required fields", body},
+        { error: "Missing required fields", body },
         { status: 400 }
       );
     }

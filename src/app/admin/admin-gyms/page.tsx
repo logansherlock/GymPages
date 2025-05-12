@@ -3,53 +3,49 @@ import { useEffect, useState } from "react";
 import { useAuth } from "@/hooks/useAuth";
 import Link from "next/link";
 
-export default function ExercisePage() {
-  const [exercises, setExercises] = useState<any[]>([]); // Ensure it's an array
-  const [exercises_loading, setExercisesLoading] = useState(true);
+export default function GymList() {
+  const [gyms, setGyms] = useState<any[]>([]); // Ensure it's an array
+  const [gyms_loading, setGymsLoading] = useState(true);
   const { isLoggedIn, username, userID, membership } = useAuth();
 
-  const handleDeleteExercise = async (exercise_id: string) => {
+  const handleDeleteGym = async (gym_id: string) => {
     const confirmed = window.confirm(
-      "Are you sure you want to delete this exercise?"
+      "Are you sure you want to delete this gym?"
     );
     if (!confirmed) return;
 
     try {
-      const res = await fetch(`/api/admin/exercises/${exercise_id}`, {
+      const res = await fetch(`/api/admin/gyms/${gym_id}`, {
         method: "DELETE",
       });
 
       if (res.ok) {
-        setExercises((prevExercises) =>
-          prevExercises.filter(
-            (exercise) => exercise.exercise_id !== exercise_id
-          )
-        );
+        setGyms((prevGyms) => prevGyms.filter((gym) => gym.gym_id !== gym_id));
       } else {
-        console.error("Failed to delete exercise");
+        console.error("Failed to delete gym");
       }
     } catch (error) {
-      console.error("Error deleting exercise:", error);
+      console.error("Error deleting gym:", error);
     }
   };
 
   useEffect(() => {
-    fetch("/api/admin/exercises")
+    fetch("/api/admin/gyms")
       .then((res) => res.json())
       .then((data) => {
-        console.log("Fetched exercises:", data); // Debugging log
+        console.log("Fetched gyms:", data); // Debugging log
         if (Array.isArray(data)) {
-          setExercises(data);
+          setGyms(data);
         } else {
           console.error("Expected an array but got:", data);
-          setExercises([]);
+          setGyms([]);
         }
       })
       .catch((err) => {
         console.error("Fetch error:", err);
       })
       .finally(() => {
-        setExercisesLoading(false);
+        setGymsLoading(false);
       });
   }, []);
 
@@ -57,77 +53,77 @@ export default function ExercisePage() {
     <div className="">
       {isLoggedIn && userID === 0 ? (
         <div className=" bg-stone-500 border-black border-[1px] p-3">
-          <div className="flex flex-wrap justify-center font-mono text-white m-[1px] ">
+          <div className="flex flex-wrap m-2 justify-center font-mono text-white m-[1px] ">
             <div
               className="flex flex-wrap items-center max-w-s m-[1px] text-5xl shrink font-bold"
               style={{ WebkitTextStroke: "1px black" }}
             >
-              EXERCISES
+              GYMS
             </div>
             <nav className="flex ml-auto items-center m-[1px] flex-wrap gap-6 justify-between m-[1px]">
               <Link
-                href={`/admin-exercises/add-exercise`}
+                href={`/admin/admin-gyms/add-gym`}
                 className="cursor-pointer hover:scale-[1.05] transition-transform text-center bg-stone-400 border-black border-[1px] px-2 font-bold rounded"
               >
-                Add Exercise
+                Add Gym
               </Link>
             </nav>
           </div>
           <div className="flex flex-wrap justify-center m-1">
-            {exercises.length > 0 ? (
+            {gyms.length > 0 ? (
               <table className="w-full table-auto">
                 <thead className="bg-stone-600 text-stone-100 ">
                   <tr>
+                    <th className="px-4 py-2 border border-gray-300">gym_id</th>
                     <th className="px-4 py-2 border border-gray-300">
-                      exercise_id
+                      gym_name
                     </th>
                     <th className="px-4 py-2 border border-gray-300">
-                      exercise_name
+                      street_address
                     </th>
-                    <th className="px-4 py-2 border border-gray-300">motion</th>
-                    <th className="px-4 py-2 border border-gray-300">level</th>
-                    <th className="px-4 py-2 border border-gray-300">
-                      mechanic
-                    </th>
+                    <th className="px-4 py-2 border border-gray-300">city</th>
+                    <th className="px-4 py-2 border border-gray-300">zip</th>
+                    <th className="px-4 py-2 border border-gray-300">state</th>
                     <th className="px-4 py-2 border border-gray-300">
                       functions
                     </th>
                   </tr>
                 </thead>
                 <tbody>
-                  {exercises.map((exercise, index) => (
+                  {gyms.map((gym, index) => (
                     <tr
-                      key={exercise.exercise_id}
+                      key={gym.gym_id}
                       className={
                         index % 2 === 0 ? "bg-stone-400" : "bg-neutral-500"
                       }
                     >
                       <td className="px-4 py-1.5 border border-gray-300 font-bold">
-                        {exercise.exercise_id}
+                        {gym.gym_id}
                       </td>
                       <td className="px-4 py-1.5 border border-gray-300">
-                        {exercise.exercise_name}
+                        {gym.gym_name}
                       </td>
                       <td className="px-4 py-1.5 border border-gray-300">
-                        {exercise.motion}
+                        {gym.street_address}
                       </td>
                       <td className="px-4 py-1.5 border border-gray-300">
-                        {exercise.level}
+                        {gym.city}
                       </td>
                       <td className="px-4 py-1.5 border border-gray-300">
-                        {exercise.mechanic}
+                        {gym.zip}
+                      </td>
+                      <td className="px-4 py-1.5 border border-gray-300">
+                        {gym.state}
                       </td>
                       <td className="px-4 py-1.5 border border-gray-300 text-center font-bold">
                         <Link
-                          href={`/exercises/${exercise.exercise_id}`}
+                          href={`/gyms/${gym.gym_id}`}
                           className="bg-yellow-500 text-white h-6 px-1 py-[3px] text-sm rounded hover:bg-yellow-600 mr-3 border-black border-[1px]"
                         >
                           View
                         </Link>
                         <button
-                          onClick={() =>
-                            handleDeleteExercise(exercise.exercise_id)
-                          }
+                          onClick={() => handleDeleteGym(gym.gym_id)}
                           className="bg-red-600 text-white h-6 px-1 text-sm rounded hover:bg-red-700 border-black border-[1px]"
                         >
                           Delete
@@ -138,7 +134,7 @@ export default function ExercisePage() {
                 </tbody>
               </table>
             ) : (
-              <p>No exercises found.</p>
+              <p>No gyms found.</p>
             )}
           </div>
         </div>

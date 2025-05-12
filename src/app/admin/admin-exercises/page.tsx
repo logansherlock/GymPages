@@ -3,51 +3,53 @@ import { useEffect, useState } from "react";
 import { useAuth } from "@/hooks/useAuth";
 import Link from "next/link";
 
-export default function UsersPage() {
-  const [users, setUsers] = useState<any[]>([]); // Ensure it's an array
-  const [users_loading, setUsersLoading] = useState(true);
+export default function ExercisePage() {
+  const [exercises, setExercises] = useState<any[]>([]); // Ensure it's an array
+  const [exercises_loading, setExercisesLoading] = useState(true);
   const { isLoggedIn, username, userID, membership } = useAuth();
 
-  const handleDeleteUser = async (user_id: number) => {
+  const handleDeleteExercise = async (exercise_id: string) => {
     const confirmed = window.confirm(
-      "Are you sure you want to delete this user?"
+      "Are you sure you want to delete this exercise?"
     );
     if (!confirmed) return;
 
     try {
-      const res = await fetch(`/api/admin/users/${user_id}`, {
+      const res = await fetch(`/api/admin/exercises/${exercise_id}`, {
         method: "DELETE",
       });
 
       if (res.ok) {
-        setUsers((prevUsers) =>
-          prevUsers.filter((user) => user.user_id !== user_id)
+        setExercises((prevExercises) =>
+          prevExercises.filter(
+            (exercise) => exercise.exercise_id !== exercise_id
+          )
         );
       } else {
-        console.error("Failed to delete user");
+        console.error("Failed to delete exercise");
       }
     } catch (error) {
-      console.error("Error deleting user:", error);
+      console.error("Error deleting exercise:", error);
     }
   };
 
   useEffect(() => {
-    fetch("/api/admin/users")
+    fetch("/api/admin/exercises")
       .then((res) => res.json())
       .then((data) => {
-        console.log("Fetched users:", data); // Debugging log
+        console.log("Fetched exercises:", data); // Debugging log
         if (Array.isArray(data)) {
-          setUsers(data);
+          setExercises(data);
         } else {
           console.error("Expected an array but got:", data);
-          setUsers([]);
+          setExercises([]);
         }
       })
       .catch((err) => {
         console.error("Fetch error:", err);
       })
       .finally(() => {
-        setUsersLoading(false);
+        setExercisesLoading(false);
       });
   }, []);
 
@@ -55,31 +57,37 @@ export default function UsersPage() {
     <div className="">
       {isLoggedIn && userID === 0 ? (
         <div className=" bg-stone-500 border-black border-[1px] p-3">
-          <div className="flex flex-wrap font-mono text-white m-[1px] ">
+          <div className="flex flex-wrap justify-center font-mono text-white m-[1px] ">
             <div
               className="flex flex-wrap items-center max-w-s m-[1px] text-5xl shrink font-bold"
               style={{ WebkitTextStroke: "1px black" }}
             >
-              USERS
+              EXERCISES
             </div>
+            <nav className="flex ml-auto items-center m-[1px] flex-wrap gap-6 justify-between m-[1px]">
+              <Link
+                href={`/admin/admin-exercises/add-exercise`}
+                className="cursor-pointer hover:scale-[1.05] transition-transform text-center bg-stone-400 border-black border-[1px] px-2 font-bold rounded"
+              >
+                Add Exercise
+              </Link>
+            </nav>
           </div>
           <div className="flex flex-wrap justify-center m-1">
-            {users.length > 0 ? (
+            {exercises.length > 0 ? (
               <table className="w-full table-auto">
                 <thead className="bg-stone-600 text-stone-100 ">
                   <tr>
                     <th className="px-4 py-2 border border-gray-300">
-                      user_id
+                      exercise_id
                     </th>
                     <th className="px-4 py-2 border border-gray-300">
-                      username
+                      exercise_name
                     </th>
-                    <th className="px-4 py-2 border border-gray-300">email</th>
+                    <th className="px-4 py-2 border border-gray-300">motion</th>
+                    <th className="px-4 py-2 border border-gray-300">level</th>
                     <th className="px-4 py-2 border border-gray-300">
-                      first name
-                    </th>
-                    <th className="px-4 py-2 border border-gray-300">
-                      last name
+                      mechanic
                     </th>
                     <th className="px-4 py-2 border border-gray-300">
                       functions
@@ -87,50 +95,50 @@ export default function UsersPage() {
                   </tr>
                 </thead>
                 <tbody>
-                  {users.map((user, index) => (
+                  {exercises.map((exercise, index) => (
                     <tr
-                      key={user.user_id}
+                      key={exercise.exercise_id}
                       className={
                         index % 2 === 0 ? "bg-stone-400" : "bg-neutral-500"
                       }
                     >
-                      <td className="px-4 py-1.5 border border-gray-300 text-center font-bold">
-                        {user.user_id}
+                      <td className="px-4 py-1.5 border border-gray-300 font-bold">
+                        {exercise.exercise_id}
                       </td>
                       <td className="px-4 py-1.5 border border-gray-300">
-                        {user.username}
+                        {exercise.exercise_name}
                       </td>
                       <td className="px-4 py-1.5 border border-gray-300">
-                        {user.email}
+                        {exercise.motion}
                       </td>
                       <td className="px-4 py-1.5 border border-gray-300">
-                        {user.firstname}
+                        {exercise.level}
                       </td>
                       <td className="px-4 py-1.5 border border-gray-300">
-                        {user.lastname}
+                        {exercise.mechanic}
                       </td>
                       <td className="px-4 py-1.5 border border-gray-300 text-center font-bold">
                         <Link
-                          href={`/admin-users/${user.user_id}`}
+                          href={`/exercises/${exercise.exercise_id}`}
                           className="bg-yellow-500 text-white h-6 px-1 py-[3px] text-sm rounded hover:bg-yellow-600 mr-3 border-black border-[1px]"
                         >
                           View
                         </Link>
-                        {user.user_id !== 0 && user.user_id !== -1 && (
-                          <button
-                            onClick={() => handleDeleteUser(user.user_id)}
-                            className="bg-red-600 text-white h-6 px-1 text-sm rounded hover:bg-red-700 border-black border-[1px]"
-                          >
-                            Delete
-                          </button>
-                        )}
+                        <button
+                          onClick={() =>
+                            handleDeleteExercise(exercise.exercise_id)
+                          }
+                          className="bg-red-600 text-white h-6 px-1 text-sm rounded hover:bg-red-700 border-black border-[1px]"
+                        >
+                          Delete
+                        </button>
                       </td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             ) : (
-              <p>No users found.</p>
+              <p>No exercises found.</p>
             )}
           </div>
         </div>
@@ -154,7 +162,7 @@ export default function UsersPage() {
               className="flex flex-wrap items-center max-w-s m-[1px] ml-auto text-4xl shrink font-bold"
               style={{ WebkitTextStroke: "1px black" }}
             >
-              USERS
+              EXERCISES
             </div>
           </div>
           {!isLoggedIn ? (
@@ -163,7 +171,7 @@ export default function UsersPage() {
                 className=" max-w-s m-4 text-center text-4xl font-bold bg-red-800 border-black border-[1px] p-4"
                 style={{ WebkitTextStroke: "1px black" }}
               >
-                Must be logged in and admin to view users.
+                Must be logged in and admin to view exercises.
               </div>
             </div>
           ) : (
@@ -172,7 +180,7 @@ export default function UsersPage() {
                 className=" max-w-s m-4 text-center text-4xl font-bold bg-red-800 border-black border-[1px] p-4"
                 style={{ WebkitTextStroke: "1px black" }}
               >
-                Must be admin to view users.
+                Must be admin to view exercises.
               </div>
             </div>
           )}

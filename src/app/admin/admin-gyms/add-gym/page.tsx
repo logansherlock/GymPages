@@ -7,15 +7,16 @@ import { useAuth } from "@/hooks/useAuth";
 export default function AddExercise() {
   const [localMessage, setLocalMessage] = useState("");
   const { isLoggedIn, username, userID, membership } = useAuth();
-  const [exerciseData, setExerciseData] = useState({
-    exercise_id: "",
-    exercise_name: "",
-    motion: "",
-    level: "",
-    mechanic: "",
-    muscle_group: "",
-    body: "",
-    video_link: "",
+  const [gymData, setGymData] = useState({
+    gym_id: "",
+    gym_name: "",
+    latitude: "",
+    longitude: "",
+    street_address: "",
+    city: "",
+    zip: "",
+    state: "",
+    phone_number: "",
   });
 
   const router = useRouter();
@@ -23,29 +24,29 @@ export default function AddExercise() {
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     try {
-      const response = await fetch("/api/admin/exercises", {
+      const response = await fetch("/api/admin/gyms", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(exerciseData),
+        body: JSON.stringify(gymData),
       });
 
       const data = await response.json();
 
       setLocalMessage(data.message);
-      setExerciseData({
-        exercise_id: "",
-        exercise_name: "",
-        motion: "",
-        level: "",
-        mechanic: "",
-        muscle_group: "",
-        body: "",
-        video_link: "",
+      setGymData({
+        gym_id: "",
+        gym_name: "",
+        latitude: "",
+        longitude: "",
+        street_address: "",
+        city: "",
+        zip: "",
+        state: "",
+        phone_number: "",
       });
 
       if (response.ok) {
-        console.log("GOOD");
-        router.push(`/exercises/${exerciseData.exercise_id}`);
+        router.push(`/gyms/${gymData.gym_id}`);
       }
     } catch (error) {
       if (error instanceof Error) {
@@ -61,7 +62,7 @@ export default function AddExercise() {
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = event.target;
-    setExerciseData((prevData) => ({
+    setGymData((prevData) => ({
       ...prevData,
       [name]: value, // Update the specific field in the state
     }));
@@ -74,14 +75,14 @@ export default function AddExercise() {
           <div className="flex flex-wrap m-[1px] font-mono text-white m-[1px] ">
             <div className="flex flex-wrap items-center bg-stone-400/75 border-black border-[1px] px-2 max-w-s m-[1px] text-sm shrink font-bold text-black">
               <Link
-                href={`/admin-exercises`}
+                href={`/admin/admin-gyms`}
                 className="flex flex-row items-center text-white text-5xl font-bold ml-2 mr-4"
                 style={{ WebkitTextStroke: "1px black" }}
               >
                 ←{" "}
                 <span className="text-xl pt-1 ml-3">
                   {" "}
-                  back to <span className="uppercase">ADMIN EXERCISES</span>
+                  back to <span className="uppercase">ADMIN GYMS</span>
                 </span>
               </Link>{" "}
             </div>
@@ -96,14 +97,14 @@ export default function AddExercise() {
                   className="w-full max-w-lg text-center text-5xl font-bold"
                   style={{ WebkitTextStroke: "1px black" }}
                 >
-                  EXERCISE CREATION
+                  GYM CREATION
                 </div>
                 <div className="w-full max-w-sm flex items-center">
                   <input
                     type="text"
-                    placeholder="exercise id"
-                    name="exercise_id"
-                    value={exerciseData.exercise_id}
+                    placeholder="gym id"
+                    name="gym_id"
+                    value={gymData.gym_id}
                     onChange={handleChange}
                     className="m-2 px-3 py-1 w-full border border-slate-900 bg-slate-100 text-slate-900 font-bold rounded-md text-center"
                     required
@@ -112,9 +113,9 @@ export default function AddExercise() {
                 <div className="w-full max-w-sm flex items-center">
                   <input
                     type="text"
-                    placeholder="exercise name"
-                    name="exercise_name"
-                    value={exerciseData.exercise_name}
+                    placeholder="gym name"
+                    name="gym_name"
+                    value={gymData.gym_name}
                     onChange={handleChange}
                     className="m-2 px-3 py-1 w-full border border-slate-900 bg-slate-100 text-slate-900 font-bold rounded-md text-center"
                     required
@@ -123,68 +124,77 @@ export default function AddExercise() {
                 <div className="w-full max-w-sm flex items-center">
                   <input
                     type="text"
-                    placeholder="motion"
-                    name="motion"
-                    value={exerciseData.motion}
+                    placeholder="longitude"
+                    name="longitude"
+                    value={gymData.longitude}
                     onChange={handleChange}
                     className="m-2 px-3 py-1 w-full border border-slate-900 bg-slate-100 text-slate-900 font-bold rounded-md text-center"
+                    required
                   />
-                </div>
-                <div className="w-full max-w-sm flex items-center">
                   <input
                     type="text"
-                    placeholder="difficulty"
-                    name="level"
-                    value={exerciseData.level}
-                    onChange={handleChange}
-                    className="m-2 px-3 py-1 w-full border border-slate-900 bg-slate-100 text-slate-900 font-bold rounded-md text-center"
-                  />
-                </div>
-                <div className="w-full max-w-sm flex items-center">
-                  <input
-                    type="text"
-                    placeholder="mechanic"
-                    name="mechanic"
-                    value={exerciseData.mechanic}
-                    onChange={handleChange}
-                    className="m-2 px-3 py-1 w-full border border-slate-900 bg-slate-100 text-slate-900 font-bold rounded-md text-center"
-                  />
-                </div>
-                <div className="w-full max-w-sm flex items-center">
-                  <input
-                    type="text"
-                    placeholder="muscle group"
-                    name="muscle_group"
-                    value={exerciseData.muscle_group}
+                    placeholder="latitude"
+                    name="latitude"
+                    value={gymData.latitude}
                     onChange={handleChange}
                     className="m-2 px-3 py-1 w-full border border-slate-900 bg-slate-100 text-slate-900 font-bold rounded-md text-center"
                     required
                   />
                 </div>
                 <div className="w-full max-w-sm flex items-center">
-                  <textarea
-                    placeholder="description"
-                    name="body"
-                    value={exerciseData.body}
+                  <input
+                    type="text"
+                    placeholder="street address"
+                    name="street_address"
+                    value={gymData.street_address}
                     onChange={handleChange}
-                    rows={1}
                     className="m-2 px-3 py-1 w-full border border-slate-900 bg-slate-100 text-slate-900 font-bold rounded-md text-center"
-                    onInput={(e) => {
-                      const target = e.target as HTMLTextAreaElement;
-                      target.style.height = "auto";
-                      target.style.height = `${target.scrollHeight}px`;
-                    }}
                     required
                   />
                 </div>
                 <div className="w-full max-w-sm flex items-center">
                   <input
                     type="text"
-                    placeholder="video link"
-                    name="video_link"
-                    value={exerciseData.video_link}
+                    placeholder="city"
+                    name="city"
+                    value={gymData.city}
                     onChange={handleChange}
                     className="m-2 px-3 py-1 w-full border border-slate-900 bg-slate-100 text-slate-900 font-bold rounded-md text-center"
+                    required
+                  />
+                </div>
+                <div className="w-full max-w-sm flex items-center">
+                  <input
+                    type="text"
+                    placeholder="zip code"
+                    name="zip"
+                    value={gymData.zip}
+                    onChange={handleChange}
+                    className="m-2 px-3 py-1 w-full border border-slate-900 bg-slate-100 text-slate-900 font-bold rounded-md text-center"
+                    required
+                  />
+                </div>
+                <div className="w-full max-w-sm flex items-center">
+                  <input
+                    type="text"
+                    placeholder="state code"
+                    name="state"
+                    value={gymData.state}
+                    onChange={handleChange}
+                    className="m-2 px-3 py-1 w-full border border-slate-900 bg-slate-100 text-slate-900 font-bold rounded-md text-center"
+                    required
+                  />
+                </div>
+                <div className="w-full max-w-sm flex items-center">
+                  <input
+                    type="tel"
+                    placeholder="(516) xxx-xxxx"
+                    pattern="^\(\d{3}\) \d{3}-\d{4}$"
+                    name="phone_number"
+                    value={gymData.phone_number}
+                    onChange={handleChange}
+                    className="m-2 px-3 py-1 w-full border border-slate-900 bg-slate-100 text-slate-900 font-bold rounded-md text-center"
+                    required
                   />
                 </div>
                 <div className="w-full max-w-sm text-center">
@@ -199,7 +209,7 @@ export default function AddExercise() {
                   {localMessage && (
                     <p
                       className="mt-4 px-4 py-2 w-full text-center text-white rounded-md font-bold 
-                      bg-green-500"
+                  bg-green-500"
                     >
                       {localMessage}
                     </p>
@@ -229,7 +239,7 @@ export default function AddExercise() {
               className="flex flex-wrap items-center max-w-s m-[1px] ml-auto text-5xl shrink font-bold"
               style={{ WebkitTextStroke: "1px black" }}
             >
-              ADD EXERCISE
+              ADD GYM
             </div>
           </div>
           {!isLoggedIn ? (
@@ -238,7 +248,7 @@ export default function AddExercise() {
                 className=" max-w-s m-4 text-center text-4xl font-bold bg-red-800 border-black border-[1px] p-4"
                 style={{ WebkitTextStroke: "1px black" }}
               >
-                Must be logged in and admin to add exercises.
+                Must be logged in and admin to add gyms.
               </div>
             </div>
           ) : (
@@ -247,7 +257,7 @@ export default function AddExercise() {
                 className=" max-w-s m-4 text-center text-4xl font-bold bg-red-800 border-black border-[1px] p-4"
                 style={{ WebkitTextStroke: "1px black" }}
               >
-                Must be admin to add exercises.
+                Must be admin to add gyms.
               </div>
             </div>
           )}

@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { formatDate } from "@/lib/utils/formatDate";
-import AddComment from "../../components/add-comment";
+import AddComment from "@/app/components/add-comment";
 import LoadingScreen from "@/app/components/loading-screen";
 
 export default function Post() {

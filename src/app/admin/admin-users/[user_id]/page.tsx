@@ -40,7 +40,7 @@ export default function userHistory() {
           <div className="flex flex-wrap m-1 font-mono text-white">
             <div className="flex flex-wrap items-center bg-stone-400/75 border-black border-[1px] px-2 max-w-s m-[1px] text-sm shrink font-bold text-black">
               <Link
-                href={`/admin-users`}
+                href={`/admin/admin-users`}
                 className="flex flex-row items-center text-white text-5xl font-bold ml-2 mr-4"
                 style={{ WebkitTextStroke: "1px black" }}
               >

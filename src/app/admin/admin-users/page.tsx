@@ -3,49 +3,51 @@ import { useEffect, useState } from "react";
 import { useAuth } from "@/hooks/useAuth";
 import Link from "next/link";
 
-export default function GymList() {
-  const [gyms, setGyms] = useState<any[]>([]); // Ensure it's an array
-  const [gyms_loading, setGymsLoading] = useState(true);
+export default function UsersPage() {
+  const [users, setUsers] = useState<any[]>([]); // Ensure it's an array
+  const [users_loading, setUsersLoading] = useState(true);
   const { isLoggedIn, username, userID, membership } = useAuth();
 
-  const handleDeleteGym = async (gym_id: string) => {
+  const handleDeleteUser = async (user_id: number) => {
     const confirmed = window.confirm(
-      "Are you sure you want to delete this gym?"
+      "Are you sure you want to delete this user?"
     );
     if (!confirmed) return;
 
     try {
-      const res = await fetch(`/api/admin/gyms/${gym_id}`, {
+      const res = await fetch(`/api/admin/users/${user_id}`, {
         method: "DELETE",
       });
 
       if (res.ok) {
-        setGyms((prevGyms) => prevGyms.filter((gym) => gym.gym_id !== gym_id));
+        setUsers((prevUsers) =>
+          prevUsers.filter((user) => user.user_id !== user_id)
+        );
       } else {
-        console.error("Failed to delete gym");
+        console.error("Failed to delete user");
       }
     } catch (error) {
-      console.error("Error deleting gym:", error);
+      console.error("Error deleting user:", error);
     }
   };
 
   useEffect(() => {
-    fetch("/api/admin/gyms")
+    fetch("/api/admin/users")
       .then((res) => res.json())
       .then((data) => {
-        console.log("Fetched gyms:", data); // Debugging log
+        console.log("Fetched users:", data); // Debugging log
         if (Array.isArray(data)) {
-          setGyms(data);
+          setUsers(data);
         } else {
           console.error("Expected an array but got:", data);
-          setGyms([]);
+          setUsers([]);
         }
       })
       .catch((err) => {
         console.error("Fetch error:", err);
       })
       .finally(() => {
-        setGymsLoading(false);
+        setUsersLoading(false);
       });
   }, []);
 
@@ -53,88 +55,82 @@ export default function GymList() {
     <div className="">
       {isLoggedIn && userID === 0 ? (
         <div className=" bg-stone-500 border-black border-[1px] p-3">
-          <div className="flex flex-wrap m-2 justify-center font-mono text-white m-[1px] ">
+          <div className="flex flex-wrap font-mono text-white m-[1px] ">
             <div
               className="flex flex-wrap items-center max-w-s m-[1px] text-5xl shrink font-bold"
               style={{ WebkitTextStroke: "1px black" }}
             >
-              GYMS
+              USERS
             </div>
-            <nav className="flex ml-auto items-center m-[1px] flex-wrap gap-6 justify-between m-[1px]">
-              <Link
-                href={`/admin-gyms/add-gym`}
-                className="cursor-pointer hover:scale-[1.05] transition-transform text-center bg-stone-400 border-black border-[1px] px-2 font-bold rounded"
-              >
-                Add Gym
-              </Link>
-            </nav>
           </div>
           <div className="flex flex-wrap justify-center m-1">
-            {gyms.length > 0 ? (
+            {users.length > 0 ? (
               <table className="w-full table-auto">
                 <thead className="bg-stone-600 text-stone-100 ">
                   <tr>
-                    <th className="px-4 py-2 border border-gray-300">gym_id</th>
                     <th className="px-4 py-2 border border-gray-300">
-                      gym_name
+                      user_id
                     </th>
                     <th className="px-4 py-2 border border-gray-300">
-                      street_address
+                      username
                     </th>
-                    <th className="px-4 py-2 border border-gray-300">city</th>
-                    <th className="px-4 py-2 border border-gray-300">zip</th>
-                    <th className="px-4 py-2 border border-gray-300">state</th>
+                    <th className="px-4 py-2 border border-gray-300">email</th>
+                    <th className="px-4 py-2 border border-gray-300">
+                      first name
+                    </th>
+                    <th className="px-4 py-2 border border-gray-300">
+                      last name
+                    </th>
                     <th className="px-4 py-2 border border-gray-300">
                       functions
                     </th>
                   </tr>
                 </thead>
                 <tbody>
-                  {gyms.map((gym, index) => (
+                  {users.map((user, index) => (
                     <tr
-                      key={gym.gym_id}
+                      key={user.user_id}
                       className={
                         index % 2 === 0 ? "bg-stone-400" : "bg-neutral-500"
                       }
                     >
-                      <td className="px-4 py-1.5 border border-gray-300 font-bold">
-                        {gym.gym_id}
+                      <td className="px-4 py-1.5 border border-gray-300 text-center font-bold">
+                        {user.user_id}
                       </td>
                       <td className="px-4 py-1.5 border border-gray-300">
-                        {gym.gym_name}
+                        {user.username}
                       </td>
                       <td className="px-4 py-1.5 border border-gray-300">
-                        {gym.street_address}
+                        {user.email}
                       </td>
                       <td className="px-4 py-1.5 border border-gray-300">
-                        {gym.city}
+                        {user.firstname}
                       </td>
                       <td className="px-4 py-1.5 border border-gray-300">
-                        {gym.zip}
-                      </td>
-                      <td className="px-4 py-1.5 border border-gray-300">
-                        {gym.state}
+                        {user.lastname}
                       </td>
                       <td className="px-4 py-1.5 border border-gray-300 text-center font-bold">
                         <Link
-                          href={`/gyms/${gym.gym_id}`}
+                          href={`/admin/admin-users/${user.user_id}`}
                           className="bg-yellow-500 text-white h-6 px-1 py-[3px] text-sm rounded hover:bg-yellow-600 mr-3 border-black border-[1px]"
                         >
                           View
                         </Link>
-                        <button
-                          onClick={() => handleDeleteGym(gym.gym_id)}
-                          className="bg-red-600 text-white h-6 px-1 text-sm rounded hover:bg-red-700 border-black border-[1px]"
-                        >
-                          Delete
-                        </button>
+                        {user.user_id !== 0 && user.user_id !== -1 && (
+                          <button
+                            onClick={() => handleDeleteUser(user.user_id)}
+                            className="bg-red-600 text-white h-6 px-1 text-sm rounded hover:bg-red-700 border-black border-[1px]"
+                          >
+                            Delete
+                          </button>
+                        )}
                       </td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             ) : (
-              <p>No gyms found.</p>
+              <p>No users found.</p>
             )}
           </div>
         </div>
@@ -158,7 +154,7 @@ export default function GymList() {
               className="flex flex-wrap items-center max-w-s m-[1px] ml-auto text-4xl shrink font-bold"
               style={{ WebkitTextStroke: "1px black" }}
             >
-              EXERCISES
+              USERS
             </div>
           </div>
           {!isLoggedIn ? (
@@ -167,7 +163,7 @@ export default function GymList() {
                 className=" max-w-s m-4 text-center text-4xl font-bold bg-red-800 border-black border-[1px] p-4"
                 style={{ WebkitTextStroke: "1px black" }}
               >
-                Must be logged in and admin to view exercises.
+                Must be logged in and admin to view users.
               </div>
             </div>
           ) : (
@@ -176,7 +172,7 @@ export default function GymList() {
                 className=" max-w-s m-4 text-center text-4xl font-bold bg-red-800 border-black border-[1px] p-4"
                 style={{ WebkitTextStroke: "1px black" }}
               >
-                Must be admin to view exercises.
+                Must be admin to view users.
               </div>
             </div>
           )}

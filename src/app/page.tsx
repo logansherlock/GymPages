@@ -102,19 +102,19 @@ export default function Home() {
             {showAdminLinks && (
               <div className="flex flex-col mt-3 bg-stone-400 gap-y-3 text-sm p-2 border-black border-[1px]">
                 <Link
-                  href="/admin-gyms"
+                  href="/admin/admin-gyms"
                   className={`${baseLinkClass} bg-stone-500 px-1 `}
                 >
                   Edit Gyms
                 </Link>
                 <Link
-                  href="/admin-users"
+                  href="/admin/admin-users"
                   className={`${baseLinkClass} bg-stone-500 px-1 `}
                 >
                   Edit Users
                 </Link>
                 <Link
-                  href="/admin-exercises"
+                  href="/admin/admin-exercises"
                   className={`${baseLinkClass} bg-stone-500 px-1 `}
                 >
                   Edit Exercises
