@@ -35,12 +35,14 @@ export default function Home() {
           #1 Site for Gym Information in Nassau County
         </div>
         <div className="w-[80%] h-[550px] overflow-hidden relative border-black border-[1px]">
-          <Image
-            src={gymPics[currentImageIndex]}
-            alt="Gym Image"
-            fill
-            className="object-cover opacity-80"
-          />
+          <div className="absolute inset-0 bg-stone-300 z-0"></div>
+            <Image
+              src={gymPics[currentImageIndex]}
+              alt="Gym Image"
+              fill
+              className="object-cover opacity-80"
+            />
+
           <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
             {gymPics.map((_, index) => (
               <button

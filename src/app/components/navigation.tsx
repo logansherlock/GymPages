@@ -15,7 +15,9 @@ export const Navigation = () => {
 
   const handleLogout = async () => {
     await fetch("/api/auth/logout", { method: "POST" });
-    window.location.reload(); // this will re-run the useEffect in useAuth
+    window.location.reload();
+    window.location.href = "/";
+    // this will re-run the useEffect in useAuth
   };
 
   return (
