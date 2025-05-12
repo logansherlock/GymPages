@@ -24,45 +24,39 @@ const GymEquipment = ({ gym_id }: { gym_id: string }) => {
   }, [gym_id]);
 
   return (
-    <div>
+    <div className="border-black border-[1px] max-h-[200px] overflow-y-auto">
       {equipment.length !== 0 ? (
-        <div className="">
-          <div className="w-[35%] h-[200px] max-w-screen-lg bg-stone-400/75 border-black border-[1px]">
-            <div className="flex flex-wrap flex-col justify-center items-center h-full">
-              <div
-                className="text-center text-white text-3xl font-bold"
-                style={{ WebkitTextStroke: "1px black" }}
-              >
-                Amenities & Equipment
-              </div>
-              {loading ? (
-                <div className="flex items-center justify-center h-[200px] text-white">
-                  <div className="text-4xl font-bold ">
-                    Loading equipment...
-                  </div>
-                </div>
-              ) : equipment.length === 0 ? (
-                <div className="flex items-center justify-center h-[200px]">
-                  <div className="flex items-center justify-between">
-                    No equipment found.
-                  </div>
-                </div>
-              ) : (
-                <div className="flex flex-col max-h-[200px] overflow-y-auto w-[95%] ml-4 mr-4 p-1 mt-2 space-y-2">
-                  <ul className="list-disc list-inside">
-                    {equipment.map((piece) => (
-                      <li
-                        key={piece.equipment_name}
-                        className="text-white font-bold w-full"
-                      >
-                        {piece.equipment_name}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </div>
+        <div className="p-3 max-w-screen-lg bg-stone-400/75 flex flex-wrap justify-center items-center h-full">
+          <div
+            className="text-center text-white text-3xl font-bold"
+            style={{ WebkitTextStroke: "1px black" }}
+          >
+            Amenities & Equipment
           </div>
+          {loading ? (
+            <div className="flex items-center justify-center h-[200px] text-white">
+              <div className="text-4xl font-bold ">Loading equipment...</div>
+            </div>
+          ) : equipment.length === 0 ? (
+            <div className="flex items-center justify-center h-[200px]">
+              <div className="flex items-center justify-between">
+                No equipment found.
+              </div>
+            </div>
+          ) : (
+            <div className="flex flex-col w-[95%] ml-4 mr-4 p-1 mt-2 space-y-2">
+              <ul className="list-disc list-inside w-full">
+                {equipment.map((piece) => (
+                  <li
+                    key={piece.equipment_name}
+                    className="text-white font-bold w-full"
+                  >
+                    {piece.equipment_name}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
       ) : (
         <></>

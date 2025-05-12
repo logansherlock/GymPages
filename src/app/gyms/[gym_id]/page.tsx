@@ -7,6 +7,8 @@ import RecentReviews from "@/app/components/recent-reviews";
 import Link from "next/link";
 import LoadingScreen from "@/app/components/loading-screen";
 import { useAuth } from "@/hooks/useAuth";
+import { FaPhone } from "react-icons/fa";
+import { FaDirections } from "react-icons/fa";
 
 export default function GymPage() {
   const [gym, setGym] = useState<any | null>(null);
@@ -14,6 +16,7 @@ export default function GymPage() {
   const { isLoggedIn, username, userID, membership } = useAuth();
   const [gymLoading, setGymLoading] = useState(true); // Track loading state
   const [confirmJoin, setConfirmJoin] = useState(false);
+  const [averageRating, setAverageRating] = useState<number | null>(null);
   const { gym_id } = useParams();
 
   console.log(gym_id);
@@ -63,6 +66,21 @@ export default function GymPage() {
     }
   };
 
+  useEffect(() => {
+    if (!gym_id) return;
+
+    fetch(`/api/reviews/rating/${gym_id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.average_rating !== undefined) {
+          setAverageRating(parseFloat(data.average_rating));
+        } else {
+          setAverageRating(null);
+        }
+      })
+      .catch(() => setAverageRating(null));
+  }, [gym_id]);
+
   return (
     <div className="">
       {gymLoading ? (
@@ -85,6 +103,13 @@ export default function GymPage() {
               <div className="uppercase font-bold text-sm m-[1px] mt-0">
                 {gym.city}, {gym.state}
               </div>
+            </div>
+            <div className="ml-5 flex items-center">
+              {averageRating !== null && (
+                <div className="text-white font-bold text-2xl bg-stone-400/75 text-black px-2 py-1 rounded">
+                  ⭐️ {averageRating.toFixed(1)}
+                </div>
+              )}
             </div>
             <div className="flex ml-auto items-center m-[1px] ">
               <nav className="flex flex-wrap gap-6 justify-between m-[1px]">
@@ -147,21 +172,55 @@ export default function GymPage() {
               </nav>
             </div>
           </div>
-          <div className="flex items-end m-[1px] font-mono justify-between text-white">
-            <div className="w-[60%] h-[500px] max-w-screen-lg m-[1px]">
-              <MapComponent
-                latitude={gym.location.x}
-                longitude={gym.location.y}
-              />
-            </div>
-            <div className="w-[40%] h-[500px] ml-3 m-[1px] max-w-screen-lg bg-stone-400/75 border-black border-[1px]">
-              <div className="flex flex-wrap flex-col justify-center items-center h-full">
-                <RecentReviews gym_id={gym_id as string} />
+          <div className="flex flex-row gap-x-3">
+            <div className="flex flex-col w-[60%] m-[1px] font-mono text-white gap-x-3">
+              <div className=" h-[500px] m-[1px]">
+                <MapComponent
+                  latitude={gym.location.x}
+                  longitude={gym.location.y}
+                />
+              </div>
+              <div className="flex flex-row items-center mt-3 gap-x-3">
+                <div className="w-[60%] max-h-[200px]">
+                  <GymEquipment gym_id={gym_id as string} />
+                </div>
+                <div className="w-[40%] h-[200px] m-[1px] bg-stone-400/75 border-black border-[1px] p-3 overflow-y-auto">
+                  <div className="flex flex-col h-full justify-start">
+                    <div
+                      className="text-center w-full text-white text-3xl font-bold"
+                      style={{ WebkitTextStroke: "1px black" }}
+                    >
+                      Contact
+                    </div>
+                    <div className="flex flex-col flex-grow items-center mt-1 gap-y-1 font-bold tracking-widest">
+                      <div className="text-xl">{gym.gym_name}</div>
+                      <div className="text-sm">{gym.street_address}</div>
+                      <div className="text-sm">
+                        {gym.city}, {gym.state} {gym.zip}
+                      </div>
+                      <div className="flex items-center gap-x-2">
+                        <FaPhone />
+                        <span>{gym.phone_number}</span>
+                      </div>
+                      <a
+                        href={`https://www.google.com/maps/dir/?api=1&destination=${gym.location.x},${gym.location.y}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="cursor-pointer bg-orange-500 text-white px-1 rounded hover:bg-orange-600 font-bold inline-block text-center flex items-center gap-x-2"
+                      >
+                        <FaDirections />
+                        <span>Directions</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-          <div className="pl-[2px] mt-3">
-            <GymEquipment gym_id={gym_id as string} />
+            <div className="m-[1px] w-[40%] bg-stone-400/75 border-black border-[1px] p-3">
+              {/* <div className="flex flex-wrap flex-col justify-center items-center h-full"> */}
+              <RecentReviews gym_id={gym_id as string} />
+              {/* </div> */}
+            </div>
           </div>
         </div>
       ) : (

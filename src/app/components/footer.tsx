@@ -34,6 +34,12 @@ export const Footer = () => {
         <Link href="/exercises" className={`${baseLinkClass} text-center`}>
           Search Exercise Database
         </Link>
+        <a
+          href="mailto:lsherlo1@oldwestbury.edu,mpadill7@oldwestbury.edu?subject=GymPages Support Request"
+          className={`${baseLinkClass} text-center`}
+        >
+          Contact Support
+        </a>
       </div>
       <div className="absolute left-1/2 transform -translate-x-1/2 text-center text-black font-bold text-lg">
         © 2025 GymPages. All rights reserved.
@@ -48,7 +54,6 @@ export const Footer = () => {
             className="mr-8 invert"
           />
         </Link>
-        <div></div>
       </div>
     </div>
   );
