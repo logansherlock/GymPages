@@ -41,7 +41,7 @@ export const Footer = () => {
           Contact Support
         </a>
       </div>
-      <div className="absolute left-1/2 transform -translate-x-1/2 text-center text-black font-bold text-lg">
+      <div className="absolute left-1/2 transform -translate-x-1/2 text-center text-stone-800 font-bold text-lg">
         © 2025 GymPages. All rights reserved.
       </div>
       <div className="flex flex-col">

@@ -93,7 +93,7 @@ const AddComment = ({ post_id }: { post_id: string }) => {
         onSubmit={handleSubmit}
         className="flex flex-col items-center font-mono"
       >
-        <div className="w-[50%] text-white font-mono bg-stone-600 rounded-xl p-1 border-black border-[1px] m-[1px] ">
+        <div className="w-[50%] text-white font-mono bg-zinc-700 rounded-xl p-1 border-black border-[1px] m-[1px] ">
           <div className="flex justify-between w-full">
             <div className=" font-semibold mx-1">{username}</div>
           </div>

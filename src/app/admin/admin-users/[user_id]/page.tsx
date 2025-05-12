@@ -32,13 +32,13 @@ export default function userHistory() {
   }, [user_id]);
 
   return (
-    <div className="bg-stone-500 border-black border-[1px] p-3">
+    <div className="bg-zinc-500 border-black border-[1px] p-3">
       {user_loading ? (
         <LoadingScreen text="Loading User" />
       ) : isLoggedIn && user && userID === 0 ? (
         <div className="m-1">
           <div className="flex flex-wrap m-1 font-mono text-white">
-            <div className="flex flex-wrap items-center bg-stone-400/75 border-black border-[1px] px-2 max-w-s m-[1px] text-sm shrink font-bold text-black">
+            <div className="flex flex-wrap items-center bg-zinc-400/75 border-black border-[1px] px-2 max-w-s m-[1px] text-sm shrink font-bold text-black">
               <Link
                 href={`/admin/admin-users`}
                 className="flex flex-row items-center text-white text-5xl font-bold ml-2 mr-4"
@@ -63,7 +63,7 @@ export default function userHistory() {
       ) : (
         <div>
           <div className="flex flex-wrap m-1 font-mono text-white m-1 ">
-            <div className="flex flex-wrap items-center bg-stone-400/75 border-black border-[1px] px-2 max-w-s m-[1px] text-sm shrink font-bold text-black">
+            <div className="flex flex-wrap items-center bg-zinc-400/75 border-black border-[1px] px-2 max-w-s m-[1px] text-sm shrink font-bold text-black">
               <Link
                 href={`/`}
                 className="flex flex-row items-center text-white text-5xl font-bold ml-2 mr-4"
@@ -84,7 +84,7 @@ export default function userHistory() {
             </div>
           </div>
           {!isLoggedIn ? (
-            <div className="flex flex-col justify-center items-center min-h-screen border font-mono pb-20 m-1">
+            <div className="flex flex-col justify-center items-center min-h-screen font-mono pb-20 m-1">
               <div
                 className=" max-w-s m-4 text-center text-4xl font-bold bg-red-800 border-black border-[1px] p-4"
                 style={{ WebkitTextStroke: "1px black" }}
@@ -93,7 +93,7 @@ export default function userHistory() {
               </div>
             </div>
           ) : (
-            <div className="flex flex-col justify-center items-center min-h-screen border font-mono pb-20 m-1">
+            <div className="flex flex-col justify-center items-center min-h-screen font-mono pb-20 m-1">
               <div
                 className=" max-w-s m-4 text-center text-4xl font-bold bg-red-800 border-black border-[1px] p-4"
                 style={{ WebkitTextStroke: "1px black" }}

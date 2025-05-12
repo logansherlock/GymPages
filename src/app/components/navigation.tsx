@@ -60,22 +60,22 @@ export const Navigation = () => {
                 Admin
               </button>
               {showAdminLinks && (
-                <div className="absolute flex flex-col bg-stone-400 gap-y-3 max-w-lg text-sm p-2 border-black border-[1px]">
+                <div className="absolute flex flex-col bg-zinc-400 gap-y-3 max-w-lg text-sm p-2 border-black border-[1px]">
                 <Link
                   href="/admin/admin-gyms"
-                  className={`cursor-pointer hover:scale-[1.05] transition-transform text-center font-bold tracking-tighter bg-stone-500 px-1 `}
+                  className={`cursor-pointer hover:scale-[1.05] transition-transform text-center font-bold tracking-tighter bg-zinc-500 px-1 `}
                 >
                   Edit Gyms
                 </Link>
                 <Link
                   href="/admin/admin-users"
-                  className={`cursor-pointer hover:scale-[1.05] transition-transform text-center font-bold tracking-tighter bg-stone-500 px-1 `}
+                  className={`cursor-pointer hover:scale-[1.05] transition-transform text-center font-bold tracking-tighter bg-zinc-500 px-1 `}
                 >
                   Edit Users
                 </Link>
                 <Link
                   href="/admin/admin-exercises"
-                  className={`cursor-pointer hover:scale-[1.05] transition-transform text-center font-bold tracking-tighter bg-stone-500 px-1 `}
+                  className={`cursor-pointer hover:scale-[1.05] transition-transform text-center font-bold tracking-tighter bg-zinc-500 px-1 `}
                 >
                   Edit Exercises
                 </Link>

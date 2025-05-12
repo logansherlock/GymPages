@@ -34,25 +34,25 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased font-dejaVuMono`}
       >
-        <header className="text-right p-1 flex items-center justify-between border-b-[1px] border-black fixed top-0 w-full bg-stone-400 z-50">
-          <Link href="/">
+        <header className="text-right p-1 flex items-center justify-between border-b-[1px] border-black fixed top-0 w-full bg-zinc-400 z-50">
+          <Link href="/" className="flex flex-row cursor-pointer">
             <Image
               src="/gympages-icons/GymPages_Logo.tiff"
               alt="GymPages Logo"
               width={500}
               height={125}
-              className="rounded-full cursor-pointer"
+              className=""
+              // style={{ opacity: 0.8 }}
             />
+            {/* <Image
+              src="/gympages-icons/GymPages_Icon.png"
+              alt="Gym Image"
+              height={10}
+              width={90}
+              className=""
+              style={{ filter: "contrast(150%)" }}
+            /> */}
           </Link>
-
-          {/* <Link
-            href="/"
-            className="text-7xl font-semibold align-middle"
-            style={{ WebkitTextStroke: '2px black' }}
-          >
-            GymPages
-          </Link> */}
-
           <Navigation />
         </header>
         <div className="relative min-h-screen">
@@ -61,15 +61,15 @@ export default function RootLayout({
             style={{
               backgroundImage: "url('/LongIsland.jpeg')",
               backgroundAttachment: "fixed",
-              opacity: 0.2,
+              opacity: 0.5,
               zIndex: 0,
             }}
           />
           <main className="p-10 pt-32 font-mono relative z-10">{children}</main>
         </div>
-          <footer className="relative bg-stone-400/75 border-t border-black">
-            <Footer />
-          </footer>
+        <footer className="relative bg-zinc-400 border-t border-black">
+          <Footer />
+        </footer>
       </body>
     </html>
   );

@@ -3,7 +3,7 @@ import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 export default async function About() {
   return (
-    <div className="bg-stone-500 border-[1px] text-white border-black p-3 pb-0">
+    <div className="bg-zinc-500 border-[1px] text-white border-black p-3 pb-0">
       <div className="m-[1px]">
         <div
           className="text-5xl font-bold"
@@ -11,7 +11,7 @@ export default async function About() {
         >
           ABOUT GYMPAGES
         </div>
-        <div className="bg-stone-400/75 border-black border-[1px] text-xl font-bold mb-0 text-justify mt-2 py-2 px-4">
+        <div className="bg-zinc-400/75 border-black border-[1px] text-xl font-bold mb-0 text-justify mt-2 py-2 px-4">
           GymPages is a web application designed and developed by Logan Sherlock
           and Marcos Padilla for the State University of New York at Old
           Westbury's Senior Capstone Project for the Computer and Information
@@ -27,7 +27,7 @@ export default async function About() {
         </div>
 
         <div className="flex flex-row justify-center my-3 gap-x-3">
-          <div className="flex flex-col items-center justify-center text-base font-bold bg-stone-400 px-4 py-2 border-black border-[1px]">
+          <div className="flex flex-col items-center justify-center text-base font-bold bg-zinc-400 px-4 py-2 border-black border-[1px]">
             <div
               className="text-4xl uppercase text-white"
               style={{ WebkitTextStroke: "1px black" }}
@@ -62,7 +62,7 @@ export default async function About() {
               </Link>
             </div>
           </div>
-          <div className="flex flex-col items-center justify-start font-bold text-lg gap-2 m-[1px] px-4 py-2 bg-stone-400 border-black border-[1px]">
+          <div className="flex flex-col items-center justify-start font-bold text-lg gap-2 m-[1px] px-4 py-2 bg-zinc-400 border-black border-[1px]">
             <div
               className="text-4xl uppercase text-white mb-3"
               style={{ WebkitTextStroke: "1px black" }}

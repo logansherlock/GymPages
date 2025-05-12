@@ -79,7 +79,7 @@ export default function Profile() {
       {loading ? (
         <LoadingScreen text="Loading Profile" />
       ) : profile && isLoggedIn ? (
-        <div className="bg-stone-500 border-black text-white border-[1px] p-4">
+        <div className="bg-zinc-500 border-black text-white border-[1px] p-4">
           <div className="flex flex-row items-center mb-3 m-[1px]">
             <div
               className="flex flex-wrap items-center uppercase max-w-s text-5xl shrink font-bold m-[1px]"
@@ -91,7 +91,7 @@ export default function Profile() {
               <nav className="ml-auto flex flex-wrap justify-between m-[1px]">
                 <Link
                   href={`/profile/${userID}/edit`}
-                  className="cursor-pointer hover:scale-[1.05] transition-transform text-center bg-stone-400 border-black border-[1px] px-2 font-bold rounded"
+                  className="cursor-pointer hover:scale-[1.05] transition-transform text-center bg-zinc-400 border-black border-[1px] px-2 font-bold rounded"
                 >
                   Edit Profile
                 </Link>
@@ -141,7 +141,7 @@ export default function Profile() {
                           </th>
                         </tr>
                       </thead>
-                      <tbody className="text-center bg-stone-400">
+                      <tbody className="text-center bg-zinc-400">
                         <tr>
                           <td className="w-[100px] border-white border-[1px]">
                             {profile.max_bench ?? "-"}
@@ -159,7 +159,7 @@ export default function Profile() {
                 </div>
               )}
               {membership === profile.gym_member || userID === 0 ? (
-                <div className="flex flex-row justify-center items-start bg-stone-400 border-black border-[1px] w-[80%] mt-8 text-3xl font-bold uppercase gap-x-5 py-2 px-5">
+                <div className="flex flex-row justify-center items-start bg-zinc-400 border-black border-[1px] w-[80%] mt-8 text-3xl font-bold uppercase gap-x-5 py-2 px-5">
                   <div className="w-1/2">
                     <ProfileReviews user_id={user_id as string} />
                   </div>
@@ -169,7 +169,7 @@ export default function Profile() {
                 </div>
               ) : (
                 <div className="w-full flex justify-center mt-8">
-                  <div className="bg-stone-400 border-black border-[1px] w-[60%] flex justify-center items-center text-3xl font-bold uppercase py-2 px-5">
+                  <div className="bg-zinc-400 border-black border-[1px] w-[60%] flex justify-center items-center text-3xl font-bold uppercase py-2 px-5">
                     <ProfileReviews user_id={user_id as string} />
                   </div>
                 </div>
@@ -180,7 +180,7 @@ export default function Profile() {
       ) : (
         <div>
           <div className="flex flex-wrap m-[1px] font-mono text-white m-[1px] ">
-            <div className="flex flex-wrap items-center bg-stone-400/75 border-black border-[1px] px-2 max-w-s m-[1px] text-sm shrink font-bold text-black">
+            <div className="flex flex-wrap items-center bg-zinc-400/75 border-black border-[1px] px-2 max-w-s m-[1px] text-sm shrink font-bold text-black">
               <Link
                 href={`/`}
                 className="flex flex-row items-center text-white text-5xl font-bold ml-2 mr-4"
@@ -202,7 +202,7 @@ export default function Profile() {
           </div>
 
           {!isLoggedIn ? (
-            <div className="flex flex-col justify-center items-center min-h-screen border font-mono pb-20">
+            <div className="flex flex-col justify-center items-center min-h-screen font-mono pb-20">
               <div
                 className=" max-w-s m-4 text-center text-4xl font-bold bg-red-800 border-black border-[1px] p-4"
                 style={{ WebkitTextStroke: "1px black" }}
@@ -211,7 +211,7 @@ export default function Profile() {
               </div>
             </div>
           ) : (
-            <div className="flex flex-col justify-center items-center min-h-screen border font-mono pb-20">
+            <div className="flex flex-col justify-center items-center min-h-screen font-mono pb-20">
               <div
                 className=" max-w-s m-4 text-center text-4xl font-bold bg-red-800 border-black border-[1px] p-4"
                 style={{ WebkitTextStroke: "1px black" }}

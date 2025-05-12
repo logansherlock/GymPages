@@ -56,7 +56,7 @@ export default function ExercisePage() {
   return (
     <div className="">
       {isLoggedIn && userID === 0 ? (
-        <div className=" bg-stone-500 border-black border-[1px] p-3">
+        <div className=" bg-zinc-500 border-black border-[1px] p-3">
           <div className="flex flex-wrap justify-center font-mono text-white m-[1px] ">
             <div
               className="flex flex-wrap items-center max-w-s m-[1px] text-5xl shrink font-bold"
@@ -67,7 +67,7 @@ export default function ExercisePage() {
             <nav className="flex ml-auto items-center m-[1px] flex-wrap gap-6 justify-between m-[1px]">
               <Link
                 href={`/admin/admin-exercises/add-exercise`}
-                className="cursor-pointer hover:scale-[1.05] transition-transform text-center bg-stone-400 border-black border-[1px] px-2 font-bold rounded"
+                className="cursor-pointer hover:scale-[1.05] transition-transform text-center bg-zinc-400 border-black border-[1px] px-2 font-bold rounded"
               >
                 Add Exercise
               </Link>
@@ -76,7 +76,7 @@ export default function ExercisePage() {
           <div className="flex flex-wrap justify-center m-1">
             {exercises.length > 0 ? (
               <table className="w-full table-auto">
-                <thead className="bg-stone-600 text-stone-100 ">
+                <thead className="bg-zinc-700 text-stone-100 ">
                   <tr>
                     <th className="px-4 py-2 border border-gray-300">
                       exercise_id
@@ -99,7 +99,7 @@ export default function ExercisePage() {
                     <tr
                       key={exercise.exercise_id}
                       className={
-                        index % 2 === 0 ? "bg-stone-400" : "bg-neutral-500"
+                        index % 2 === 0 ? "bg-zinc-400" : "bg-neutral-500"
                       }
                     >
                       <td className="px-4 py-1.5 border border-gray-300 font-bold">
@@ -145,7 +145,7 @@ export default function ExercisePage() {
       ) : (
         <div>
           <div className="flex flex-wrap m-[1px] font-mono text-white m-[1px] ">
-            <div className="flex flex-wrap items-center bg-stone-400/75 border-black border-[1px] px-2 max-w-s m-[1px] text-sm shrink font-bold text-black">
+            <div className="flex flex-wrap items-center bg-zinc-400/75 border-black border-[1px] px-2 max-w-s m-[1px] text-sm shrink font-bold text-black">
               <Link
                 href={`/`}
                 className="flex flex-row items-center text-white text-5xl font-bold ml-2 mr-4"
@@ -166,7 +166,7 @@ export default function ExercisePage() {
             </div>
           </div>
           {!isLoggedIn ? (
-            <div className="flex flex-col justify-center items-center min-h-screen border font-mono pb-20 m-[1px]">
+            <div className="flex flex-col justify-center items-center min-h-screen font-mono pb-20 m-[1px]">
               <div
                 className=" max-w-s m-4 text-center text-4xl font-bold bg-red-800 border-black border-[1px] p-4"
                 style={{ WebkitTextStroke: "1px black" }}
@@ -175,7 +175,7 @@ export default function ExercisePage() {
               </div>
             </div>
           ) : (
-            <div className="flex flex-col justify-center items-center min-h-screen border font-mono pb-20 m-[1px]">
+            <div className="flex flex-col justify-center items-center min-h-screen font-mono pb-20 m-[1px]">
               <div
                 className=" max-w-s m-4 text-center text-4xl font-bold bg-red-800 border-black border-[1px] p-4"
                 style={{ WebkitTextStroke: "1px black" }}

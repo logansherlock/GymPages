@@ -44,7 +44,7 @@ const ProfileReviews = ({ user_id }: { user_id: string }) => {
             {Array.isArray(reviews) &&
               reviews.map((review) => (
                 <div key={review.review_id}>
-                  <div className="text-white font-mono bg-stone-600 rounded-xl p-1 border-black border-[1px] mb-4">
+                  <div className="text-white font-mono bg-zinc-700 rounded-xl p-1 border-black border-[1px] mb-4">
                     <div className="flex justify-between w-full">
                       <div className="text-xl font-semibold mx-2">REVIEW</div>
                       <div className="text-xl font-semibold mx-2">

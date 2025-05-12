@@ -57,7 +57,7 @@ const Reviews = ({ gym_id }: { gym_id: string }) => {
             <nav className="flex flex-wrap gap-6 justify-between m-[1px] ml-auto">
               <Link
                 href={`/add/add-review/${gym_id}`}
-                className="cursor-pointer hover:scale-[1.05] text-white transition-transform text-center bg-stone-400 border-black border-[1px] pl-1 pr-1 font-bold rounded"
+                className="cursor-pointer hover:scale-[1.05] text-white transition-transform text-center bg-zinc-400 border-black border-[1px] pl-1 pr-1 font-bold rounded"
               >
                 Leave Review
               </Link>
@@ -65,7 +65,7 @@ const Reviews = ({ gym_id }: { gym_id: string }) => {
           </div>
           <div className="flex flex-wrap justify-center mt-5">
             {reviews.length === 0 ? (
-              <div className="flex flex-col justify-center items-center min-h-screen border font-mono pb-20">
+              <div className="flex flex-col justify-center items-center min-h-screen font-mono pb-20">
                 <div className="w-full max-w-s m-4 text-center text-white text-5xl font-bold">
                   No reviews found...
                 </div>
@@ -75,7 +75,7 @@ const Reviews = ({ gym_id }: { gym_id: string }) => {
                 {reviews.map((review) => (
                   <div
                     key={review.review_id}
-                    className="text-white font-mono bg-stone-600 rounded-xl p-1 pb-0 border-black border-[1px] mb-4"
+                    className="text-white font-mono bg-zinc-700 rounded-xl p-1 pb-0 border-black border-[1px] mb-4"
                   >
                     <div className="flex justify-between w-full">
                       <Link

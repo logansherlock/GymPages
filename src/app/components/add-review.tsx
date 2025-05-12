@@ -75,7 +75,7 @@ const AddReview = ({ gym_id }: { gym_id: string }) => {
         onSubmit={handleSubmit}
         className="flex flex-col items-center font-mono"
       >
-        <div className="w-[75%] text-white font-mono bg-stone-600 rounded-xl p-1 border-black border-[1px] m-[1px] ">
+        <div className="w-[75%] text-white font-mono bg-zinc-700 rounded-xl p-1 border-black border-[1px] m-[1px] ">
           <div className="flex justify-between w-full items-center">
             <div className="text-2xl font-semibold mx-2">{username}</div>
             <div className="flex flex-row items-center gap-2 w-[25%]">

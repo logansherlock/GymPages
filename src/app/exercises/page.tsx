@@ -55,7 +55,7 @@ export default function Exercises() {
         </div>
 
       ) : (
-        <div className="flex flex-col items-center bg-stone-500 p-5 border-[1px] border-black gap-5 w-full max-w-3xl mx-auto">
+        <div className="flex flex-col items-center bg-zinc-500 p-5 border-[1px] border-black gap-5 w-full max-w-3xl mx-auto">
           <div
             className="text-5xl font-bold"
             style={{
@@ -70,7 +70,7 @@ export default function Exercises() {
             return (
               <details
                 key={range.label}
-                className="w-full max-w-2xl bg-stone-400/75 border border-black p-3"
+                className="w-full max-w-2xl bg-zinc-400/75 border border-black p-3"
               >
                 <summary className="text-3xl font-semibold  my-1 cursor-pointer hover:scale-[1.1] transition-transform transform origin-left">
                   {range.label}

@@ -82,7 +82,7 @@ const UserHistory = ({ user_id }: { user_id: string }) => {
               {Array.isArray(reviews) &&
                 reviews.map((review) => (
                   <div key={review.review_id}>
-                    <div className="text-white font-mono bg-stone-600 rounded-xl p-1 border-black border-[1px] mb-4">
+                    <div className="text-white font-mono bg-zinc-700 rounded-xl p-1 border-black border-[1px] mb-4">
                       <div className="flex justify-between w-full">
                         <div className="text-lg font-semibold mx-2">REVIEW</div>
                       </div>
@@ -109,7 +109,7 @@ const UserHistory = ({ user_id }: { user_id: string }) => {
               {Array.isArray(posts) &&
                 posts.map((post) => (
                   <div key={post.post_id}>
-                    <div className="text-white font-mono bg-stone-600 rounded-xl p-1 border-black border-[1px] mb-4">
+                    <div className="text-white font-mono bg-zinc-700 rounded-xl p-1 border-black border-[1px] mb-4">
                       <div className="flex justify-between w-full">
                         <div className="text-lg font-semibold mx-2">POST</div>
                       </div>
@@ -139,7 +139,7 @@ const UserHistory = ({ user_id }: { user_id: string }) => {
                     href={`/posts/${comment.post_id}`}
                     key={comment.comment_id}
                   >
-                    <div className="cursor-pointer hover:scale-[1.005] transition-transform text-white font-mono bg-stone-600 rounded-xl p-1 border-black border-[1px] mb-4">
+                    <div className="cursor-pointer hover:scale-[1.005] transition-transform text-white font-mono bg-zinc-700 rounded-xl p-1 border-black border-[1px] mb-4">
                       <div className="flex justify-between w-full">
                         <div className="text-lg font-semibold mx-2">
                           COMMENT
@@ -160,7 +160,7 @@ const UserHistory = ({ user_id }: { user_id: string }) => {
           </div>
         </div>
       ) : !isLoggedIn ? (
-        <div className="flex flex-col justify-center items-center min-h-screen border font-mono pb-20 m-[1px]">
+        <div className="flex flex-col justify-center items-center min-h-screen font-mono pb-20 m-[1px]">
           <div
             className="w-full max-w-s m-4 text-center text-4xl font-bold"
             style={{ WebkitTextStroke: "1px black" }}
@@ -169,7 +169,7 @@ const UserHistory = ({ user_id }: { user_id: string }) => {
           </div>
         </div>
       ) : (
-        <div className="flex flex-col justify-center items-center min-h-screen border font-mono pb-20 m-[1px]">
+        <div className="flex flex-col justify-center items-center min-h-screen font-mono pb-20 m-[1px]">
           <div
             className="w-full max-w-s m-4 text-center text-4xl font-bold"
             style={{ WebkitTextStroke: "1px black" }}

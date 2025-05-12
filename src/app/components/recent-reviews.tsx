@@ -57,7 +57,7 @@ const RecentReviews = ({ gym_id }: { gym_id: string }) => {
           {reviews.slice(0, 3).map((review) => (
             <div
               key={review.review_id}
-              className="text-white font-mono bg-stone-600 rounded-xl p-1 border-black border-[1px] w-full"
+              className="text-white font-mono bg-zinc-700 rounded-xl p-1 border-black border-[1px] w-full"
             >
               <div className="flex justify-between w-full mb-1">
                 <div className="text-xl font-semibold">{review.username}</div>

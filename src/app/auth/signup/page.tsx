@@ -71,7 +71,7 @@ export default function SignUp() {
 
   return (
     <div className="min-h-screen flex justify-center items-center -mt-10">
-      <div className="w-full max-w-lg pt-6 pb-3 px-3 bg-stone-500  border-[1px] border-black">
+      <div className="w-full max-w-lg pt-6 pb-3 px-3 bg-zinc-500  border-[1px] border-black">
         <form
           onSubmit={handleSubmit}
           className="flex flex-col justify-center items-center font-mono m-1"

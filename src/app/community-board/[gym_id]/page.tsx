@@ -39,19 +39,23 @@ export default function GymCommunityBoard() {
   }, [userID]);
 
   return (
-    <div className="bg-stone-500 border-black border-[1px] p-3">
+    <div className="bg-zinc-500 border-black border-[1px] p-3">
       {loading ? (
         <LoadingScreen text="Loading Community Board" />
       ) : isLoggedIn && gym && (membership == gym.gym_id || userID === 0) ? (
         <div className="m-[1px]">
           <div className="flex flex-wrap m-[1px] font-mono text-white">
-          <div className="flex flex-wrap items-center bg-stone-400/75 border-black border-[1px] px-2 max-w-s m-[1px] text-sm shrink font-bold text-black">
+            <div className="flex flex-wrap items-center bg-zinc-400/75 border-black border-[1px] px-2 max-w-s m-[1px] text-sm shrink font-bold text-black">
               <Link
                 href={`/gyms/${gym_id}`}
                 className="flex flex-row items-center text-white text-5xl font-bold ml-2 mr-4"
                 style={{ WebkitTextStroke: "1px black" }}
               >
-                ← <span className="text-xl pt-1 ml-3"> back to <span className="uppercase">{gym.gym_name}</span></span>
+                ←{" "}
+                <span className="text-xl pt-1 ml-3">
+                  {" "}
+                  back to <span className="uppercase">{gym.gym_name}</span>
+                </span>
               </Link>{" "}
             </div>
             <div
@@ -66,13 +70,17 @@ export default function GymCommunityBoard() {
       ) : (
         <div>
           <div className="flex flex-wrap m-[1px] font-mono text-white m-[1px] ">
-          <div className="flex flex-wrap items-center bg-stone-400/75 border-black border-[1px] px-2 max-w-s m-[1px] text-sm shrink font-bold text-black">
+            <div className="flex flex-wrap items-center bg-zinc-400/75 border-black border-[1px] px-2 max-w-s m-[1px] text-sm shrink font-bold text-black">
               <Link
                 href={`/gyms/${gym_id}`}
                 className="flex flex-row items-center text-white text-5xl font-bold ml-2 mr-4"
                 style={{ WebkitTextStroke: "1px black" }}
               >
-                ← <span className="text-xl pt-1 ml-3"> back to <span className="uppercase">{gym.gym_name}</span></span>
+                ←{" "}
+                <span className="text-xl pt-1 ml-3">
+                  {" "}
+                  back to <span className="uppercase">{gym.gym_name}</span>
+                </span>
               </Link>{" "}
             </div>
             <div

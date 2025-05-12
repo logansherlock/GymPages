@@ -50,7 +50,7 @@ export default function ExercisePage() {
         <LoadingScreen text="Loading Exercise" />
       ) : exercise ? (
         <div className="">
-          <div className="bg-stone-500 border-black border-[1px] p-1">
+          <div className="bg-zinc-500 border-black border-[1px] p-1">
             <div className="flex m-1 font-mono text-white">
               <div
                 className="flex items-center uppercase max-w-s m-1 text-5xl shrink font-bold"
@@ -108,7 +108,7 @@ export default function ExercisePage() {
             {exercise.video_link ? (
               <div className="m-1 flex flex-row">
                 <div className="flex items-center w-[50%] m-1">
-                  <div className="m-5 ml-10 font-semibold text-white text-lg py-2 px-4 text-justify bg-stone-400/75 border-black border-[1px]">
+                  <div className="m-5 ml-10 font-semibold text-white text-lg py-2 px-4 text-justify bg-zinc-400/75 border-black border-[1px]">
                     {exercise.body}
                   </div>
                 </div>
@@ -124,25 +124,28 @@ export default function ExercisePage() {
               </div>
             ) : (
               <div className="flex items-center m-1">
-                <div className="m-5 mx-10 font-semibold text-lg bg-stone-400/75 p-2 border-black border-[1px] text-justify">
+                <div className="m-5 mx-10 font-semibold text-lg bg-zinc-400/75 p-2 border-black border-[1px] text-justify">
                   {exercise.body}
                 </div>
               </div>
             )}
-          </div>
-          <div className="flex flex-wrap font-mono items-center max-w-s text-sm shrink text-black font-bold text-black">
-            <Link
-              href={`/exercises`}
-              className="text-white text-4xl font-bold ml-1 mr-4"
-              style={{ WebkitTextStroke: "1px black" }}
-            >
-              ←
-            </Link>{" "}
-            back to exercises
+            <div className="flex flex-nowrap items-center bg-zinc-400/75 border-black border-[1px] px-2 max-w-min m-[1px] text-sm font-bold text-black m-3">
+              <Link
+                href={`/exercises`}
+                className="flex flex-row items-center text-white text-5xl font-bold ml-2 mr-4"
+                style={{ WebkitTextStroke: "1px black" }}
+              >
+                ←{" "}
+                <div className="text-xl pt-1 ml-3 whitespace-nowrap">
+                  {" "}
+                  back to <span className="uppercase">EXERCISES</span>
+                </div>
+              </Link>{" "}
+            </div>
           </div>
         </div>
       ) : (
-        <div className="flex flex-col justify-center items-center min-h-screen border font-mono pb-20">
+        <div className="flex flex-col justify-center items-center min-h-screen font-mono pb-20">
           <div
             className=" max-w-s m-4 text-center text-4xl font-bold bg-red-800 border-black border-[1px] p-4"
             style={{ WebkitTextStroke: "1px black" }}

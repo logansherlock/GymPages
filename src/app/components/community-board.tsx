@@ -68,7 +68,7 @@ const CommunityBoard = ({ gym_id }: { gym_id: string }) => {
             <nav className="flex flex-wrap gap-6 justify-between m-[1px] ml-auto">
               <Link
                 href={`/add/add-post/${gym_id}`}
-                className="cursor-pointer hover:scale-[1.05] transition-transform text-white text-center bg-stone-400 border-black border-[1px] pl-1 pr-1 font-bold rounded"
+                className="cursor-pointer hover:scale-[1.05] transition-transform text-white text-center bg-zinc-400 border-black border-[1px] pl-1 pr-1 font-bold rounded"
               >
                 Add Post
               </Link>
@@ -89,7 +89,7 @@ const CommunityBoard = ({ gym_id }: { gym_id: string }) => {
                 {posts.map((post) => (
                   <div
                     key={post.post_id}
-                    className="cursor-pointer hover:scale-[1.005] transition-transform text-white font-mono bg-stone-600 rounded-xl p-1 border-black border-[1px] mb-4"
+                    className="cursor-pointer hover:scale-[1.005] transition-transform text-white font-mono bg-zinc-700 rounded-xl p-1 border-black border-[1px] mb-4"
                     onClick={() =>
                       (window.location.href = `/posts/${post.post_id}`)
                     }
@@ -128,7 +128,7 @@ const CommunityBoard = ({ gym_id }: { gym_id: string }) => {
           )}
         </div>
       ) : !isLoggedIn ? (
-        <div className="flex flex-col justify-center items-center min-h-screen border font-mono pb-20 m-[1px]">
+        <div className="flex flex-col justify-center items-center min-h-screen font-mono pb-20 m-[1px]">
           <div
             className="w-full max-w-s m-4 text-center text-white text-4xl font-bold"
             style={{ WebkitTextStroke: "1px black" }}
@@ -137,7 +137,7 @@ const CommunityBoard = ({ gym_id }: { gym_id: string }) => {
           </div>
         </div>
       ) : (
-        <div className="flex flex-col justify-center items-center min-h-screen border font-mono pb-20 m-[1px]">
+        <div className="flex flex-col justify-center items-center min-h-screen font-mono pb-20 m-[1px]">
           <div
             className="w-full max-w-s m-4 text-center text-white text-4xl font-bold"
             style={{ WebkitTextStroke: "1px black" }}

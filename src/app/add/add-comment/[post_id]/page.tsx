@@ -46,7 +46,7 @@ export default function Post() {
   }, [post]);
 
   return (
-    <div className="bg-stone-500 border-black border-[1px] p-3">
+    <div className="bg-zinc-500 border-black border-[1px] p-3">
       {post_loading || gym_loading ? (
         <LoadingScreen text="Loading Post" />
       ) : isLoggedIn && gym && (membership == gym.gym_id || userID === 0) ? (
@@ -54,7 +54,7 @@ export default function Post() {
           {post && gym ? (
             <div className="m-[1px]">
               <div className="flex flex-wrap m-[1px] font-mono text-white m-[1px] ">
-                <div className="flex flex-wrap items-center bg-stone-400/75 border-black border-[1px] px-2 max-w-s m-[1px] text-sm shrink font-bold text-black">
+                <div className="flex flex-wrap items-center bg-zinc-400/75 border-black border-[1px] px-2 max-w-s m-[1px] text-sm shrink font-bold text-black">
                   <Link
                     href={`/posts/${post_id}`}
                     className="flex flex-row items-center text-white text-5xl font-bold ml-2 mr-4"
@@ -75,7 +75,7 @@ export default function Post() {
                 </div>
               </div>
               <div className="flex flex-wrap items-center justify-center m-[1px]">
-                <div className="w-[60%] text-white font-mono bg-stone-600 rounded-xl p-1 border-black border-[1px] m-10 mb-5">
+                <div className="w-[60%] text-white font-mono bg-zinc-700 rounded-xl p-1 border-black border-[1px] m-10 mb-5">
                   <div className="flex justify-between w-full">
                     <div className="text-3xl font-semibold mx-2">
                       {post.username}
@@ -94,7 +94,7 @@ export default function Post() {
               <AddComment post_id={post_id as string}></AddComment>
             </div>
           ) : (
-            <div className="flex flex-col justify-center items-center min-h-screen border font-mono pb-20">
+            <div className="flex flex-col justify-center items-center min-h-screen font-mono pb-20">
               <div
                 className=" max-w-s m-4 text-center text-4xl font-bold bg-red-800 border-black border-[1px] p-4"
                 style={{ WebkitTextStroke: "1px black" }}
@@ -105,13 +105,13 @@ export default function Post() {
           )}
         </div>
       ) : !isLoggedIn ? (
-        <div className="flex flex-col justify-center items-center min-h-screen border font-mono pb-20 m-[1px]">
+        <div className="flex flex-col justify-center items-center min-h-screen font-mono pb-20 m-[1px]">
           <div className="w-full max-w-s m-4 text-center text-4xl font-bold">
             Must be logged in and a member of the same gym to view posts...
           </div>
         </div>
       ) : (
-        <div className="flex flex-col justify-center items-center min-h-screen border font-mono pb-20 m-[1px]">
+        <div className="flex flex-col justify-center items-center min-h-screen font-mono pb-20 m-[1px]">
           <div className="w-full max-w-s m-4 text-center text-4xl font-bold">
             Must be a member of this gym to view posts...
           </div>

@@ -57,13 +57,13 @@ export default function Home() {
         <div className="flex flex-row mt-10 font-bold text-xl gap-x-5">
           <Link
             href="/gyms"
-            className={`${baseLinkClass} bg-stone-500 px-3 py-1 `}
+            className={`${baseLinkClass} bg-zinc-500 px-3 py-1 `}
           >
             Gym Search
           </Link>
           <Link
             href="/exercises"
-            className={`${baseLinkClass} bg-stone-500 px-3 py-1 `}
+            className={`${baseLinkClass} bg-zinc-500 px-3 py-1 `}
           >
             Exercises
           </Link>
@@ -73,14 +73,14 @@ export default function Home() {
           <div className="flex flex-row mt-5 font-bold text-xl gap-x-5">
             <Link
               href={`/profile/${userID}`}
-              className={`${baseLinkClass} bg-stone-500 px-3 py-1 `}
+              className={`${baseLinkClass} bg-zinc-500 px-3 py-1 `}
             >
               Profile
             </Link>
             {membership ? (
               <Link
                 href={`/community-board/${membership}`}
-                className={`${baseLinkClass} bg-stone-500 px-3 py-1 `}
+                className={`${baseLinkClass} bg-zinc-500 px-3 py-1 `}
               >
                 Community Board
               </Link>
@@ -93,29 +93,29 @@ export default function Home() {
             <button
               onClick={() => setShowAdminLinks(!showAdminLinks)}
               className={`${baseLinkClass} text-white px-3 py-1  text-center ${
-                showAdminLinks === true ? "bg-stone-600" : "bg-stone-500"
+                showAdminLinks === true ? "bg-zinc-700" : "bg-zinc-500"
               }`}
             >
               Admin Tools
             </button>
 
             {showAdminLinks && (
-              <div className="flex flex-col mt-3 bg-stone-400 gap-y-3 text-sm p-2 border-black border-[1px]">
+              <div className="flex flex-col mt-3 bg-zinc-400 gap-y-3 text-sm p-2 border-black border-[1px]">
                 <Link
                   href="/admin/admin-gyms"
-                  className={`${baseLinkClass} bg-stone-500 px-1 `}
+                  className={`${baseLinkClass} bg-zinc-500 px-1 `}
                 >
                   Edit Gyms
                 </Link>
                 <Link
                   href="/admin/admin-users"
-                  className={`${baseLinkClass} bg-stone-500 px-1 `}
+                  className={`${baseLinkClass} bg-zinc-500 px-1 `}
                 >
                   Edit Users
                 </Link>
                 <Link
                   href="/admin/admin-exercises"
-                  className={`${baseLinkClass} bg-stone-500 px-1 `}
+                  className={`${baseLinkClass} bg-zinc-500 px-1 `}
                 >
                   Edit Exercises
                 </Link>
@@ -126,13 +126,13 @@ export default function Home() {
           <div className="flex flex-row items-center mt-5 font-bold text-xl gap-x-5">
             <Link
               href="/auth/login"
-              className={`${baseLinkClass} bg-stone-500 px-3 py-1 `}
+              className={`${baseLinkClass} bg-zinc-500 px-3 py-1 `}
             >
               Login Now!
             </Link>{" "}
             <Link
               href="/auth/login"
-              className={`${baseLinkClass} bg-stone-500 px-3 py-1 `}
+              className={`${baseLinkClass} bg-zinc-500 px-3 py-1 `}
             >
               Signup Today!
             </Link>

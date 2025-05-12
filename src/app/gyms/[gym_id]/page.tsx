@@ -88,7 +88,7 @@ export default function GymPage() {
       ) : gym &&
         gym?.location?.x !== undefined &&
         gym?.location?.y !== undefined ? (
-        <div className="bg-stone-500 border-black border-[1px] p-3">
+        <div className="bg-zinc-500 border-black border-[1px] p-3">
           <div className="flex flex-wrap m-[1px] font-mono text-white">
             <div
               className="flex flex-wrap items-center uppercase max-w-s m-[1px] text-5xl shrink font-bold"
@@ -106,7 +106,7 @@ export default function GymPage() {
             </div>
             <div className="ml-5 flex items-center">
               {averageRating !== null && (
-                <div className="text-white font-bold text-2xl bg-stone-400/75 text-black px-2 py-1 rounded">
+                <div className="text-white font-bold text-2xl bg-zinc-400/75 text-black px-2 py-1 rounded">
                   ⭐️ {averageRating.toFixed(1)}
                 </div>
               )}
@@ -115,13 +115,13 @@ export default function GymPage() {
               <nav className="flex flex-wrap gap-6 justify-between m-[1px]">
                 <Link
                   href={`/reviews/${gym.gym_id}`}
-                  className="cursor-pointer hover:scale-[1.05] transition-transform text-center bg-stone-400 border-black border-[1px] px-2 font-bold rounded"
+                  className="cursor-pointer hover:scale-[1.05] transition-transform text-center bg-zinc-400 border-black border-[1px] px-2 font-bold rounded"
                 >
                   More Reviews
                 </Link>
                 <Link
                   href={`/community-board/${gym.gym_id}`}
-                  className="cursor-pointer hover:scale-[1.05] transition-transform text-center bg-stone-400 border-black border-[1px] px-2 font-bold rounded"
+                  className="cursor-pointer hover:scale-[1.05] transition-transform text-center bg-zinc-400 border-black border-[1px] px-2 font-bold rounded"
                 >
                   Community Board
                 </Link>
@@ -184,7 +184,7 @@ export default function GymPage() {
                 <div className="w-[60%] max-h-[200px]">
                   <GymEquipment gym_id={gym_id as string} />
                 </div>
-                <div className="w-[40%] h-[200px] m-[1px] bg-stone-400/75 border-black border-[1px] p-3 overflow-y-auto">
+                <div className="w-[40%] h-[200px] m-[1px] bg-zinc-400/75 border-black border-[1px] p-3 overflow-y-auto">
                   <div className="flex flex-col h-full justify-start">
                     <div
                       className="text-center w-full text-white text-3xl font-bold"
@@ -216,7 +216,7 @@ export default function GymPage() {
                 </div>
               </div>
             </div>
-            <div className="m-[1px] w-[40%] bg-stone-400/75 border-black border-[1px] p-3">
+            <div className="m-[1px] w-[40%] bg-zinc-400/75 border-black border-[1px] p-3">
               {/* <div className="flex flex-wrap flex-col justify-center items-center h-full"> */}
               <RecentReviews gym_id={gym_id as string} />
               {/* </div> */}
@@ -224,7 +224,7 @@ export default function GymPage() {
           </div>
         </div>
       ) : (
-        <div className="flex flex-col justify-center items-center min-h-screen border font-mono pb-20">
+        <div className="flex flex-col justify-center items-center min-h-screen font-mono pb-20">
           <div
             className=" max-w-s m-4 text-center text-4xl font-bold bg-red-800 border-black border-[1px] p-4"
             style={{ WebkitTextStroke: "1px black" }}

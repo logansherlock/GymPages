@@ -26,7 +26,7 @@ const GymEquipment = ({ gym_id }: { gym_id: string }) => {
   return (
     <div className="border-black border-[1px] max-h-[200px] overflow-y-auto">
       {equipment.length !== 0 ? (
-        <div className="p-3 max-w-screen-lg bg-stone-400/75 flex flex-wrap justify-center items-center h-full">
+        <div className="p-3 max-w-screen-lg bg-zinc-400/75 flex flex-wrap justify-center items-center h-full">
           <div
             className="text-center text-white text-3xl font-bold"
             style={{ WebkitTextStroke: "1px black" }}

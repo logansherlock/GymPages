@@ -82,7 +82,7 @@ export default function Post() {
   };
 
   return (
-    <div className="bg-stone-500 border-black border-[1px] p-3 pb-8">
+    <div className="bg-zinc-500 border-black border-[1px] p-3 pb-8">
       {post_loading || gym_loading || com_loading ? (
         <LoadingScreen text="Loading Post" />
       ) : isLoggedIn && gym && (membership == gym.gym_id || userID === 0) ? (
@@ -90,7 +90,7 @@ export default function Post() {
           {post && gym ? (
             <div className="m-[1px]">
               <div className="flex flex-wrap font-mono text-white m-[1px] ">
-                <div className="flex flex-wrap items-center bg-stone-400/75 border-black border-[1px] px-2 max-w-s m-[1px] text-sm shrink font-bold text-black">
+                <div className="flex flex-wrap items-center bg-zinc-400/75 border-black border-[1px] px-2 max-w-s m-[1px] text-sm shrink font-bold text-black">
                   <Link
                     href={`/community-board/${gym.gym_id}`}
                     className="flex flex-row items-center text-white text-5xl font-bold ml-2 mr-4"
@@ -114,14 +114,14 @@ export default function Post() {
                 <nav className="flex flex-wrap gap-6 justify-between m-[1px] ml-auto">
                   <Link
                     href={`/add/add-comment/${post_id}`}
-                    className="cursor-pointer hover:scale-[1.05] transition-transform text-center bg-stone-400 border-black border-[1px] pl-1 pr-1 font-bold rounded"
+                    className="cursor-pointer hover:scale-[1.05] transition-transform text-center bg-zinc-400 border-black border-[1px] pl-1 pr-1 font-bold rounded"
                   >
                     Add Comment
                   </Link>
                 </nav>
               </div>
               <div className="flex flex-wrap items-center justify-center m-[1px]">
-                <div className="w-[60%] text-white font-mono bg-stone-600 rounded-xl p-1 border-black border-[1px] mb-5">
+                <div className="w-[60%] text-white font-mono bg-zinc-700 rounded-xl p-1 border-black border-[1px] mb-5">
                   <div className="flex justify-between w-full">
                     <Link
                       href={`/profile/${post.user_id}`}
@@ -152,7 +152,7 @@ export default function Post() {
                     {comments.map((comment, index) => (
                       <div
                         key={comment.comment_id}
-                        className="text-white font-mono bg-stone-600 rounded-xl p-1 pb-0 border-black border-[1px] m-[1px] "
+                        className="text-white font-mono bg-zinc-700 rounded-xl p-1 pb-0 border-black border-[1px] m-[1px] "
                       >
                         <div className="flex justify-between w-full">
                           <Link
@@ -191,7 +191,7 @@ export default function Post() {
               )}
             </div>
           ) : (
-            <div className="flex flex-col justify-center items-center min-h-screen border font-mono pb-20">
+            <div className="flex flex-col justify-center items-center min-h-screen font-mono pb-20">
               <div
                 className=" max-w-s m-4 text-center text-4xl font-bold bg-red-800 border-black border-[1px] p-4"
                 style={{ WebkitTextStroke: "1px black" }}
@@ -202,7 +202,7 @@ export default function Post() {
           )}
         </div>
       ) : !isLoggedIn ? (
-        <div className="flex flex-col justify-center items-center min-h-screen border font-mono pb-20 m-[1px]">
+        <div className="flex flex-col justify-center items-center min-h-screen font-mono pb-20 m-[1px]">
           <div
             className="w-full max-w-s m-4 text-center text-4xl font-bold"
             style={{ WebkitTextStroke: "1px black" }}
@@ -211,7 +211,7 @@ export default function Post() {
           </div>
         </div>
       ) : (
-        <div className="flex flex-col justify-center items-center min-h-screen border font-mono pb-20 m-[1px]">
+        <div className="flex flex-col justify-center items-center min-h-screen font-mono pb-20 m-[1px]">
           <div
             className="w-full max-w-s m-4 text-center text-4xl font-bold"
             style={{ WebkitTextStroke: "1px black" }}
