@@ -55,7 +55,7 @@ export default function Post() {
           <div className="mt-5 max-w-5xl mx-auto p-1">
             {!gym_loading && gym ? (
               <div
-                className="max-w-s mt-5 text-center text-4xl font-bold"
+                className="max-w-s mt-5 text-center text-white text-4xl font-bold"
                 style={{ WebkitTextStroke: "1px black" }}
               >
                 {gym.gym_name} in {gym.city}, {gym.state}

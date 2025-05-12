@@ -114,7 +114,7 @@ export default function Post() {
                 <nav className="flex flex-wrap gap-6 justify-between m-[1px] ml-auto">
                   <Link
                     href={`/add/add-comment/${post_id}`}
-                    className="cursor-pointer hover:scale-[1.05] transition-transform text-center bg-zinc-400 border-black border-[1px] pl-1 pr-1 font-bold rounded"
+                    className="cursor-pointer hover:scale-[1.05] transition-transform text-center text-white bg-zinc-400 border-black border-[1px] pl-1 pr-1 font-bold rounded"
                   >
                     Add Comment
                   </Link>
@@ -144,7 +144,7 @@ export default function Post() {
                 <div className="flex flex-wrap justify-center m-[1px]">
                   <div className="w-[50%] flex flex-wrap flex-col justify-between gap-y-5 m-[1px]">
                     <div
-                      className="flex flex-wrap justify-center font-mono font-bold text-3xl m-[1px]"
+                      className="flex flex-wrap justify-center font-mono text-white font-bold text-3xl m-[1px]"
                       style={{ WebkitTextStroke: "1px black" }}
                     >
                       comments

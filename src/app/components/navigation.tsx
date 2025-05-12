@@ -55,33 +55,32 @@ export const Navigation = () => {
               <button
                 onClick={() => setShowAdminLinks(!showAdminLinks)}
                 className={`${baseLinkClass} text-center ${
-                  showAdminLinks
-                    ? "font-bold text-stone-100"
-                    : "text-stone-800"
-                }`}              >
+                  showAdminLinks ? "font-bold text-stone-100" : "text-stone-800"
+                }`}
+              >
                 Admin
               </button>
               {showAdminLinks && (
-                <div className="absolute flex flex-col bg-zinc-400 gap-y-3 max-w-lg text-sm p-2 border-black border-[1px]">
-                <Link
-                  href="/admin/admin-gyms"
-                  className={`cursor-pointer hover:scale-[1.05] transition-transform text-center font-bold tracking-tighter bg-zinc-500 px-1 `}
-                >
-                  Edit Gyms
-                </Link>
-                <Link
-                  href="/admin/admin-users"
-                  className={`cursor-pointer hover:scale-[1.05] transition-transform text-center font-bold tracking-tighter bg-zinc-500 px-1 `}
-                >
-                  Edit Users
-                </Link>
-                <Link
-                  href="/admin/admin-exercises"
-                  className={`cursor-pointer hover:scale-[1.05] transition-transform text-center font-bold tracking-tighter bg-zinc-500 px-1 `}
-                >
-                  Edit Exercises
-                </Link>
-              </div>
+                <div className="absolute flex flex-col bg-zinc-400 gap-y-3 max-w-lg text-white text-sm p-2 border-black border-[1px]">
+                  <Link
+                    href="/admin/admin-gyms"
+                    className={`cursor-pointer hover:scale-[1.05] transition-transform text-center font-bold tracking-tighter bg-zinc-500 px-1 `}
+                  >
+                    Edit Gyms
+                  </Link>
+                  <Link
+                    href="/admin/admin-users"
+                    className={`cursor-pointer hover:scale-[1.05] transition-transform text-center font-bold tracking-tighter bg-zinc-500 px-1 `}
+                  >
+                    Edit Users
+                  </Link>
+                  <Link
+                    href="/admin/admin-exercises"
+                    className={`cursor-pointer hover:scale-[1.05] transition-transform text-center font-bold tracking-tighter bg-zinc-500 px-1 `}
+                  >
+                    Edit Exercises
+                  </Link>
+                </div>
               )}
             </div>
           )}
