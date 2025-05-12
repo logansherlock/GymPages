@@ -36,7 +36,7 @@ const RecentReviews = ({ gym_id }: { gym_id: string }) => {
   return (
     <div className="flex flex-col justify-start h-full">
       <div
-        className="w-full text-center font-white text-4xl font-bold m-1"
+        className="w-full text-center text-white text-4xl font-bold m-1"
         style={{ WebkitTextStroke: "1px black" }}
       >
         Recent Reviews
