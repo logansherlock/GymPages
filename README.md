@@ -6,7 +6,7 @@ Copy & paste the respective commands for your system
 
 - Git already installed and setup
 
-- MySQL server is already installed and set up with a username and password
+- MySQL server is already installed and setup with a username and password
 
 ## Step #1 (install node.js with nvm)
 
