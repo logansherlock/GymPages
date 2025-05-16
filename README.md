@@ -2,9 +2,9 @@
 
 Copy & paste the respective commands for your system
 
-## Assumptions & Prerequisites 
+## Assumptions & Prerequisites
 
-- Git installed and setup on their system
+- Git already installed and setup
 
 - MySQL server is already installed and set up with a username and password
 
