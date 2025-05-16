@@ -1,36 +1,95 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# GymPages Developer Installation
 
-## Getting Started
+Copy & paste the respective commands for your system
 
-First, run the development server:
+## Assumptions & Prerequisites 
+
+- Git installed and setup on their system
+
+- MySQL server is already installed and set up with a username and password
+
+## Step #1 (install node.js with nvm)
+
+Install Node.js and check the current version. Run the commands in your home directory.
+
+### Mac & Linux
+
+Install Node.js with nvm.
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+
+\. "$HOME/.nvm/nvm.sh"
+
+nvm install 22
+
+# verify installation
+node -v 
+nvm current 
+npm -v 
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Windows
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Install Node.js with fnm.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+winget install Schniz.fnm
 
-## Learn More
+fnm install 22
 
-To learn more about Next.js, take a look at the following resources:
+# verify installation
+node -v 
+npm -v
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Step #2 (clone repo)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Clone the GymPages repository using git, and navigate to the new directory.
 
-## Deploy on Vercel
+```bash
+git clone https://github.com/logansherlock/GymPages.git
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+cd GymPages
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Step #3 (install dependencies)
+
+Install the projects dependencies using npm.
+
+```bash
+npm install
+```
+
+## Step 4 (database dump)
+
+Use the database dump from the repository on your own MySQL server. Replace 'your_username' with your MySQL server username. Enter your password when prompted.
+
+```bash
+mysql -u your_username -p < gympages_dump.sql
+```
+
+## Step 5 (environment variables)
+
+Create a file named '.env.local' in the GymPages directory. Your own Google Places API key, and JWT secret will be required. Preset JWT secret or random string can be used.
+
+```bash
+touch .env.local
+
+nano .env.local
+```
+
+Add these variables in the file and replace values with your own.
+
+```bash
+DB_HOST=localhost
+DB_USER=your_username
+DB_PASSWORD=your_password
+DB_NAME=gympages
+
+NEXT_PUBLIC_GOOGLE_API=your_google_places_api_key
+
+JWT_SECRET=your_jwt_secret
+```
+
+### Installation and setup is complete. Now you can interact with the GymPages application using a text editor or IDE and utilize node.js developer features from your machine.
