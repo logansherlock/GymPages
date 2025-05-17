@@ -11,7 +11,7 @@ export default function Images({ gymPics }: { gymPics: string[] }) {
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % gymPics.length);
     }, 10000);
 
-    return () => clearInterval(interval); // Cleanup interval on component unmount
+    return () => clearInterval(interval);
   }, [gymPics.length]);
 
   const handleDotClick = (index: number) => {

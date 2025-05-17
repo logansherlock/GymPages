@@ -13,8 +13,8 @@ export default function Exercises() {
   const [exercises, setExercises] = useState<Exercise[]>([]);
   const [loading, setLoading] = useState(true);
 
-  // Fetch exercises
   useEffect(() => {
+    // GET() method from exercise-list API
     fetch(`/api/exercises/exercise-list`)
       .then((res) => res.json())
       .then((data) => {
@@ -28,7 +28,7 @@ export default function Exercises() {
       .finally(() => setLoading(false));
   }, []);
 
-  // Group ranges
+  // letter groupings
   const ranges = [
     { label: "A–D", start: "A", end: "C" },
     { label: "E–H", start: "E", end: "H" },
@@ -37,7 +37,7 @@ export default function Exercises() {
     { label: "Q–Z", start: "Q", end: "Z" },
   ];
 
-  // Helper to group by range
+  // helper function to group by range
   const groupByRange = (rangeStart: string, rangeEnd: string) => {
     return exercises.filter((exercise) => {
       const firstLetter = exercise.exercise_name[0].toUpperCase();
@@ -48,18 +48,17 @@ export default function Exercises() {
   return (
     <div className="text-white">
       {loading ? (
-        <LoadingScreen text="Loading Exercises"/>
+        <LoadingScreen text="Loading Exercises" />
       ) : exercises.length === 0 ? (
         <div className="flex justify-center items-center min-h-screen text-5xl font-bold">
           No exercises found.
         </div>
-
       ) : (
         <div className="flex flex-col items-center bg-zinc-500 p-5 border-[1px] border-black gap-5 w-full max-w-3xl mx-auto">
           <div
             className="text-5xl font-bold"
             style={{
-              WebkitTextStroke: "1px black"
+              WebkitTextStroke: "1px black",
             }}
           >
             EXERCISES

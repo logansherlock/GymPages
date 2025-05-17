@@ -18,8 +18,10 @@ export default function Post() {
   const { isLoggedIn, username, userID, membership } = useAuth();
 
   useEffect(() => {
+    // if post-id doesn't exist, exit
     if (!post_id) return;
-    console.log("page.tsx post_id type:", typeof post_id); // Log the type of gym_id
+
+    // GET() method from post API by post_id
     fetch(`/api/community-board/post/${post_id}`, { method: "GET" })
       .then((res) => res.json())
       .then((data) => {
@@ -32,8 +34,10 @@ export default function Post() {
   }, [post_id]);
 
   useEffect(() => {
+    // if a posts gym_id doesn't exist, exit
     if (!post?.gym_id) return;
 
+    // GET() method from the gym API by gym_id
     fetch(`/api/gyms/${post.gym_id}`)
       .then((res) => res.json())
       .then((data) => {
@@ -46,7 +50,10 @@ export default function Post() {
   }, [post]);
 
   useEffect(() => {
+    // if post_id doesn't exist, exit
     if (!post_id) return;
+
+    // GET() method from comment API by post_id
     fetch(`/api/community-board/post/${post_id}/comments/`)
       .then((res) => res.json())
       .then((data) => {
@@ -62,6 +69,7 @@ export default function Post() {
       .catch((err) => console.log("Fetch error:", err));
   }, [post_id]);
 
+  // function to handle comment deletion
   const handleDeleteComments = async (comment_id: string) => {
     try {
       const res = await fetch(

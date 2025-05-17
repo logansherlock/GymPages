@@ -14,10 +14,12 @@ export default function Profile() {
   const { user_id } = useParams();
 
   useEffect(() => {
-    if (!user_id) return; // prevent undefined fetch
+    // if user_id doesn't exist, exit
+    if (!user_id) return;
 
     const fetchExercise = async () => {
       try {
+        // GET() method from profile API by user_id
         const res = await fetch(`/api/profile/${user_id}`);
         if (!res.ok) throw new Error(`Failed to fetch: ${res.status}`);
         const data = await res.json();
@@ -32,11 +34,12 @@ export default function Profile() {
     fetchExercise();
   }, [user_id]);
 
-  // Helper to get initials
+  // retrieve initials based on user's first and last names
   const getInitials = (first: string, last: string) => {
     return `${first?.[0] || ""}${last?.[0] || ""}`.toUpperCase();
   };
 
+  // random color chooser so webpage is different every refresh
   const getRandomColorClass = () => {
     const colorClasses = [
       "bg-red-500",

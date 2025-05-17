@@ -8,13 +8,17 @@ export default function UsersPage() {
   const [users_loading, setUsersLoading] = useState(true);
   const { isLoggedIn, username, userID, membership } = useAuth();
 
+  // function to handle user deletion when button is pressed
   const handleDeleteUser = async (user_id: number) => {
+    // confirmation window
     const confirmed = window.confirm(
       "Are you sure you want to delete this user?"
     );
+    // if not confirmed
     if (!confirmed) return;
 
     try {
+      // DELETE() method from admin-user API
       const res = await fetch(`/api/admin/users/${user_id}`, {
         method: "DELETE",
       });
@@ -32,10 +36,10 @@ export default function UsersPage() {
   };
 
   useEffect(() => {
+    // GET() method from admin-user API
     fetch("/api/admin/users")
       .then((res) => res.json())
       .then((data) => {
-        console.log("Fetched users:", data); // Debugging log
         if (Array.isArray(data)) {
           setUsers(data);
         } else {

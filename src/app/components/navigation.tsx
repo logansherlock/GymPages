@@ -13,11 +13,12 @@ export const Navigation = () => {
     "cursor-pointer hover:scale-[1.1] transition-transform text-center font-bold tracking-tighter";
   const [showAdminLinks, setShowAdminLinks] = useState(false);
 
+  // function to handle logout when button is pressed
   const handleLogout = async () => {
+    // POST() method from logout API
     await fetch("/api/auth/logout", { method: "POST" });
     window.location.reload();
     window.location.href = "/";
-    // this will re-run the useEffect in useAuth
   };
 
   return (

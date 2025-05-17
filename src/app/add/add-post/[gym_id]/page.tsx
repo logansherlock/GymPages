@@ -16,12 +16,15 @@ export default function Post() {
   const { isLoggedIn, username, userID, membership } = useAuth();
 
   useEffect(() => {
+    // if gym_id doesn't exist, exit
     if (!gym_id) return;
 
+    // GET() method from gym API by gym_id
     fetch(`/api/gyms/${gym_id}`)
       .then((res) => res.json())
       .then((data) => {
         console.log("Fetched gym:", data);
+        // set gym information
         setGym(data);
         setGymLoading(false);
         console.log("Current gym object:", data);

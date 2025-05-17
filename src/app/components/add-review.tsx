@@ -32,7 +32,7 @@ const AddReview = ({ gym_id }: { gym_id: string }) => {
     event.preventDefault();
     const reviewDataWithNumberRating = {
       ...reviewData,
-      rating: Number(reviewData.rating), // Convert rating to a number
+      rating: Number(reviewData.rating),
     };
     try {
       const response = await fetch(`/api/reviews/reviews-by-gym/${gym_id}`, {
@@ -45,7 +45,7 @@ const AddReview = ({ gym_id }: { gym_id: string }) => {
       console.log("response received add-review.tsx", data);
 
       if (response.ok) {
-        router.push(`/reviews/${gym_id}`); // reloads the current post page
+        router.push(`/reviews/${gym_id}`);
       } else {
         throw new Error(
           data.message || "something went wrong (add-review.tsx)"
@@ -65,7 +65,7 @@ const AddReview = ({ gym_id }: { gym_id: string }) => {
     const { name, value } = event.target;
     setReviewData((prevData) => ({
       ...prevData,
-      [name]: name === "rating" ? Number(value) : value, // Convert rating to number here if needed
+      [name]: name === "rating" ? Number(value) : value,
     }));
   };
 

@@ -14,9 +14,10 @@ export default function GymCommunityBoard() {
   const { isLoggedIn, username, userID, membership } = useAuth();
 
   useEffect(() => {
+    // if gym_id doesn't exist, exit
     if (!gym_id) return;
 
-    console.log("page.tsx gym_id:", gym_id); // Log the type of gym_id
+    // GET() method from gym API
     fetch(`/api/gyms/${gym_id}`)
       .then((res) => res.json())
       .then((data) => {
@@ -31,12 +32,6 @@ export default function GymCommunityBoard() {
         setLoading(false);
       });
   }, [gym_id]);
-
-  useEffect(() => {
-    if (!userID) return;
-
-    console.log("userID:", userID, typeof userID);
-  }, [userID]);
 
   return (
     <div className="bg-zinc-500 border-black border-[1px] p-3">

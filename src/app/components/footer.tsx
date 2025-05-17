@@ -1,22 +1,17 @@
 "use client";
 
 import Link from "next/link";
-import { useAuth } from "@/hooks/useAuth";
-import { usePathname } from "next/navigation";
 import { useState } from "react";
 import Image from "next/image";
 
 export const Footer = () => {
-  const pathname = usePathname();
-
-  const { isLoggedIn, username, userID, membership } = useAuth();
   const baseLinkClass =
     "cursor-pointer hover:scale-[1.05] transition-transform transform origin-left text-center font-bold ";
   const [showAdminLinks, setShowAdminLinks] = useState(false);
 
   const handleLogout = async () => {
     await fetch("/api/auth/logout", { method: "POST" });
-    window.location.reload(); // this will re-run the useEffect in useAuth
+    window.location.reload();
   };
 
   return (

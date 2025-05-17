@@ -9,11 +9,12 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [localMessage, setLocalMessage] = useState("");
 
-  // Handle form submission
+  // function to handle login when button is pressed
   async function handleLogin(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     try {
+      // POST() method from auth-login API (login cookie creation)
       const response = await fetch("/api/auth/login", {
         method: "POST",
         body: JSON.stringify({ email, password }),
@@ -21,8 +22,6 @@ export default function Login() {
           "Content-Type": "application/json",
         },
       });
-
-      console.log("Login response status:", response.status);
 
       const data = await response.json();
       console.log("Login response data:", data);
@@ -40,7 +39,7 @@ export default function Login() {
     }
   }
 
-  // Redirect to signup page
+  // redirect to signup page
   async function handleSignUp() {
     router.push("/auth/signup");
   }

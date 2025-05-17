@@ -6,17 +6,8 @@ import { useState, useEffect } from "react";
 const AddComment = ({ post_id }: { post_id: string }) => {
   const { isLoggedIn, username, userID, membership } = useAuth();
   const router = useRouter();
-  console.log(
-    "isLoggedIn:",
-    isLoggedIn,
-    ", username:",
-    username,
-    ", user_id:",
-    userID,
-    ", membership:",
-    membership
-  ); // Debugging log
 
+  // initialize comment data
   const [commentData, setCommentData] = useState({
     post_id: "",
     user_id: "",
@@ -26,8 +17,8 @@ const AddComment = ({ post_id }: { post_id: string }) => {
 
   const [localMessage, setLocalMessage] = useState("");
 
+  // set comment data to logged in user's information 
   useEffect(() => {
-    console.log("user_id:", userID, "membership:", membership); // Debugging log
     if ((userID && membership) || userID === 0) {
       setCommentData((prevData) => ({
         ...prevData,
@@ -37,12 +28,12 @@ const AddComment = ({ post_id }: { post_id: string }) => {
     }
   }, [post_id, userID, membership]);
 
+  // handle submission when button is pressed
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
-    console.log("submitting post (add-comment.tsx):", commentData);
-
     try {
+      // POST() method of comment API
       const response = await fetch(
         `/api/community-board/post/${post_id}/comments`,
         {
@@ -71,13 +62,14 @@ const AddComment = ({ post_id }: { post_id: string }) => {
     }
   };
 
+  // update webpage as changes are typed
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = event.target;
     setCommentData((prevData) => ({
       ...prevData,
-      [name]: value, // Update the specific field in the state
+      [name]: value,
     }));
   };
 

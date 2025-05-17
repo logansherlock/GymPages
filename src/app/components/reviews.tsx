@@ -11,12 +11,10 @@ const Reviews = ({ gym_id }: { gym_id: string }) => {
   const { isLoggedIn, username, userID, membership } = useAuth();
 
   useEffect(() => {
-    if (!gym_id) {
-      console.log("no gym_id in community-board.tsx");
-      return;
-    }
-    console.log("community-board.tsx gym_id:", gym_id); // Log the type of gym_id
+    // ig gym_id doesn't exist, exit
+    if (!gym_id) return;
 
+    // GET() method from review API by gym_id
     fetch(`/api/reviews/reviews-by-gym/${gym_id}`)
       .then((res) => res.json())
       .then((data) => {
@@ -31,8 +29,10 @@ const Reviews = ({ gym_id }: { gym_id: string }) => {
       .finally(() => setLoading(false));
   }, [gym_id]);
 
+  // function to handle review deletion 
   const handleDeleteReview = async (review_id: string) => {
     try {
+      // DELETE() method from review API by review_id
       const res = await fetch(`/api/reviews/${review_id}`, {
         method: "DELETE",
       });

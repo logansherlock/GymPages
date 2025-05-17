@@ -7,6 +7,8 @@ import { useAuth } from "@/hooks/useAuth";
 export default function AddExercise() {
   const [localMessage, setLocalMessage] = useState("");
   const { isLoggedIn, username, userID, membership } = useAuth();
+
+  // initialize new exercise data
   const [exerciseData, setExerciseData] = useState({
     exercise_id: "",
     exercise_name: "",
@@ -20,9 +22,11 @@ export default function AddExercise() {
 
   const router = useRouter();
 
+  // function to handle submission of new exercise when button is pressed
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     try {
+      // POST() method from admin-exercise API
       const response = await fetch("/api/admin/exercises", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -56,14 +60,14 @@ export default function AddExercise() {
     }
   };
 
-  // Handle changes in input fields
+  // handle changes in input forms on webpage
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = event.target;
     setExerciseData((prevData) => ({
       ...prevData,
-      [name]: value, // Update the specific field in the state
+      [name]: value,
     }));
   };
 

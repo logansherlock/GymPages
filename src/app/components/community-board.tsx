@@ -10,24 +10,15 @@ const CommunityBoard = ({ gym_id }: { gym_id: string }) => {
   const [loading, setLoading] = useState(true);
 
   const { isLoggedIn, username, userID, membership } = useAuth();
-  console.log(
-    "isLoggedIn:",
-    isLoggedIn,
-    ", username:",
-    username,
-    ", user_id:",
-    userID,
-    ", membership:",
-    membership
-  ); // Debugging log
 
   useEffect(() => {
     if (!gym_id) {
       console.log("no gym_id in community-board.tsx");
       return;
     }
-    console.log("community-board.tsx gym_id:", gym_id); // Log the type of gym_id
+    console.log("community-board.tsx gym_id:", gym_id);
 
+    // GET() method from board API by gym_id
     fetch(`/api/community-board/board/${gym_id}`)
       .then((res) => res.json())
       .then((data) => {
@@ -42,8 +33,10 @@ const CommunityBoard = ({ gym_id }: { gym_id: string }) => {
       .finally(() => setLoading(false));
   }, [gym_id]);
 
-  const handlePostReview = async (post_id: string) => {
+  // function to handle community board post deletion
+  const handlePostDeletion = async (post_id: string) => {
     try {
+      // DELETE() method from post API by post_id
       const res = await fetch(`/api/community-board/post/${post_id}`, {
         method: "DELETE",
       });
@@ -110,7 +103,7 @@ const CommunityBoard = ({ gym_id }: { gym_id: string }) => {
                       {(userID === 0 || post.user_id === userID) && (
                         <div onClick={(e) => e.stopPropagation()}>
                           <button
-                            onClick={() => handlePostReview(post.post_id)}
+                            onClick={() => handlePostDeletion(post.post_id)}
                             className="cursor-pointer hover:scale-[1.05] text-white transition-transform text-center bg-red-500 border-black border-[1px] pl-1 pr-1 font-bold rounded"
                           >
                             delete

@@ -4,8 +4,10 @@ const RecentReviews = ({ gym_id }: { gym_id: string }) => {
   const [reviews, setReviews] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
+  // maximum amount of characters to preview reviews
   const maxChars = 150;
 
+  // trim text to maxChars
   const truncateText = (text: string, maxChars: number) => {
     if (text.length > maxChars) {
       return text.slice(0, maxChars) + "...";
@@ -14,11 +16,10 @@ const RecentReviews = ({ gym_id }: { gym_id: string }) => {
   };
 
   useEffect(() => {
-    if (!gym_id) {
-      console.log("no gym_id in recent-reviews.tsx");
-      return;
-    }
+    //if gym_id doesn't exist, exit
+    if (!gym_id) return;
 
+    // GET() method from review API by gym_id
     fetch(`/api/reviews/reviews-by-gym/${gym_id}`)
       .then((res) => res.json())
       .then((data) => {

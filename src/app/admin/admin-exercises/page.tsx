@@ -8,13 +8,15 @@ export default function ExercisePage() {
   const [exercises_loading, setExercisesLoading] = useState(true);
   const { isLoggedIn, username, userID, membership } = useAuth();
 
+  // function to delete exercise from database by exercise_id
   const handleDeleteExercise = async (exercise_id: string) => {
-    const confirmed = window.confirm(
-      "Are you sure you want to delete this exercise?"
-    );
+    // confirmation check
+    const confirmed = window.confirm("Are you sure you want to delete this exercise?");
+    // if not confirmed
     if (!confirmed) return;
 
     try {
+      // DELETE() method from admin-exercise API by exercise_id
       const res = await fetch(`/api/admin/exercises/${exercise_id}`, {
         method: "DELETE",
       });
@@ -34,10 +36,11 @@ export default function ExercisePage() {
   };
 
   useEffect(() => {
+    // GET() method from admin-exercise API
     fetch("/api/admin/exercises")
       .then((res) => res.json())
       .then((data) => {
-        console.log("Fetched exercises:", data); // Debugging log
+        console.log("Fetched exercises:", data);
         if (Array.isArray(data)) {
           setExercises(data);
         } else {

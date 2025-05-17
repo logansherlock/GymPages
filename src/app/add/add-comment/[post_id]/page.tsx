@@ -17,13 +17,15 @@ export default function Post() {
   const { isLoggedIn, username, userID, membership } = useAuth();
 
   useEffect(() => {
+    // if post_id doesn't exist, exit
     if (!post_id) return;
 
-    console.log("page.tsx post_id type:", typeof post_id); // Log the type of gym_id
+    // GET() method from post API by post_id
     fetch(`/api/community-board/post/${post_id}`, { method: "GET" })
       .then((res) => res.json())
       .then((data) => {
         console.log("Fetched post:", data);
+        // set post information
         setPost(data);
         setPostLoading(false);
         console.log("Current post object:", data);
@@ -32,12 +34,15 @@ export default function Post() {
   }, [post_id]);
 
   useEffect(() => {
+    // if post doesn't have a gym_id, exit
     if (!post?.gym_id) return;
 
+    // GET() method from gym API by gym_id
     fetch(`/api/gyms/${post.gym_id}`)
       .then((res) => res.json())
       .then((data) => {
         console.log("Fetched gym:", data);
+        // set gym information
         setGym(data);
         setGymLoading(false);
         console.log("Current gym object:", data);

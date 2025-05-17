@@ -8,6 +8,7 @@ const AddReview = ({ gym_id }: { gym_id: string }) => {
   const { isLoggedIn, username, userID, membership } = useAuth();
   const router = useRouter();
 
+  // initialize post data
   const [postData, setPostData] = useState({
     gym_id: "",
     user_id: "",
@@ -16,6 +17,7 @@ const AddReview = ({ gym_id }: { gym_id: string }) => {
 
   const [localMessage, setLocalMessage] = useState("");
 
+  // add user ID and users gym to the post API body
   useEffect(() => {
     if ((userID && membership) || userID === 0) {
       setPostData((prev) => ({
@@ -29,10 +31,12 @@ const AddReview = ({ gym_id }: { gym_id: string }) => {
   console.log(postData);
   console.log(isLoggedIn, username, userID);
 
+  // function to handle submission of a post
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
     try {
+      // POST() method of board API by gym_id
       const response = await fetch(`/api/community-board/board/${gym_id}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -45,7 +49,7 @@ const AddReview = ({ gym_id }: { gym_id: string }) => {
       console.log("response received add-post.tsx", data);
 
       if (response.ok) {
-        router.push(`/community-board/${gym_id}`); // reloads the current post page
+        router.push(`/community-board/${gym_id}`);
       } else {
         throw new Error(data.message || "something went wrong (add-post.tsx)");
       }
@@ -57,13 +61,15 @@ const AddReview = ({ gym_id }: { gym_id: string }) => {
       }
     }
   };
+
+  // show updates while typing on webpage
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = event.target;
     setPostData((prevData) => ({
       ...prevData,
-      [name]: value, // Update the specific field in the state
+      [name]: value,
     }));
   };
 
@@ -104,9 +110,7 @@ const AddReview = ({ gym_id }: { gym_id: string }) => {
       </form>
       <div className="w-full flex justify-center">
         {localMessage && (
-          <p
-            className="mt-4 px-4 py-2 text-center text-white rounded-md font-bold bg-orange-400"
-          >
+          <p className="mt-4 px-4 py-2 text-center text-white rounded-md font-bold bg-orange-400">
             {localMessage}
           </p>
         )}

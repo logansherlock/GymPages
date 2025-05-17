@@ -4,17 +4,21 @@ import { useAuth } from "@/hooks/useAuth";
 import Link from "next/link";
 
 export default function GymList() {
-  const [gyms, setGyms] = useState<any[]>([]); // Ensure it's an array
+  const [gyms, setGyms] = useState<any[]>([]);
   const [gyms_loading, setGymsLoading] = useState(true);
   const { isLoggedIn, username, userID, membership } = useAuth();
 
+  // function to handle gym deletion when button is pressed
   const handleDeleteGym = async (gym_id: string) => {
+    // confirmation window
     const confirmed = window.confirm(
       "Are you sure you want to delete this gym?"
     );
+    // if not confirmed
     if (!confirmed) return;
 
     try {
+      // DELETE() method from admin-gym API
       const res = await fetch(`/api/admin/gyms/${gym_id}`, {
         method: "DELETE",
       });
@@ -30,10 +34,11 @@ export default function GymList() {
   };
 
   useEffect(() => {
+    // GET() method from admin-gym API
     fetch("/api/admin/gyms")
       .then((res) => res.json())
       .then((data) => {
-        console.log("Fetched gyms:", data); // Debugging log
+        console.log("Fetched gyms:", data);
         if (Array.isArray(data)) {
           setGyms(data);
         } else {

@@ -8,6 +8,8 @@ export default function EditProfile() {
   const { isLoggedIn, userID } = useAuth();
   const { user_id } = useParams();
   const router = useRouter();
+
+  // default profile data
   const [profileData, setProfileData] = useState({
     visibility: "public",
     max_bench: null,
@@ -18,6 +20,7 @@ export default function EditProfile() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // GET() method from profile API by user_id
     fetch(`/api/profile/${user_id}`)
       .then((res) => res.json())
       .then((data) => {
@@ -31,6 +34,7 @@ export default function EditProfile() {
       .finally(() => setLoading(false));
   }, [user_id]);
 
+  // show changes while typing on webpage
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
@@ -46,9 +50,13 @@ export default function EditProfile() {
     }));
   };
 
+
+  // function to handle submission of the edited profile data
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     try {
+
+      // POST() method of the profile API by user_id
       const response = await fetch(`/api/profile/${user_id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
@@ -58,6 +66,7 @@ export default function EditProfile() {
       const data = await response.json();
       setLocalMessage(data.message || "Profile updated");
 
+      // if update is okay, return to user profile
       if (response.ok) {
         router.push(`/profile/${user_id}`);
       }

@@ -7,13 +7,14 @@ import LoadingScreen from "@/app/components/loading-screen";
 
 export default function ReviewsPage() {
   const [gym, setGym] = useState<any | null>(null);
-  const [loading, setLoading] = useState(true); // Track loading state
+  const [loading, setLoading] = useState(true);
   const { gym_id } = useParams();
 
   useEffect(() => {
+    // if gym_id doesn't exist, exit
     if (!gym_id) return;
 
-    console.log("page.tsx gym_id:", gym_id); // Log the type of gym_id
+    // GET() method from gym API by gym_id
     fetch(`/api/gyms/${gym_id}`)
       .then((res) => res.json())
       .then((data) => {

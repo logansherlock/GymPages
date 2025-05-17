@@ -16,7 +16,7 @@ export default function LoadingScreen({ text }: MyLoadingScreenProps) {
       {text}
       <div className="flex flex-col items-center justify-center">
         <Image
-          src="/loadingGif.gif" // Replace with the path to your loading GIF
+          src="/loadingGif.gif"
           alt="Loading..."
           width={250}
           height={250}

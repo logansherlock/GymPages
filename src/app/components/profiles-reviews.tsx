@@ -11,7 +11,10 @@ const ProfileReviews = ({ user_id }: { user_id: string }) => {
   const [rev_loading, setRevLoading] = useState(true);
 
   useEffect(() => {
+    // if user_id doesn't exist, exit
     if (!user_id) return;
+
+    // GET() method from review history API by user_id
     fetch(`/api/reviews/reviews-by-user/${user_id}`)
       .then((res) => res.json())
       .then((data) => {

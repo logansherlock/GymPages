@@ -7,16 +7,16 @@ import UserHistory from "@/app/components/user-history";
 import LoadingScreen from "@/app/components/loading-screen";
 
 export default function userHistory() {
-  const { isLoggedIn, username, userID, membership } = useAuth();
-
   const [user, setUser] = useState<any | any>(null);
   const [user_loading, setUserLoading] = useState(true);
-
   const { user_id } = useParams();
+  const { isLoggedIn, username, userID, membership } = useAuth();
 
   useEffect(() => {
+    // if user_id doesn't exist, exit
     if (!user_id) return;
 
+    // GET() function from admin-user API
     fetch(`/api/admin/users/${user_id}`, { method: "GET" })
       .then((res) => res.json())
       .then((data) => {

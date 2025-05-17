@@ -30,6 +30,7 @@ export default function Gym() {
   useEffect(() => {
     const fetchEquipment = async () => {
       try {
+        // GET() method from gym-equipment API for equipment search
         const res = await fetch("/api/gym-equipment");
         const data = await res.json();
         const map = new Map<string, string[]>();
@@ -50,6 +51,7 @@ export default function Gym() {
   useEffect(() => {
     const fetchGyms = async () => {
       try {
+        // GET() method from gym API
         const res = await fetch("/api/gyms");
         const data = await res.json();
         const gymsWithEquipment = data.map((gym: any) => ({
@@ -71,8 +73,10 @@ export default function Gym() {
   // }, [gyms]);
 
   useEffect(() => {
+    // if no gym currently selected, exit
     if (!selectedGym) return;
 
+    // GET() method from rating API by gym_id
     fetch(`/api/reviews/rating/${selectedGym.gym_id}`)
       .then((res) => res.json())
       .then((data) => {

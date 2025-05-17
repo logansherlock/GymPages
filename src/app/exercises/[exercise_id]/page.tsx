@@ -12,10 +12,12 @@ export default function ExercisePage() {
   const { exercise_id } = useParams();
 
   useEffect(() => {
-    if (!exercise_id) return; // prevent undefined fetch
+    // if exercise_id doesn't exist, exit
+    if (!exercise_id) return;
 
     const fetchExercise = async () => {
       try {
+        // GET() method from exercise API by exercise_id
         const res = await fetch(`/api/exercises/exercise-by-id/${exercise_id}`);
         if (!res.ok) throw new Error(`Failed to fetch: ${res.status}`);
         const data = await res.json();
@@ -31,8 +33,10 @@ export default function ExercisePage() {
   }, [exercise_id]);
 
   useEffect(() => {
+    // if exercise doesn't have any related equipment
     if (!exercise?.related_equip_id) return;
 
+    // GET() method from equipment API by equipment_id
     fetch(`/api/equipment/${exercise.related_equip_id}`)
       .then((res) => res.json())
       .then((data) => {

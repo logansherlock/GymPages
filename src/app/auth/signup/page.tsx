@@ -4,6 +4,8 @@ import { useRouter } from "next/navigation";
 
 export default function SignUp() {
   const [localMessage, setLocalMessage] = useState("");
+
+  // initialize signup form data
   const [formData, setFormData] = useState({
     email: "",
     firstname: "",
@@ -12,10 +14,12 @@ export default function SignUp() {
     pass_hash: "",
   });
 
+  // function to handle signup when button is pressed
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
     try {
+      // POST() method from auth-signup API
       const response = await fetch("/api/auth/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -33,10 +37,11 @@ export default function SignUp() {
         pass_hash: "",
       });
 
+      // POST() method from auth-login API (login after signup)
       const loginResponse = await fetch("/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        credentials: "include", // <--- this is key!
+        credentials: "include",
         body: JSON.stringify({
           email: formData.email,
           password: formData.pass_hash,
@@ -49,7 +54,7 @@ export default function SignUp() {
         window.location.href = "/";
         setLocalMessage(loginData.message || "Login Success");
       } else {
-        // setLocalMessage(loginData.message || "Login failed");
+        setLocalMessage(loginData.message || "Login failed");
       }
     } catch (error) {
       if (error instanceof Error) {
@@ -60,12 +65,12 @@ export default function SignUp() {
     }
   };
 
-  // Handle changes in input fields
+  // handle changes in input fields on webpage
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setFormData((prevData) => ({
       ...prevData,
-      [name]: value, // Update the specific field in the state
+      [name]: value,
     }));
   };
 

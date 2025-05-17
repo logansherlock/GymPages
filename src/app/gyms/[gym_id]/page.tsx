@@ -22,20 +22,15 @@ export default function GymPage() {
   console.log(gym_id);
 
   useEffect(() => {
+    // if gym_id doesn't exist, exit
     if (!gym_id) return;
 
-    console.log("page.tsx gym_id type:", typeof gym_id); // Log the type of gym_id
+    // GET() method from gym API
     fetch(`/api/gyms/${gym_id}`)
       .then((res) => res.json())
       .then((data) => {
         console.log("Fetched gym:", data);
-
-        if (data.location) {
-          console.log("LOCATION x: ", data.location.x);
-          console.log("LOCATION y: ", data.location.y);
-        }
         setGym(data);
-
         console.log("Current gym object:", data);
       })
       .catch((err) => {
@@ -45,8 +40,10 @@ export default function GymPage() {
       .finally(() => setGymLoading(false));
   }, [gym_id]);
 
+  // called when user joins gym and confirms
   const handleJoinGym = async () => {
     try {
+      // PUT() method from join-gym API, passes user ID and gym_id as the json body
       const res = await fetch(`/api/profile/${userID}/join-gym`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
@@ -67,8 +64,10 @@ export default function GymPage() {
   };
 
   useEffect(() => {
+    // if gym_id doesn't exist, exit
     if (!gym_id) return;
 
+    // GET() method from rating API by gym_id
     fetch(`/api/reviews/rating/${gym_id}`)
       .then((res) => res.json())
       .then((data) => {

@@ -12,7 +12,10 @@ const ProfilePosts = ({ user_id }: { user_id: string }) => {
   const [posts_loading, setPostsLoading] = useState(true);
 
   useEffect(() => {
+    // if user_id doesn't exist, exit
     if (!user_id) return;
+
+    // GET() method from post history APU by user_id
     fetch(`/api/user-history/posts/${user_id}`)
       .then((res) => res.json())
       .then((data) => {

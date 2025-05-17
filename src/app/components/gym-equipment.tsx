@@ -5,9 +5,10 @@ const GymEquipment = ({ gym_id }: { gym_id: string }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // if gym_id doesn't exist, exit
     if (!gym_id) return;
 
-    console.log("page.tsx gym_id type:", typeof gym_id); // Log the type of gym_id
+    // GET() method from equipment API by gym_id
     fetch(`/api/gym-equipment/equipment-by-gym/${gym_id}`)
       .then((res) => res.json())
       .then((data) => {
